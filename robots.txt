@@ -1,0 +1,11 @@
+User-agent: *
+
+Allow: /
+
+# Sitemap
+Sitemap: https://deraizvivero.github.io/deraizvivero/sitemap.xml
+
+# Evita rastrear archivos innecesarios
+Disallow: /cgi-bin/
+Disallow: /*?
+Disallow: /tmp/
