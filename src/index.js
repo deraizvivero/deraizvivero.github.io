@@ -1,8 +1,8 @@
 export default {
   async fetch(request, env) {
     try {
-      // Llama directamente al modelo de Inteligencia Artificial de Cloudflare
-      const response = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+      // Usamos el modelo actualizado y vigente de Cloudflare
+      const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
         messages: [
           { role: 'user', content: 'Hola, dame un saludo corto para confirmar que mi Cloudflare Worker funciona.' }
         ]
