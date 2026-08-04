@@ -2001,6 +2001,76 @@
             margin-top: 10px;
         }
 
+        /*=============================
+MAS VENDIDOS
+=============================*/
+
+.mas-vendidos{
+
+padding:90px 7%;
+background:#fafafa;
+
+}
+
+.mas-vendidos-grid{
+
+max-width:1200px;
+margin:auto;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+
+gap:25px;
+
+}
+
+.mv-card{
+
+background:#fff;
+
+border-radius:20px;
+
+padding:45px 20px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.35s;
+
+border:1px solid #ececec;
+
+}
+
+.mv-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.mv-icon{
+
+font-size:50px;
+
+margin-bottom:20px;
+
+}
+
+.mv-card h3{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:34px;
+
+margin:0;
+
+color:#111;
+
+}
+        
         /* ========================= RESPONSIVE ========================= */
         @media(max-width: 950px) {
     .hamburger { display: flex; }
@@ -2231,6 +2301,50 @@
         </div>
     </section>
 
+<section class="mas-vendidos">
+
+    <div class="catalogo-header">
+        <span class="section-label">LOS FAVORITOS</span>
+
+        <h2>Más Vendidos</h2>
+
+        <div class="subtitle-line"></div>
+
+        <p>Las variedades más elegidas por nuestros clientes.</p>
+
+    </div>
+
+    <div class="mas-vendidos-grid">
+
+        <div class="mv-card" onclick="filterByCategory('Frutales Injertados');document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+            <div class="mv-icon">🍑</div>
+            <h3>Durazno Chato</h3>
+        </div>
+
+        <div class="mv-card" onclick="filterByCategory('Frutales Injertados');document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+            <div class="mv-icon">🍑</div>
+            <h3>Durazno Pelón Caldesi 2000</h3>
+        </div>
+
+        <div class="mv-card" onclick="filterByCategory('Frutales Injertados');document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+            <div class="mv-icon">🍒</div>
+            <h3>Cerezo</h3>
+        </div>
+
+        <div class="mv-card" onclick="filterByCategory('Frutales Injertados');document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+            <div class="mv-icon">❤️</div>
+            <h3>Granada</h3>
+        </div>
+
+        <div class="mv-card" onclick="filterByCategory('Frutales Injertados');document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+            <div class="mv-icon">🟣</div>
+            <h3>Ciruela Blue Giant</h3>
+        </div>
+
+    </div>
+
+</section>
+    
     <section id="catalogo" class="catalogo">
         <div class="catalogo-header">
             <span class="section-label">Nuestros Ejemplares</span>
