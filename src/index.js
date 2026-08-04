@@ -1,10 +1,10 @@
 export default {
   async fetch(request, env) {
     try {
-      // Usamos el modelo actualizado y vigente de Cloudflare
-      const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+      // Forzamos el uso del nuevo modelo oficial y vigente de Cloudflare
+      const response = await env.AI.run('@cf/meta/llama-3.2-3b-instruct', {
         messages: [
-          { role: 'user', content: 'Hola, dame un saludo corto para confirmar que mi Cloudflare Worker funciona.' }
+          { role: 'user', content: 'Hola, dame un saludo muy corto de una frase para confirmar que mi web funciona.' }
         ]
       });
 
