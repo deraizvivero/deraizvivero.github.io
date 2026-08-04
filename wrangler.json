@@ -1,5 +1,5 @@
 {
-  "name": "mi-worker-gemini",
+  "name": "raicita",
   "main": "./src/index.js",
   "compatibility_date": "2026-08-01",
   "secrets_store_secrets": [
