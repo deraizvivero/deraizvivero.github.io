@@ -6,7 +6,7 @@ export default {
       return new Response("Error: No se encontró la API Key real en Cloudflare.", { status: 500 });
     }
 
-    // URL oficial y completa para conectar con Gemini 1.5 Flash
+    // URL oficial actualizada y estable (v1) para Gemini 1.5 Flash
     const url = "https://googleapis.com";
     
     try {
