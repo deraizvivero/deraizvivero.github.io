@@ -6,7 +6,7 @@ export default {
       return new Response("Error: No se encontró la API Key en Cloudflare.", { status: 500 });
     }
 
-    // URL oficial corregida para modelos Gemini 2.5 de Google
+    // URL oficial usando el modelo correcto: gemini-1.5-flash
     const url = "https://googleapis.com";
     
     try {
@@ -24,7 +24,6 @@ export default {
         })
       });
 
-      // Validamos si Google nos rechaza antes de procesar el JSON
       if (!response.ok) {
         const errorText = await response.text();
         return new Response("Error de la API de Gemini: " + errorText, { status: response.status });
