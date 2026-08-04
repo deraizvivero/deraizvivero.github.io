@@ -6,7 +6,7 @@ export default {
       return new Response("Error: No se encontró la API Key en Cloudflare.", { status: 500 });
     }
 
-    // URL oficial para interactuar con los modelos de Gemini
+    // URL oficial corregida para modelos Gemini 2.5 de Google
     const url = "https://googleapis.com";
     
     try {
@@ -16,9 +16,19 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: "Hola Gemini, la conexión desde Cloudflare funciona perfectamente!" }] }]
+          contents: [{
+            parts: [{
+              text: "Hola Gemini, la conexión desde mi Cloudflare Worker raicita funciona perfectamente. Dame un saludo corto de confirmación."
+            }]
+          }]
         })
       });
+
+      // Validamos si Google nos rechaza antes de procesar el JSON
+      if (!response.ok) {
+        const errorText = await response.text();
+        return new Response("Error de la API de Gemini: " + errorText, { status: response.status });
+      }
 
       const data = await response.json();
       return new Response(JSON.stringify(data), {
