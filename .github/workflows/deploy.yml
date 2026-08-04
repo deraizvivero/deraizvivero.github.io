@@ -2,7 +2,7 @@ name: Deploy Worker
 on:
   push:
     branches:
-      - main # Si tu rama principal se llama 'master', cambia esto por master
+      - main
 
 jobs:
   deploy:
