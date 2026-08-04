@@ -11,6 +11,9 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
+      - name: Inyectar clave de forma segura
+        run: echo -e "\n[vars]\nGEMINI_API_KEY = \"${{ secrets.GEMINI_API_KEY }}\"" >> wrangler.toml
+
       - name: Desplegar en Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
