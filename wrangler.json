@@ -1,0 +1,12 @@
+{
+  "name": "mi-worker-gemini",
+  "main": "./src/index.js",
+  "compatibility_date": "2026-08-01",
+  "secrets_store_secrets": [
+    {
+      "binding": "GEMINI_API_KEY",
+      "store_id": "cfea26806f1c43e4a05cfd9e0e942449",
+      "secret_name": "GEMINI_API_KEY"
+    }
+  ]
+}
