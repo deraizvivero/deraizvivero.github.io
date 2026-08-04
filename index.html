@@ -3067,6 +3067,70 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             if (typing) typing.remove();
         }
 
+        // ---- Consejos de cuidado por categoría ----
+        const raicitaCuidados = {
+            "Árboles": `🌳 <strong>Cuidados para árboles:</strong><br><br>Riego abundante y profundo las primeras 2 temporadas para que arraigue bien; después, solo en sequías largas. Necesitan sol pleno. La poda de formación se hace en invierno, cuando el árbol está en reposo.`,
+            "Palmeras": `🌴 <strong>Cuidados para palmeras:</strong><br><br>Riego moderado, dejando secar la tierra entre riego y riego. Sol pleno. Algunas variedades sensibles al frío conviene protegerlas en heladas fuertes, sobre todo los primeros años.`,
+            "Arbustos y Gramíneas": `🌿 <strong>Cuidados para arbustos y gramíneas:</strong><br><br>Riego moderado y regular, sin encharcar. La mayoría anda bien con sol pleno o media sombra. Podá después de la floración para mantener buena forma y estimular nuevos brotes.`,
+            "Rosales de Pie Bajo": `🌹 <strong>Cuidados para rosales:</strong><br><br>Regá en la base, sin mojar las hojas (así evitás hongos). Necesitan varias horas de sol directo por día. Podá en invierno y fertilizá en primavera para una floración abundante.`,
+            "Cítricos Injertados": `🍊 <strong>Cuidados para cítricos:</strong><br><br>Riego regular sin encharcar, la tierra tiene que drenar bien. Sol pleno. Son sensibles a heladas fuertes: en zonas frías conviene protegerlos los primeros inviernos. Fertilizá en primavera-verano para mejor producción.`,
+            "Frutales Injertados": `🍑 <strong>Cuidados para frutales:</strong><br><br>Riego profundo y espaciado, más frecuente en floración y fructificación. Sol pleno. La poda de formación en invierno es clave para una buena producción y forma del árbol.`,
+            "Parras": `🍇 <strong>Cuidados para parras:</strong><br><br>Riego moderado, más importante en brotación y hasta el envero (cuando cambia de color el grano). Sol pleno todo el día. Necesitan una estructura (alambrado o pérgola) para guiarlas y poda de invierno.`
+        };
+
+        const raicitaCuidadosGenerico = `🌱 <strong>Consejos generales de cuidado:</strong><br><br>La mayoría de nuestras plantas necesitan buena luz solar y riego regular sin encharcar la tierra (dejá secar la superficie entre riego y riego).<br><br>Contame qué planta tenés o te interesa (por ejemplo "cuidados de los cítricos" o "cómo cuido un rosal") y te doy consejos más específicos 🙂`;
+
+        const raicitaCuidadoTriggers = ['cuidado', 'cuidados', 'cuido', 'cuidar', 'riego', 'regar', 'regó', 'poda', 'podar', 'sol', 'luz', 'abono', 'abonar', 'fertiliza', 'fertilizar', 'trasplant'];
+
+        function raicitaEsConsultaCuidado(norm) {
+            return raicitaCuidadoTriggers.some(k => norm.includes(normalizeText(k)));
+        }
+
+        function raicitaCategoriaEnTexto(norm) {
+            return Object.keys(raicitaCuidados).find(cat => norm.includes(normalizeText(cat)));
+        }
+
+        // ---- Búsqueda de productos en el catálogo real ----
+        function raicitaFindProductos(text) {
+            const norm = normalizeText(text);
+            const encontrados = [];
+            Object.keys(productosData).forEach(categoria => {
+                productosData[categoria].forEach(p => {
+                    const nombreNorm = normalizeText(p.nombre);
+                    const palabrasClave = nombreNorm.split(' ').filter(w => w.length > 3);
+                    const hayCoincidencia = norm.includes(nombreNorm) ||
+                        palabrasClave.some(w => norm.includes(w));
+                    if (hayCoincidencia) {
+                        encontrados.push({ ...p, categoria });
+                    }
+                });
+            });
+            // sin duplicados
+            return encontrados.filter((p, i) => encontrados.findIndex(x => x.nombre === p.nombre) === i);
+        }
+
+        function raicitaRenderProductos(productos) {
+            if (productos.length === 1) {
+                const p = productos[0];
+                return `Sí, tenemos <strong>${p.nombre}</strong> disponible 🌱<br><br>
+                    📏 Altura: ${p.altura}<br>
+                    💰 Precio: $${p.precio.toLocaleString('es-AR')}<br>
+                    📂 Categoría: ${p.categoria}<br><br>
+                    ${p.desc}<br><br>
+                    Podés verlo con foto en la sección "Catálogo" más arriba, dentro de ${p.categoria}.`;
+            }
+            const lista = productos.slice(0, 6).map(p =>
+                `• <strong>${p.nombre}</strong> — $${p.precio.toLocaleString('es-AR')} (${p.categoria})`
+            ).join('<br>');
+            return `Encontré estas opciones relacionadas 🌿<br><br>${lista}${productos.length > 6 ? '<br>...y más en el catálogo' : ''}<br><br>Podés verlas con más detalle en la sección "Catálogo" más arriba.`;
+        }
+
+        const raicitaDisponibilidadTriggers = ['tienen', 'tenes', 'tenés', 'hay', 'venden', 'disponible', 'stock', 'consigo', 'encuentro', 'existe'];
+
+        function raicitaPareceConsultaProducto(norm) {
+            return raicitaDisponibilidadTriggers.some(k => norm.includes(normalizeText(k)));
+        }
+
         function raicitaRenderChips() {
             const quick = document.getElementById('raicitaQuick');
             quick.innerHTML = '';
@@ -3077,6 +3141,11 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
                 chip.onclick = () => raicitaAsk(item.chip, item);
                 quick.appendChild(chip);
             });
+            const chipCuidados = document.createElement('button');
+            chipCuidados.className = 'raicita-chip';
+            chipCuidados.textContent = 'Cuidado de plantas';
+            chipCuidados.onclick = () => raicitaAsk('¿Cómo cuido mis plantas?');
+            quick.appendChild(chipCuidados);
         }
 
         function raicitaMatch(text) {
@@ -3096,26 +3165,88 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             return bestScore > 0 ? best : null;
         }
 
-        function raicitaAsk(userText, matchedItem) {
+        // URL de tu Worker de Cloudflare (solo se usa si ninguna regla local encontró respuesta)
+        const RAICITA_AI_URL = 'https://TU-WORKER.TU-USUARIO.workers.dev';
+        let raicitaHistorial = [];
+
+        async function raicitaAsk(userText, matchedItem) {
             raicitaAddMsg(userText, 'user');
             raicitaShowTyping();
 
-            const match = matchedItem || raicitaMatch(userText);
+            const norm = normalizeText(userText);
 
-            setTimeout(() => {
-                raicitaHideTyping();
-                if (match) {
+            // 1) FAQ por palabras clave (horarios, envíos, ubicación, etc.)
+            const match = matchedItem || raicitaMatch(userText);
+            if (match) {
+                setTimeout(() => {
+                    raicitaHideTyping();
                     raicitaAddMsg(match.respuesta, 'bot');
-                } else {
+                }, 650);
+                return;
+            }
+
+            // 2) ¿Pregunta por un producto puntual del catálogo?
+            const productos = raicitaFindProductos(userText);
+            if (productos.length > 0) {
+                setTimeout(() => {
+                    raicitaHideTyping();
+                    raicitaAddMsg(raicitaRenderProductos(productos), 'bot');
+                }, 650);
+                return;
+            }
+
+            // 3) Parece consulta de disponibilidad pero no está en el catálogo
+            if (raicitaPareceConsultaProducto(norm)) {
+                setTimeout(() => {
+                    raicitaHideTyping();
                     raicitaAddMsg(
-                        `No estoy segura de eso todavía 🌱 Pero podés preguntarle directo a nuestro equipo:
+                        `No encontré esa planta puntual en nuestro catálogo actual 🌱<br><br>
+                        Podés revisar todas las categorías disponibles en la sección "Catálogo" más arriba, o preguntarle directo a nuestro equipo:
                         <div class="raicita-contact-links">
-                            ${raicitaContactLink('wa', waLink('Hola! Tengo una consulta: ' + userText), 'Escribir por WhatsApp')}
+                            ${raicitaContactLink('wa', waLink('Hola! Busco: ' + userText), 'Consultar por WhatsApp')}
                         </div>`,
                         'bot'
                     );
+                }, 650);
+                return;
+            }
+
+            // 4) Consejos de cuidado de plantas
+            if (raicitaEsConsultaCuidado(norm)) {
+                const categoriaDetectada = raicitaCategoriaEnTexto(norm);
+                setTimeout(() => {
+                    raicitaHideTyping();
+                    raicitaAddMsg(categoriaDetectada ? raicitaCuidados[categoriaDetectada] : raicitaCuidadosGenerico, 'bot');
+                }, 650);
+                return;
+            }
+
+            // 5) Nada de lo anterior respondió: le preguntamos a la IA
+            raicitaHistorial.push({ role: 'user', content: userText });
+            try {
+                const res = await fetch(RAICITA_AI_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ historial: raicitaHistorial })
+                });
+                const data = await res.json();
+                raicitaHideTyping();
+                if (data.respuesta) {
+                    raicitaAddMsg(data.respuesta, 'bot');
+                    raicitaHistorial.push({ role: 'assistant', content: data.respuesta });
+                } else {
+                    throw new Error('Sin respuesta');
                 }
-            }, 650);
+            } catch (err) {
+                raicitaHideTyping();
+                raicitaAddMsg(
+                    `No estoy segura de eso todavía 🌱 Pero podés preguntarle directo a nuestro equipo:
+                    <div class="raicita-contact-links">
+                        ${raicitaContactLink('wa', waLink('Hola! Tengo una consulta: ' + userText), 'Escribir por WhatsApp')}
+                    </div>`,
+                    'bot'
+                );
+            }
         }
 
         function raicitaSend() {
