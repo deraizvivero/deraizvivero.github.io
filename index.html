@@ -3193,6 +3193,12 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             });
         }
 
+        function normalizeText(text) {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
         function raicitaMatch(text) {
             const norm = normalizeText(text);
             let best = null;
@@ -3211,26 +3217,73 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         }
 
         function raicitaAsk(userText, matchedItem) {
-            raicitaAddMsg(userText, 'user');
-            raicitaShowTyping();
 
-            const match = matchedItem || raicitaMatch(userText);
+    raicitaAddMsg(userText, 'user');
+    raicitaShowTyping();
 
-            setTimeout(() => {
-                raicitaHideTyping();
-                if (match) {
-                    raicitaAddMsg(match.respuesta, 'bot');
-                } else {
-                    raicitaAddMsg(
-                        `No estoy segura de eso todavía 🌱 Pero podés preguntarle directo a nuestro equipo:
-                        <div class="raicita-contact-links">
-                            ${raicitaContactLink('wa', waLink('Hola! Tengo una consulta: ' + userText), 'Escribir por WhatsApp')}
-                        </div>`,
-                        'bot'
-                    );
-                }
-            }, 650);
+    const texto = normalizeText(userText);
+
+    setTimeout(() => {
+
+        raicitaHideTyping();
+
+        // Primero intenta responder con las preguntas frecuentes
+        const match = matchedItem || raicitaMatch(userText);
+
+        if (match) {
+            raicitaAddMsg(match.respuesta, 'bot');
+            return;
         }
+
+        // Buscar cualquier planta del catálogo
+        for (const categoria in productosData) {
+
+            const lista = productosData[categoria];
+
+            for (const planta of lista) {
+
+                const nombre = normalizeText(planta.nombre);
+
+                if (
+                    texto.includes(nombre) ||
+                    nombre.includes(texto) ||
+                    texto.includes(nombre + "s")
+                ) {
+
+                    let respuesta =
+                        `🌱 Sí, tenemos <strong>${planta.nombre}</strong>.<br><br>`;
+
+                    if (planta.altura)
+                        respuesta += `📏 Altura: ${planta.altura}<br>`;
+
+                    if (planta.precio)
+                        respuesta += `💲 Precio: $${planta.precio}<br>`;
+
+                    respuesta += `<br>📂 Se encuentra en la categoría <strong>${categoria}</strong>.`;
+
+                    raicitaAddMsg(respuesta, 'bot');
+
+                    return;
+                }
+            }
+        }
+
+        // Si no encontró nada
+        raicitaAddMsg(
+            `No encontré esa planta en nuestro catálogo 🌱.<br><br>
+            Si querés, escribinos por WhatsApp y verificamos si podemos conseguirla.
+            <div class="raicita-contact-links">
+                ${raicitaContactLink(
+                    'wa',
+                    waLink('Hola, estoy buscando: ' + userText),
+                    'Consultar por WhatsApp'
+                )}
+            </div>`,
+            'bot'
+        );
+
+    }, 650);
+}
 
         function raicitaSend() {
             const input = document.getElementById('raicitaInput');
