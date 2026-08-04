@@ -3193,12 +3193,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             });
         }
 
-        function normalizeText(text) {
-    return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-}
+        
         function raicitaMatch(text) {
             const norm = normalizeText(text);
             let best = null;
