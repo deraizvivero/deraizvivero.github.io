@@ -1,12 +1,13 @@
 export default {
   async fetch(request, env) {
+    // Lee la variable GEMINI_API_KEY directamente desde tu panel de Cloudflare
     const apiKey = env.GEMINI_API_KEY;
 
-    if (!apiKey) {
-      return new Response("Error: No se encontró la API Key en Cloudflare.", { status: 500 });
+    if (!apiKey || apiKey === "cambiar_en_github") {
+      return new Response("Error: No se encontró la API Key real en Cloudflare.", { status: 500 });
     }
 
-    // URL oficial usando el modelo correcto: gemini-1.5-flash
+    // URL y modelo oficiales correctos
     const url = "https://googleapis.com";
     
     try {
