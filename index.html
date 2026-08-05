@@ -2512,7 +2512,7 @@
     { nombre: "MANDARINA MURCOTT", altura: "1,50 Metros", precio: 22500, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/mandarina%20murcott.png", desc: "Pulpa muy dulce, jugosa y sin casi semillas, con cáscara fácil de pelar: de las mandarinas más golosas que existen." },
     { nombre: "NARANJA DE OMBLIGO", altura: "1,20 Metros", precio: 22500, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/naranja%20de%20ombligo.png", desc: "Pulpa dulce, sin semillas y muy jugosa, ideal para comer en gajos o exprimir un jugo espeso y con cuerpo." },
     { nombre: "POMELO RUBY ROSADO", altura: "1,20 Metros", precio: 22500, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/pomelo%20ruby.png", desc: "Pulpa rosada con el equilibrio justo entre dulce y ácido, mucho más suave que el pomelo tradicional." },
-    { nombre: "QUINOTO (KUMQUAT DULCE)", altura: "1,50 Metros", precio: 22500, icon: "🍋", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/quinoto.png", desc: "A diferencia del kumquat tradicional, esta variedad es dulce de punta a punta: se come entero, cáscara incluida, sin el toque ácido que tienen otros kumquats." }
+    { nombre: "QUINOTO KUMQUAT DULCE", altura: "1,50 Metros", precio: 22500, icon: "🍋", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/quinoto.png", desc: "A diferencia del kumquat tradicional, esta variedad es dulce de punta a punta: se come entero, cáscara incluida, sin el toque ácido que tienen otros kumquats." }
 ],
 "Frutales Injertados": [
     { nombre: "ALMENDRO GUARA", altura: "1,80 Metros", precio: 35000, icon: "🌳", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/almendro.png", desc: "Almendras de sabor suave y textura crocante, cosechadas y peladas por vos: nada se compara a la almendra recién sacada del árbol." },
@@ -3060,7 +3060,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             { id: 'horarios', keywords: ['horario','horarios','hora','atencion','atienden','abierto','cerrado','cuando'], chip: 'Horarios de atención',
               respuesta: `Nuestros horarios son:<br><br>📱 <strong>Por WhatsApp y Facebook:</strong> Lunes a Jueves de 10:00 a 22:00 hs.<br>🌳 <strong>Presencial en el vivero:</strong> Lunes a Jueves de 13:00 a 18:00 hs.<br><br>Fuera de esos horarios podés dejarnos tu consulta y te respondemos apenas abrimos.` },
             { id: 'ubicacion', keywords: ['ubicacion','direccion','donde estan','donde queda','como llego','mapa','loma bola'], chip: 'Ubicación',
-              respuesta: `Estamos en Loma Bola, Córdoba (Traslasierra) 🌿<br><br>La ubicación exacta la compartimos <strong>por WhatsApp, Facebook y con cita previa</strong>, así coordinamos mejor tu visita.<br>
+              respuesta: `Estamos en Loma Bola, Córdoba - Traslasierra 🌿<br><br>La ubicación exacta la compartimos <strong>por WhatsApp, Facebook y con cita previa</strong>, así coordinamos mejor tu visita.<br>
               <div class="raicita-contact-links">
                   ${raicitaContactLink('wa', waLink('Hola! Quisiera coordinar una cita para visitar el vivero y que me compartan la ubicación 🌱'), 'WhatsApp')}
                   ${raicitaContactLink('ig', 'https://www.instagram.com/deraizviverook/', 'Instagram')}
@@ -3077,8 +3077,8 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             { id: 'contacto', keywords: ['contacto','whatsapp','instagram','facebook','redes','telefono','hablar con alguien','persona'], chip: 'Contacto',
               respuesta: `Podés escribirnos directo:
               <div class="raicita-contact-links">
-                  ${raicitaContactLink('wa', waLink('Hola! Tengo una consulta para De Raíz Vivero 🌱'), 'WhatsApp')}
-                  ${raicitaContactLink('ig', 'https://www.instagram.com/deraizviverook/', '@deraizviverook')}
+                  ${raicitaContactLink('wa', waLink('Holaa! Tengo una consulta para De Raíz Vivero 🌱'), 'WhatsApp')}
+                  ${raicitaContactLink('ig', 'https://www.instagram.com/deraizviverook/', 'Instagram')}
                   ${raicitaContactLink('fb', 'https://www.facebook.com/deraizviverook/', 'Facebook')}
               </div>` }
         ];
@@ -3094,7 +3094,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             { keywords: ['chau','adios','nos vemos','hasta luego','bye'],
               respuesta: () => '¡Nos vemos! Que tengas un lindo día 🌳' },
             { keywords: ['quien sos','que sos','sos un bot','sos una ia','sos humano'],
-              respuesta: () => 'Soy Raicita, la asistente virtual de De Raíz Vivero 🌱 Estoy para ayudarte con consultas sobre plantas, pedidos, envíos y más.' }
+              respuesta: () => 'Soy Raicita, la asistente virtual de De Raíz Vivero 🌿 Estoy para ayudarte con consultas sobre plantas, pedidos, envíos y más.' }
         ];
 
         /* ---------- Consejos de cuidado por categoría ---------- */
