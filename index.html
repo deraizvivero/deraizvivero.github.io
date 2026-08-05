@@ -2163,6 +2163,10 @@
         .review-date { display: block; margin-top: 15px; color: #aaa; font-size: 12px; }
         .btn-write-review { background: var(--negro); color: white; padding: 15px 30px; border-radius: 50px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .btn-write-review:hover { background: var(--verde); color: var(--negro); transform: translateY(-3px); }
+        .btn-view-all-reviews { display: block; margin: 40px auto 0; background: transparent; color: var(--negro); padding: 12px 30px; border-radius: 50px; border: 2px solid var(--negro); font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .btn-view-all-reviews:hover { background: var(--negro); color: white; }
+        .btn-view-all-reviews.hidden { display: none; }
+        .review-card.hidden { display: none; }
         .rating-input { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin: 20px 0; font-size: 30px; }
         .rating-input input { display: none; }
         .rating-input label { cursor: pointer; color: #ddd; }
@@ -2402,6 +2406,7 @@
             <div class="reviews-grid" id="reviewsList">
                 <!-- Se carga con JS -->
             </div>
+            <button id="btnViewAllReviews" class="btn-view-all-reviews" onclick="toggleReviews()">Ver todas las reseñas</button>
         </div>
     </section>
 
@@ -3345,11 +3350,31 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         ]
     };
 
+    let reviewsExpanded = false;
+
     function renderReviews() {
         const list = document.getElementById('reviewsList');
+        const btn = document.getElementById('btnViewAllReviews');
         if (!list) return;
-        list.innerHTML = reviewsData.reviews.map(r => `
-            <div class="review-card">
+
+        // Actualizamos el resumen de calificaciones arriba
+        const total = reviewsData.reviews.reduce((acc, r) => acc + r.stars, 0);
+        const count = reviewsData.reviews.length;
+        const avg = count > 0 ? (total / count).toFixed(1) : "0.0";
+        
+        const ratingNum = document.querySelector('.rating-number');
+        const ratingCount = document.querySelector('.review-count');
+        const ratingStars = document.querySelector('.overall-rating .rating-stars');
+        
+        if (ratingNum) ratingNum.textContent = avg;
+        if (ratingCount) ratingCount.textContent = `(${count} reseñas en Traslasierra)`;
+        if (ratingStars) {
+            const fullStars = Math.round(avg);
+            ratingStars.textContent = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+        }
+
+        list.innerHTML = reviewsData.reviews.map((r, index) => `
+            <div class="review-card ${!reviewsExpanded && index >= 3 ? 'hidden' : ''}">
                 <div class="review-header">
                     <strong>${r.name}</strong>
                     <span class="review-city">${r.city}</span>
@@ -3359,6 +3384,23 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
                 <small class="review-date">${r.date}</small>
             </div>
         `).join('');
+
+        if (btn) {
+            if (count <= 3) {
+                btn.classList.add('hidden');
+            } else {
+                btn.classList.remove('hidden');
+                btn.textContent = reviewsExpanded ? 'Ver menos' : 'Ver todas las reseñas';
+            }
+        }
+    }
+
+    function toggleReviews() {
+        reviewsExpanded = !reviewsExpanded;
+        renderReviews();
+        if (!reviewsExpanded) {
+            document.getElementById('resenas').scrollIntoView({ behavior: 'smooth' });
+        }
     }
 
     function openReviewModal() {
@@ -3410,6 +3452,13 @@ ${comentario}`;
 function injectProductSchema() {
     const items = [];
     let position = 1;
+
+    // Calculamos calificaciones reales dinámicamente desde reviewsData.reviews
+    const total = reviewsData.reviews.reduce((acc, r) => acc + r.stars, 0);
+    const count = reviewsData.reviews.length;
+    const ratingValue = count > 0 ? (total / count).toFixed(1) : "5.0";
+    const reviewCount = count > 0 ? count : "1"; // Mínimo 1 para el schema
+
     Object.keys(productosData).forEach(categoria => {
         productosData[categoria].forEach(p => {
             items.push({
@@ -3422,13 +3471,51 @@ function injectProductSchema() {
                     "image": p.img || "https://deraizvivero.github.io/deraizvivero/favicon.jpg",
                     "brand": { "@type": "Brand", "name": "De Raíz Vivero" },
                     "category": categoria,
+                    "sku": p.nombre.toLowerCase().replace(/\s+/g, '-'), // SKU sugerido para evitar advertencias
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": ratingValue,
+                        "reviewCount": reviewCount
+                    },
                     "offers": {
                         "@type": "Offer",
                         "priceCurrency": "ARS",
                         "price": String(p.precio),
                         "availability": "https://schema.org/InStock",
                         "seller": { "@type": "Organization", "name": "De Raíz Vivero" },
-                        "url": "https://deraizvivero.github.io/"
+                        "url": "https://deraizvivero.github.io/",
+                        "hasMerchantReturnPolicy": {
+                            "@type": "MerchantReturnPolicy",
+                            "applicableCountry": "AR",
+                            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+                        },
+                        "shippingDetails": {
+                            "@type": "OfferShippingDetails",
+                            "shippingRate": {
+                                "@type": "MonetaryAmount",
+                                "value": 0,
+                                "currency": "ARS"
+                            },
+                            "shippingDestination": {
+                                "@type": "DefinedRegion",
+                                "addressCountry": "AR"
+                            },
+                            "deliveryTime": {
+                                "@type": "ShippingDeliveryTime",
+                                "handlingTime": {
+                                    "@type": "QuantitativeValue",
+                                    "minValue": 0,
+                                    "maxValue": 2,
+                                    "unitCode": "d"
+                                },
+                                "transitTime": {
+                                    "@type": "QuantitativeValue",
+                                    "minValue": 1,
+                                    "maxValue": 5,
+                                    "unitCode": "d"
+                                }
+                            }
+                        }
                     }
                 }
             });
