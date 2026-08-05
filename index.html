@@ -2167,6 +2167,12 @@
         .btn-view-all-reviews:hover { background: var(--negro); color: white; }
         .btn-view-all-reviews.hidden { display: none; }
         .review-card.hidden { display: none; }
+
+        
+        /* Animación de despliegue */
+        .reviews-grid { transition: all 0.5s ease; }
+        @keyframes fadeInReview { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .review-card:not(.hidden) { animation: fadeInReview 0.5s ease forwards; }
         .rating-input { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin: 20px 0; font-size: 30px; }
         .rating-input input { display: none; }
         .rating-input label { cursor: pointer; color: #ddd; }
@@ -3341,12 +3347,16 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         
     /* --- LÓGICA DE RESEÑAS --- */
     const reviewsData = {
-        totalScore: 0,
-        count: 0,
         reviews: [
-            { name: "Nombre", city: "Mina Clavero", stars: 0, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Nono", stars: 0, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Villa Dolores", stars: 0, text: "Reseña", date: "sin especificar" }
+            { name: "Nombre", city: "Mina Clavero", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "Nono", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "Villa Dolores", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "Las Rabonas", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "San Javier", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "Loma Bola", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "Yacanto", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "San Pedro", stars: 5, text: "Reseña", date: "sin especificar" },
+            { name: "Nombre", city: "Los Hornillos", stars: 5, text: "Reseña", date: "sin especificar" }
         ]
     };
 
@@ -3357,10 +3367,10 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         const btn = document.getElementById('btnViewAllReviews');
         if (!list) return;
 
-        // Actualizamos el resumen de calificaciones arriba
+        // Actualizamos el resumen de calificaciones
         const total = reviewsData.reviews.reduce((acc, r) => acc + r.stars, 0);
         const count = reviewsData.reviews.length;
-        const avg = count > 0 ? (total / count).toFixed(1) : "0.0";
+        const avg = count > 0 ? (total / count).toFixed(1) : "5.0";
         
         const ratingNum = document.querySelector('.rating-number');
         const ratingCount = document.querySelector('.review-count');
@@ -3373,6 +3383,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             ratingStars.textContent = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
         }
 
+        // Renderizamos las tarjetas
         list.innerHTML = reviewsData.reviews.map((r, index) => `
             <div class="review-card ${!reviewsExpanded && index >= 3 ? 'hidden' : ''}">
                 <div class="review-header">
@@ -3387,10 +3398,10 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
 
         if (btn) {
             if (count <= 3) {
-                btn.classList.add('hidden');
+                btn.style.display = 'none';
             } else {
-                btn.classList.remove('hidden');
-                btn.textContent = reviewsExpanded ? 'Ver menos' : 'Ver todas las reseñas';
+                btn.style.display = 'block';
+                btn.textContent = reviewsExpanded ? 'Ver menos' : 'Ver todas';
             }
         }
     }
