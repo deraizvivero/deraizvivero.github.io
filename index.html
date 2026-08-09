@@ -3343,19 +3343,59 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
 
         
     /* --- LÓGICA DE RESEÑAS --- */
-    const reviewsData = {
-        reviews: [
-            { name: "Nombre", city: "Mina Clavero", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Nono", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Villa Dolores", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Las Rabonas", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "San Javier", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Loma Bola", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Yacanto", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "San Pedro", stars: 5, text: "Reseña", date: "sin especificar" },
-            { name: "Nombre", city: "Los Hornillos", stars: 5, text: "Reseña", date: "sin especificar" }
-        ]
-    };
+const reviewsData = {
+    reviews: [
+        {
+            name: "Jere Burzaco",
+            city: "Villa Dolores",
+            stars: 5,
+            text: "¡Excelente lugar para conocer y volver!. Tienen plantas de primera calidad, precios muy accesibles y brindan un gran asesoramiento. Además, tuve que hacer una consulta meses después de mi compra y la atención posventa fue impecable. Recomiendo este lugar al 100%. 👍🌿",
+            date: "9/8/26"
+        },
+        {
+            name: "Paulina Olguin",
+            city: "Las Tapias",
+            stars: 5,
+            text: "Yo y mi familia compramos todos los años tus plantas y nos encanta ver cómo florecen y poder disfrutar de sus frutos, amamos tus plantas tan bellas 💕",
+            date: "9/8/26"
+        },
+        {
+            name: "Leonel Sosa",
+            city: "Guanaco Boleado",
+            stars: 5,
+            text: "Excelente atención! Muy buenos precios, y llegar hasta el lugar invita a apreciar unas vistas alucinantes, muy recomendable!!",
+            date: "9/8/26"
+        },
+        {
+            name: "Roberto Abrahan",
+            city: "La Paz",
+            stars: 5,
+            text: "Muy buena atención y orientación sobre lo que estaba buscando, como también la entrega en tiempo y forma. Muchas gracias por todo",
+            date: "9/8/26"
+        },
+        {
+            name: "David Salas",
+            city: "Villa Dolores",
+            stars: 5,
+            text: "Muy buenas plantas, y la atención es muy buena, cualquier consulta están disponibles!",
+            date: "9/8/26"
+        },
+        {
+            name: "Mario Altamirano",
+            city: "Cerro de Oro",
+            stars: 5,
+            text: "Excelente atención y muy buenos productos 👌",
+            date: "9/8/26"
+        },
+        {
+            name: "Claudia Marcela",
+            city: "Los Hornillos",
+            stars: 5,
+            text: "Muy buenos los plantines",
+            date: "9/8/26"
+        }
+    ]
+};
 
     let reviewsExpanded = false;
 
