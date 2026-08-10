@@ -2147,7 +2147,14 @@
         }
     
         /* --- RESEÑAS STYLES --- */
-        .reviews-section { padding: 100px 7%; background: var(--gris); }
+        .reviews-section { 
+    padding: 100px 7%; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1723477473716-d75423049f1e?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; /* Opcional: crea un efecto parallax moderno */
+}
         .reviews-container { max-width: 1200px; margin: auto; }
         .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; flex-wrap: wrap; gap: 20px; }
         .reviews-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 60px; line-height: 1; }
