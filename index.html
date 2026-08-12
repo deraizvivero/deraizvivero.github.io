@@ -4002,24 +4002,24 @@ injectBusinessReviewSchema();
          * La página de Instagram se abre al pulsar cada slide o el botón inferior.
          */
         const instagramPosts = [
-            // Higuera
-            { src: 'Picsart_26-08-11_17-15-26-512.png', alt: 'Higuera' },
-            { src: 'Picsart_26-08-11_17-21-54-560.png', alt: 'Higuera' },
-            { src: 'Picsart_26-08-11_17-29-40-631.png', alt: 'Higuera' },
-            { src: 'Picsart_26-08-11_17-49-37-108.png', alt: 'Higuera' },
+            // Higuera (Orden corregido)
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_17-21-54-560.png', alt: 'Higuera' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_17-15-26-512.png', alt: 'Higuera' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_17-29-40-631.png', alt: 'Higuera' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_17-49-37-108.webp', alt: 'Higuera' },
             
             // Damasco
-            { src: 'Picsart_26-08-11_15-55-15-683.png', alt: 'Damasco' },
-            { src: 'Picsart_26-08-11_16-03-03-302.png', alt: 'Damasco' },
-            { src: 'Picsart_26-08-11_16-12-41-193.png', alt: 'Damasco' },
-            { src: 'Picsart_26-08-11_16-18-57-313.png', alt: 'Damasco' },
-            { src: 'Picsart_26-08-11_16-24-22-755.png', alt: 'Damasco' },
-            { src: 'Picsart_26-08-11_16-36-26-244.png', alt: 'Damasco' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_15-55-15-683.png', alt: 'Damasco' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_16-03-03-302.png', alt: 'Damasco' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_16-12-41-193.png', alt: 'Damasco' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_16-18-57-313.png', alt: 'Damasco' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_16-24-22-755.png', alt: 'Damasco' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_16-36-26-244.png', alt: 'Damasco' },
             
             // Granada
-            { src: 'Picsart_26-08-11_19-43-42-929.png', alt: 'Granada' },
-            { src: 'Picsart_26-08-11_19-52-13-206.png', alt: 'Granada' },
-            { src: 'Picsart_26-08-11_20-10-39-927.png', alt: 'Granada' }
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_19-43-42-929.webp', alt: 'Granada' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_19-52-13-206.png', alt: 'Granada' },
+            { src: 'https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/higueras/Picsart_26-08-11_20-10-39-927.webp', alt: 'Granada' }
         ];
 
         (function initInstagramSlider() {
@@ -4035,9 +4035,13 @@ injectBusinessReviewSchema();
             let autoPlayTimer;
             let touchStartX = null;
 
-            track.innerHTML = instagramPosts.map(post => `
+            track.innerHTML = instagramPosts.map((post, index) => `
                 <article class="instagram-slide">
-                    <img src="${post.src}" alt="${post.alt}" loading="lazy" draggable="false">
+                    <img src="${post.src}" 
+                         alt="${post.alt}" 
+                         loading="${index === 0 ? 'eager' : 'lazy'}" 
+                         fetchpriority="${index === 0 ? 'high' : 'low'}"
+                         draggable="false">
                     <div class="instagram-slide-content">
                         <a class="instagram-slide-link" href="https://www.instagram.com/deraizviverook/" target="_blank" rel="noopener noreferrer">
                             Ver en Instagram
