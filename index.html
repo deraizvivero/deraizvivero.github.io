@@ -2293,58 +2293,37 @@
         .instagram-slide-content {
             position: absolute;
             z-index: 1;
-            bottom: 0;
+            bottom: 25px;
             left: 0;
             right: 0;
-            padding: 60px 40px 45px;
-            color: white;
-            text-align: left;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+            text-align: center;
+            pointer-events: none;
         }
 
-                .instagram-slide-content span {
-            display: block;
-            margin-bottom: 12px;
-            color: var(--verde);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.9;
-        }
-
-                .instagram-slide-content h3 {
-            margin-bottom: 25px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(28px, 4.5vw, 42px);
-            line-height: 1.1;
-            color: white;
-            font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-                .instagram-slide-link {
+        .instagram-slide-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            gap: 8px;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
             border-radius: 50px;
             color: white;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-decoration: none;
             text-transform: uppercase;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
-            background: rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.3);
+            pointer-events: auto;
         }
 
         .instagram-slide-link:hover {
-            border-color: white;
             background: white;
             color: var(--negro);
+            border-color: white;
+            transform: scale(1.05);
         }
 
         .instagram-control {
@@ -4024,23 +4003,23 @@ injectBusinessReviewSchema();
          */
         const instagramPosts = [
             // Higuera
-            { src: 'higuera/Picsart_26-08-11_17-15-26-512.png', alt: 'Higuera en De Raíz Vivero', title: 'La elegancia frutal de nuestras Higueras' },
-            { src: 'higuera/Picsart_26-08-11_17-21-54-560.png', alt: 'Higuera en De Raíz Vivero', title: 'Ejemplares seleccionados por su vigor y salud' },
-            { src: 'higuera/Picsart_26-08-11_17-29-40-631.png', alt: 'Higuera en De Raíz Vivero', title: 'Cultivo artesanal al pie de las sierras' },
-            { src: 'higuera/Picsart_26-08-11_17-49-37-108.png', alt: 'Higuera en De Raíz Vivero', title: 'Naturaleza en su estado más puro' },
+            { src: 'higuera/Picsart_26-08-11_17-15-26-512.png', alt: 'Higuera' },
+            { src: 'higuera/Picsart_26-08-11_17-21-54-560.png', alt: 'Higuera' },
+            { src: 'higuera/Picsart_26-08-11_17-29-40-631.png', alt: 'Higuera' },
+            { src: 'higuera/Picsart_26-08-11_17-49-37-108.png', alt: 'Higuera' },
             
             // Damasco
-            { src: 'damasco/Picsart_26-08-11_15-55-15-683.png', alt: 'Damasco en De Raíz Vivero', title: 'Damascos: El sabor de lo auténtico' },
-            { src: 'damasco/Picsart_26-08-11_16-03-03-302.png', alt: 'Damasco en De Raíz Vivero', title: 'Frutales que transforman tu jardín' },
-            { src: 'damasco/Picsart_26-08-11_16-12-41-193.png', alt: 'Damasco en De Raíz Vivero', title: 'Calidad premium en cada temporada' },
-            { src: 'damasco/Picsart_26-08-11_16-18-57-313.png', alt: 'Damasco en De Raíz Vivero', title: 'Adaptación perfecta al microclima local' },
-            { src: 'damasco/Picsart_26-08-11_16-24-22-755.png', alt: 'Damasco en De Raíz Vivero', title: 'Pasión por los detalles en el cultivo' },
-            { src: 'damasco/Picsart_26-08-11_16-36-26-244.png', alt: 'Damasco en De Raíz Vivero', title: 'Tu rincón frutal en Traslasierra' },
+            { src: 'damasco/Picsart_26-08-11_15-55-15-683.png', alt: 'Damasco' },
+            { src: 'damasco/Picsart_26-08-11_16-03-03-302.png', alt: 'Damasco' },
+            { src: 'damasco/Picsart_26-08-11_16-12-41-193.png', alt: 'Damasco' },
+            { src: 'damasco/Picsart_26-08-11_16-18-57-313.png', alt: 'Damasco' },
+            { src: 'damasco/Picsart_26-08-11_16-24-22-755.png', alt: 'Damasco' },
+            { src: 'damasco/Picsart_26-08-11_16-36-26-244.png', alt: 'Damasco' },
             
             // Granada
-            { src: 'granada/Picsart_26-08-11_19-43-42-929.png', alt: 'Granada en De Raíz Vivero', title: 'Granadas: Belleza y vitalidad' },
-            { src: 'granada/Picsart_26-08-11_19-52-13-206.png', alt: 'Granada en De Raíz Vivero', title: 'Ejemplares de colección para tu hogar' },
-            { src: 'granada/Picsart_26-08-11_20-10-39-927.png', alt: 'Granada en De Raíz Vivero', title: 'El arte de cultivar naturaleza' }
+            { src: 'granada/Picsart_26-08-11_19-43-42-929.png', alt: 'Granada' },
+            { src: 'granada/Picsart_26-08-11_19-52-13-206.png', alt: 'Granada' },
+            { src: 'granada/Picsart_26-08-11_20-10-39-927.png', alt: 'Granada' }
         ];
 
         (function initInstagramSlider() {
@@ -4060,9 +4039,9 @@ injectBusinessReviewSchema();
                 <article class="instagram-slide">
                     <img src="${post.src}" alt="${post.alt}" loading="lazy" draggable="false">
                     <div class="instagram-slide-content">
-                        <span>@deraizviverook</span>
-                        <h3>${post.title}</h3>
-                        <a class="instagram-slide-link" href="https://www.instagram.com/deraizviverook/" target="_blank" rel="noopener noreferrer">Abrir Instagram&nbsp; ↗</a>
+                        <a class="instagram-slide-link" href="https://www.instagram.com/deraizviverook/" target="_blank" rel="noopener noreferrer">
+                            Ver en Instagram
+                        </a>
                     </div>
                 </article>
             `).join('');
