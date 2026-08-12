@@ -2191,10 +2191,26 @@
 
         /* ========================= INSTAGRAM SLIDER ========================= */
         .instagram-preview {
+            position: relative;
             padding: 105px 5%;
             background: var(--gris);
+            /* ESPACIO PARA TU IMAGEN DE FONDO */
+            /* Reemplaza "URL_DE_TU_IMAGEN" por el link de tu foto */
+            background-image: linear-gradient(rgba(246, 246, 242, 0.85), rgba(246, 246, 242, 0.85)), 
+                              url("URL_DE_TU_IMAGEN");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Efecto Parallax elegante */
             text-align: center;
             overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Aseguramos que el contenido esté sobre el fondo */
+        .instagram-header, .instagram-slider, .instagram-dots, .btn-instagram {
+            position: relative;
+            z-index: 2;
         }
 
         .instagram-header {
