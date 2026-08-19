@@ -2436,6 +2436,331 @@
             box-shadow: 0 0 0 3px rgba(214, 41, 118, .18);
         }
 
+        .contacto-layout {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 330px minmax(0, 1fr);
+            gap: 70px;
+            align-items: center;
+            justify-items: start;
+        }
+        .contacto-layout .social-links {
+            width: 100%;
+            justify-content: center;
+        }
+        .contacto-layout .ubicacion-preview {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        @media (max-width: 760px) {
+            .contacto-layout { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* Mapa interactivo cuadrado de ubicación */
+        .ubicacion-preview {
+            width: min(100%, 330px);
+            height: 330px;
+            margin: 26px auto 0;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.28);
+            border-radius: 16px;
+            background: #dfe8dc;
+            box-shadow: 0 14px 34px rgba(0,0,0,.22);
+        }
+        .ubicacion-preview iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        @media (max-width: 600px) {
+            .ubicacion-preview { width: min(100%, 300px); height: 300px; }
+        }
+    </style>
+<style id="map-layout-fix">
+        .contacto-layout {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            display: grid !important;
+            grid-template-columns: 330px minmax(0, 1fr) !important;
+            gap: 70px !important;
+            align-items: center !important;
+            justify-items: start !important;
+        }
+        .contacto-layout .ubicacion-preview {
+            width: 330px !important;
+            height: 330px !important;
+            margin: 0 !important;
+            justify-self: start !important;
+            overflow: hidden !important;
+        }
+        .contacto-layout .ubicacion-preview iframe {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0 !important;
+            pointer-events: auto !important;
+            touch-action: auto !important;
+        }
+        .contacto-layout .social-links {
+            width: 100% !important;
+            justify-content: center !important;
+        }
+        @media (max-width: 760px) {
+            .contacto-layout { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .contacto-layout .ubicacion-preview { width: min(100%, 330px) !important; height: 330px !important; }
+        }
+    </style>
+<style id="header-logo-glow">
+        .logo {
+            position: relative;
+            isolation: isolate;
+            text-shadow: none;
+            filter: none;
+            animation: none;
+            transition: text-shadow .25s ease, filter .25s ease;
+        }
+        .logo::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            inset: -8px -14px;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(112deg, transparent 35%, rgba(255,255,255,.85) 49%, transparent 62%);
+            transform: translateX(-145%);
+            animation: none;
+            transition: opacity .2s ease;
+            mix-blend-mode: screen;
+        }
+        .logo:hover {
+            text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 12px rgba(255,255,255,.88), 0 0 24px rgba(169,224,119,.58);
+            filter: drop-shadow(0 0 8px rgba(255,255,255,.5));
+        }
+        .logo:hover::after {
+            opacity: 0;
+            animation: none;
+        }
+
+        @keyframes deraizLogoGlow {
+            0%, 100% { text-shadow: 0 0 3px rgba(255,255,255,.9), 0 0 8px rgba(255,255,255,.62), 0 0 16px rgba(169,224,119,.3); }
+            50% { text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 12px rgba(255,255,255,.88), 0 0 24px rgba(169,224,119,.58); }
+        }
+        @keyframes deraizLogoShine {
+            0%, 52% { transform: translateX(-145%); }
+            78%, 100% { transform: translateX(145%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .logo, .logo::after { animation: none; }
+        }
+    </style>
+<style id="location-professional-style">
+        /* Sección profesional de ubicación */
+        .location-section {
+            padding: 110px 5%;
+            background: #ffffff;
+            color: #111111;
+        }
+        .location-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(260px, .78fr) minmax(420px, 1.22fr);
+            gap: 72px;
+            align-items: center;
+        }
+        .location-copy { max-width: 390px; }
+        .location-eyebrow {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #7fca2b;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+        }
+        .location-copy h2 {
+            margin: 0 0 22px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(50px, 6vw, 78px);
+            line-height: .82;
+            font-weight: 700;
+            color: #111111;
+        }
+        .location-copy h2 em { color: #7fca2b; font-style: italic; }
+        .location-copy p {
+            margin: 0 0 28px;
+            max-width: 350px;
+            color: #222222;
+            font-size: 15px;
+            line-height: 1.75;
+        }
+        .location-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border-radius: 999px;
+            background: #8fdb32;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .05em;
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+        }
+        .location-button:hover {
+            background: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(39,53,31,.2);
+        }
+        .location-button span { font-size: 18px; line-height: 0; }
+        .location-hours {
+            display: grid;
+            gap: 5px;
+            margin: 0 0 28px;
+            padding: 16px 18px;
+            border-left: 3px solid #8fdb32;
+            border-radius: 0 12px 12px 0;
+            background: rgba(255,255,255,.96);
+            box-shadow: 0 8px 20px rgba(38,52,35,.07);
+        }
+        .location-hours strong {
+            color: #111111;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        .location-hours span { color: #222222; font-size: 14px; font-weight: 800; }
+        .location-hours small { color: #333333; font-size: 12px; line-height: 1.4; }
+        .location-map-card {
+            min-height: 450px;
+            overflow: hidden;
+            border: 10px solid #fff;
+            border-radius: 24px;
+            background: #dfe8dc;
+            box-shadow: 0 18px 45px rgba(36,48,30,.18);
+        }
+        .location-map-card iframe {
+            display: block;
+            width: 100%;
+            height: 450px;
+            border: 0;
+            pointer-events: auto;
+            touch-action: auto;
+        }
+        @media (max-width: 820px) {
+            .location-section { padding: 80px 20px; }
+            .location-inner { grid-template-columns: 1fr; gap: 42px; }
+            .location-copy { max-width: 520px; }
+            .location-map-card { min-height: 360px; }
+            .location-map-card iframe { height: 360px; }
+        }
+    </style>
+<style id="footer-logo-hover-glow">
+        .footer-logo-glow {
+            position: relative;
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            line-height: 0;
+            text-decoration: none;
+        }
+        .footer-logo-glow img {
+            position: relative;
+            z-index: 1;
+            transition: transform .25s ease, filter .25s ease;
+        }
+        .footer-logo-glow::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            inset: -10px -16px;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(112deg, transparent 35%, rgba(255,255,255,.9) 49%, transparent 62%);
+            transform: translateX(-145%);
+            mix-blend-mode: screen;
+        }
+        .footer-logo-glow:hover img {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 5px rgba(255,255,255,.95)) drop-shadow(0 0 14px rgba(139,195,74,.75));
+        }
+        .footer-logo-glow:hover::after {
+            opacity: .85;
+            animation: footerLogoShine 1.15s ease-out 1;
+        }
+        .footer-text-hover {
+            transition: color .25s ease, text-shadow .25s ease;
+        }
+        .footer-text-hover:hover {
+            color: #ffffff;
+            text-shadow: 0 0 4px rgba(255,255,255,.95), 0 0 12px rgba(139,195,74,.72);
+        }
+        @keyframes footerLogoShine {
+            0% { transform: translateX(-145%); }
+            100% { transform: translateX(145%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .footer-logo-glow img { transition: none; }
+            .footer-logo-glow:hover::after { animation: none; }
+        }
+    </style>
+<style id="products-professional-polish">
+        .category-card {
+            min-height: 420px;
+            border: 1px solid rgba(139,195,74,.18);
+            box-shadow: 0 14px 34px rgba(17,17,17,.10);
+            transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+        }
+        .category-card:focus-visible {
+            outline: 3px solid var(--verde);
+            outline-offset: 4px;
+        }
+        .category-card:hover {
+            border-color: var(--verde);
+            box-shadow: 0 20px 44px rgba(17,17,17,.18);
+        }
+        .category-card-bg { transition: transform .5s ease, filter .35s ease; }
+        .category-card:hover .category-card-bg { filter: saturate(1.08) contrast(1.04); }
+        .category-card-content { padding: 28px 26px 26px; }
+        .category-card-count { color: var(--verde); font-size: 11px; letter-spacing: 2.2px; }
+        .category-card-title { text-shadow: 0 2px 12px rgba(0,0,0,.28); }
+        .category-card-price { margin-top: 10px; margin-bottom: 20px; }
+        .category-card-price strong { color: #ffffff; font-size: 17px; }
+        .category-card-cta {
+            min-height: 40px;
+            padding: 11px 16px;
+            border: 1px solid rgba(255,255,255,.8);
+            background: rgba(17,17,17,.22);
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: .7px;
+        }
+        .species-item {
+            grid-template-columns: 76px 1fr auto;
+            gap: 22px;
+            padding: 20px;
+            border: 1px solid rgba(17,17,17,.06);
+            box-shadow: 0 6px 20px rgba(17,17,17,.04);
+        }
+        .species-icon { width: 76px; height: 76px; border-radius: 18px; background: #f3f5ef; }
+        .species-info h4 { font-size: 15px; letter-spacing: .7px; }
+        .species-info p.species-desc { max-width: 560px; }
+        .species-price-box { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+        .species-price-label { color: #8a8a8a; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        .species-price { color: var(--negro); font-size: 19px; }
+        .quantity-input { box-shadow: inset 0 0 0 1px rgba(17,17,17,.06); }
+        @media (max-width: 600px) {
+            .category-card { min-height: 360px; }
+            .category-card-content { padding: 22px 20px 20px; }
+            .species-item { grid-template-columns: 64px 1fr; gap: 14px; }
+            .species-icon { width: 64px; height: 64px; }
+            .species-price-box { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; }
+        }
     </style>
 </head>
 
@@ -2457,15 +2782,16 @@
                     <li class="nav-item-dropdown">
                         <a href="#catalogo" onclick="toggleDropdown(event)">Catálogo</a>
                                                 <ul class="dropdown-menu">
-                            <li><a href="#catalogo" onclick="filterByCategory('Árboles'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ARBOLES</a></li>
-                            <li><a href="#catalogo" onclick="filterByCategory('Palmeras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PALMERAS</a></li>
-                            <li><a href="#catalogo" onclick="filterByCategory('Arbustos y Gramíneas'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ARBUSTOS</a></li>
-                            <li><a href="#catalogo" onclick="filterByCategory('Rosales de Pie Bajo'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ROSALES</a></li>
-                            <li><a href="#catalogo" onclick="filterByCategory('Cítricos Injertados'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">CITRICOS</a></li>
-                            <li><a href="#catalogo" onclick="filterByCategory('Frutales Injertados'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">FRUTALES</a></li>
-                            <li><a href="#catalogo" onclick="filterByCategory('Parras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PARRAS</a></li>
+                            <li><a href="#categoria-arboles" onclick="filterByCategory('Árboles'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ARBOLES</a></li>
+                            <li><a href="#categoria-palmeras" onclick="filterByCategory('Palmeras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PALMERAS</a></li>
+                            <li><a href="#categoria-arbustos" onclick="filterByCategory('Arbustos y Gramíneas'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ARBUSTOS</a></li>
+                            <li><a href="#categoria-rosales" onclick="filterByCategory('Rosales de Pie Bajo'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ROSALES</a></li>
+                            <li><a href="#categoria-citricos" onclick="filterByCategory('Cítricos Injertados'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">CITRICOS</a></li>
+                            <li><a href="#categoria-frutales" onclick="filterByCategory('Frutales Injertados'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">FRUTALES</a></li>
+                            <li><a href="#categoria-parras" onclick="filterByCategory('Parras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PARRAS</a></li>
                         </ul>
                     </li>
+                    <li><a href="#ubicacion" onclick="closeMenu()">Ubicación</a></li>
                     <li><a href="#resenas" onclick="closeMenu()">Reseñas</a></li>
                     <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
                 </ul>
@@ -2639,10 +2965,27 @@
         </div>
     </div>
 
+    <section id="ubicacion" class="location-section" aria-label="Cómo encontrarnos">
+        <div class="location-inner">
+            <div class="location-copy">
+                <span class="location-eyebrow">Cómo encontrarnos</span>
+                <h2>Vení a<br><em>De Raíz Vivero</em></h2>
+                <p>Estamos en Loma Bola, Córdoba, en el corazón de Traslasierra. Mirá el mapa y encontrá el camino más cómodo para llegar al vivero.</p>
+                <div class="location-hours">
+                    <strong>Atención al público</strong>
+                    <span>Lunes a Jueves · 13:00 a 18:00 hs</span>
+                    <small>Las visitas son únicamente con reserva previa.</small>
+                </div>
+                <a class="location-button" href="https://www.google.com/maps/place/De+Ra%C3%ADz+Vivero+%7C+Loma+Bola,+C%C3%B3rdoba+-+Traslasierra/@-32.2345524,-65.0483164,13z/data=!4m6!3m5!1s0x95d2df5f0d584ef9:0x9eefed8c1754b575!8m2!3d-32.2040398!4d-65.0147139!16s%2Fg%2F11zw_qdx9k!5m1!1e4?authuser=2&entry=ttu&g_ep=EgoyMDI2MDgxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Abrir en Google Maps <span>↗</span></a>
+            </div>
+            <div class="location-map-card">
+                <iframe title="Mapa de De Raíz Vivero en Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53997.98787410566!2d-65.0483164!3d-32.234552449999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2df5f0d584ef9%3A0x9eefed8c1754b575!2sDe%20Ra%C3%ADz%20Vivero%20%7C%20Loma%20Bola%2C%20C%C3%B3rdoba%20-%20Traslasierra!5e0!3m2!1ses-419!2sar!4v1787172804617!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
     <section class="contacto" id="contacto">
         <h2>Contacto</h2>
         <p>Loma Bola, Córdoba · Traslasierra</p>
-        
         <div class="social-links">
             <a href="https://wa.me/543544669550" class="social-item wa" target="_blank">
                 <div class="social-circle">
@@ -2665,6 +3008,7 @@
                 <span class="social-label">Facebook</span>
             </a>
         </div>
+
     </section>
 
     
@@ -2723,10 +3067,11 @@
     </div>
     
     <footer>
-    <img src="/pie%20de%20pagina.png" 
-     style="max-width: 120px; width: 100%; height: auto; margin: 20px auto; display: block;">
-    <p>Desde 2013 Cultivando Naturaleza</p>
-    <p id="copyrightYear">© 2026 De Raíz Vivero</p>
+    <a class="footer-logo-glow" href="#inicio" aria-label="Volver al inicio">
+        <img src="/pie%20de%20pagina.png" style="max-width: 120px; width: 100%; height: auto; margin: 0; display: block;">
+    </a>
+    <p class="footer-text-hover">Desde 2013 Cultivando Naturaleza</p>
+    <p id="copyrightYear" class="footer-text-hover">© 2026 De Raíz Vivero</p>
 </footer>
 
     <!-- RAICITA - ASISTENTE VIRTUAL -->
@@ -2901,7 +3246,7 @@
                 const badgeText = productos.length > 0 ? `${productos.length}` : '—';
 
                 contenedor.innerHTML += `
-                <div class="category-card visible" onclick="openCategory('${cat.nombre}')" style="animation-delay: ${index * 0.08}s">
+                <div class="category-card visible" role="button" tabindex="0" aria-label="Ver ejemplares de ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" onclick="openCategory('${cat.nombre}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCategory('${cat.nombre}')}" style="animation-delay: ${index * 0.08}s">
                     <div class="category-card-bg" style="background-image: url('${cat.imagen}')"></div>
                     <div class="category-card-overlay"></div>
                     <div class="category-card-badge">${badgeText}</div>
@@ -2929,6 +3274,26 @@
             renderCategories();
         renderReviews();
         }
+
+        const categoryHashMap = {
+            '#categoria-arboles': 'Árboles',
+            '#categoria-palmeras': 'Palmeras',
+            '#categoria-arbustos': 'Arbustos y Gramíneas',
+            '#categoria-rosales': 'Rosales de Pie Bajo',
+            '#categoria-citricos': 'Cítricos Injertados',
+            '#categoria-frutales': 'Frutales Injertados',
+            '#categoria-parras': 'Parras'
+        };
+
+        function applyCategoryHash() {
+            const category = categoryHashMap[window.location.hash];
+            if (!category) return;
+            const button = [...document.querySelectorAll('.filter-btn')].find(b => normalizeText(b.textContent) === normalizeText(category) || (category === 'Arbustos y Gramíneas' && normalizeText(b.textContent) === 'arbustos'));
+            filterByCategory(category, button || null);
+            setTimeout(() => document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' }), 50);
+        }
+
+        window.addEventListener('hashchange', applyCategoryHash);
 
         // Se ejecuta en cada tecla: SOLO filtra las tarjetas, no hace scroll
         function filterCategories(val) {
@@ -3000,11 +3365,14 @@
                         ${prod.desc ? `<p class="species-desc">${prod.desc}</p>` : ''}
                     </div>
                     <div class="species-controls-wrapper">
-                        <div class="species-price">${formatPrice(prod.precio)}</div>
-                        <div class="quantity-input">
-                            <button onclick="decreaseQty(${idx})">−</button>
-                            <input type="number" id="qty-${idx}" value="0" min="0" onchange="updateQty(${idx})">
-                            <button onclick="increaseQty(${idx})">+</button>
+                        <div class="species-price-box">
+                            <span class="species-price-label">Por ejemplar</span>
+                            <div class="species-price">${formatPrice(prod.precio)}</div>
+                        </div>
+                        <div class="quantity-input" aria-label="Cantidad de ${escapeAttr(prod.nombre)}">
+                            <button type="button" aria-label="Disminuir cantidad de ${escapeAttr(prod.nombre)}" onclick="decreaseQty(${idx})">−</button>
+                            <input type="number" id="qty-${idx}" value="0" min="0" aria-label="Cantidad de ${escapeAttr(prod.nombre)}" onchange="updateQty(${idx})">
+                            <button type="button" aria-label="Aumentar cantidad de ${escapeAttr(prod.nombre)}" onclick="increaseQty(${idx})">+</button>
                         </div>
                     </div>
                 </div>
@@ -3342,7 +3710,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         /* ---------- Base de conocimiento (FAQ) ---------- */
         const raicitaFAQ = [
             { id: 'horarios', keywords: ['horario','horarios','hora','atencion','atienden','abierto','cerrado','cuando'], chip: 'Horarios de atención',
-              respuesta: `Nuestros horarios son:<br><br>📱 <strong>Por WhatsApp y Facebook:</strong> Lunes a Jueves de 10:00 a 22:00 hs.<br>🌳 <strong>Presencial en el vivero:</strong> Lunes a Jueves de 13:00 a 18:00 hs.<br><br>Fuera de esos horarios podés dejarnos tu consulta y te respondemos apenas abrimos.` },
+              respuesta: `Atendemos al público en el vivero de <strong>Lunes a Jueves, de 13:00 a 18:00 hs.</strong><br><br>Las visitas son únicamente con <strong>reserva previa</strong>. Escribinos por WhatsApp para coordinar tu visita y confirmar disponibilidad.` },
             { id: 'ubicacion', keywords: ['ubicacion','direccion','donde estan','donde queda','como llego','mapa','loma bola'], chip: 'Ubicación',
               respuesta: `Estamos en Loma Bola, Córdoba - Traslasierra 🌿<br><br>La ubicación exacta la compartimos <strong>por WhatsApp, Facebook y con cita previa</strong>, así coordinamos mejor tu visita.<br>
               <div class="raicita-contact-links">
@@ -4004,6 +4372,7 @@ function injectBusinessReviewSchema() {
 
 // Inicializar
 renderCategories();
+    applyCategoryHash();
 renderReviews();
 injectProductSchema();
 injectBusinessReviewSchema();
