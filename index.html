@@ -3183,8 +3183,41 @@
         ];
 
         // ============ CARRITO ============
+        const CART_STORAGE_KEY = 'deRaizVivero_cart';
         let cart = [];
         let currentCategory = null;
+
+        // Recupera el carrito guardado para conservarlo aunque se cierre la pestaña o el navegador.
+        function loadCart() {
+            try {
+                const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+                if (!savedCart) return;
+
+                const parsedCart = JSON.parse(savedCart);
+                if (!Array.isArray(parsedCart)) return;
+
+                cart = parsedCart
+                    .filter(item => item && typeof item.nombre === 'string' && Number.isFinite(Number(item.precio)) && Number.isFinite(Number(item.cantidad)) && Number(item.cantidad) > 0)
+                    .map(item => ({
+                        ...item,
+                        precio: Number(item.precio),
+                        cantidad: Math.max(1, Math.floor(Number(item.cantidad)))
+                    }));
+            } catch (error) {
+                console.warn('No se pudo recuperar el carrito guardado.', error);
+                cart = [];
+            }
+        }
+
+        function saveCart() {
+            try {
+                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+            } catch (error) {
+                console.warn('No se pudo guardar el carrito.', error);
+            }
+        }
+
+        loadCart();
         let currentQuantities = {};
         let currentFilter = 'all';
 
@@ -3447,6 +3480,8 @@
         }
 
         function updateCartUI() {
+            saveCart();
+
             const cartItemsDiv = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
             const cartBadge = document.getElementById('cartBadge');
@@ -4372,6 +4407,7 @@ function injectBusinessReviewSchema() {
 
 // Inicializar
 renderCategories();
+updateCartUI();
     applyCategoryHash();
 renderReviews();
 injectProductSchema();
