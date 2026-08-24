@@ -3248,6 +3248,117 @@
             .nav-item-dropdown .dropdown-menu li a { margin: 1px 8px; padding: 11px 16px; }
         }
     </style>
+
+    <style id="catalogo-restaurado-anterior">
+        /* Restauración exclusiva de las vistas previas del Catálogo.
+           No modifica header, ubicación, pie de página ni las ventanas de ejemplares. */
+        #catalogo .category-card {
+            border-radius: 20px;
+            aspect-ratio: 4 / 5;
+            border: 0;
+            box-shadow: none;
+            transition: var(--transicion);
+        }
+
+        #catalogo .category-card:hover {
+            border-color: transparent;
+            box-shadow: none;
+            transform: translateY(-8px);
+        }
+
+        #catalogo .category-card-bg {
+            transition: transform 0.6s ease;
+            filter: none;
+        }
+
+        #catalogo .category-card:hover .category-card-bg {
+            transform: scale(1.08);
+            filter: none;
+        }
+
+        #catalogo .category-card-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 100%);
+            transition: background 0.4s ease;
+        }
+
+        #catalogo .category-card:hover .category-card-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.7) 100%);
+        }
+
+        #catalogo .category-card-content {
+            padding: 35px 30px 30px;
+            color: white;
+            transition: none;
+        }
+
+        #catalogo .category-card:hover .category-card-content {
+            transform: none;
+        }
+
+        #catalogo .category-card-title {
+            font-size: 34px;
+            text-shadow: none;
+        }
+
+        #catalogo .category-card-price {
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        #catalogo .category-card-price strong {
+            color: white;
+            font-size: 15px;
+        }
+
+        #catalogo .category-card-cta {
+            min-height: 0;
+            padding: 10px 22px;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        #catalogo .category-card:hover .category-card-cta {
+            background: white;
+            color: var(--negro);
+            border-color: white;
+            transform: none;
+        }
+
+        #catalogo .category-card-badge {
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.6);
+            padding: 6px 14px;
+            border-radius: 50px;
+        }
+
+        @media (max-width: 600px) {
+            #catalogo .category-card {
+                aspect-ratio: 4 / 5;
+                border-radius: 20px;
+            }
+
+            #catalogo .category-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            #catalogo .category-card-content {
+                padding: 25px 20px 22px;
+            }
+
+            #catalogo .category-card-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -4634,6 +4745,34 @@ const reviewsData = {
             stars: 5,
             text: "Hermoso todo ..la atención también",
             date: "11/8/26"
+        },
+        {
+            name: "Edith Rodriguez",
+            city: "Cruz de Caña",
+            stars: 5,
+            text: "Muy buena atención las plantas muy lindas",
+            date: "Nueva reseña"
+        },
+        {
+            name: "Maria Eva Diaz",
+            city: "Luyaba",
+            stars: 5,
+            text: "Muy buena atención, muy buenas las plantas... todo perfecto para la entrega y mucha cordialidad en el trato... 😊 Está bueno poder pensar en el autoconsumo partiendo de la compra de frutales de calidad y tan accesibles.",
+            date: "Nueva reseña"
+        },
+        {
+            name: "Isabel",
+            city: "Villa de Merlo",
+            stars: 5,
+            text: "Excelente atencion y predisposición",
+            date: "Nueva reseña"
+        },
+        {
+            name: "Noe Moyano",
+            city: "Yacanto",
+            stars: 5,
+            text: "Muy buena atención! Gracias por todas las recomendaciones.",
+            date: "Nueva reseña"
         }
     ]
 };
