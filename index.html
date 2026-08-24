@@ -3401,6 +3401,186 @@
         }
     </style>
 
+
+    <style id="raicita-iris-mobile">
+        /* Pulso verde tipo iris para Raicita, especialmente visible en teléfonos */
+        .raicita-launcher {
+            isolation: isolate;
+            overflow: visible !important;
+        }
+
+        .raicita-launcher::before,
+        .raicita-launcher::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            z-index: -1;
+            border-radius: 50%;
+            border: 2px solid rgba(140, 207, 85, .72);
+            box-shadow: 0 0 0 4px rgba(140, 207, 85, .10), 0 0 22px rgba(140, 207, 85, .42);
+            pointer-events: none;
+            animation: raicitaIris 2.8s cubic-bezier(.18,.72,.25,1) infinite;
+        }
+
+        .raicita-launcher::after {
+            inset: -8px;
+            opacity: 0;
+            animation-delay: 1.4s;
+        }
+
+        .raicita-launcher .raicita-pulse {
+            inset: -2px;
+            border: 2px solid rgba(157, 221, 98, .95);
+            box-shadow: 0 0 10px rgba(157, 221, 98, .68), inset 0 0 10px rgba(157, 221, 98, .28);
+            animation: raicitaIrisCore 2.2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes raicitaIris {
+            0% { transform: scale(.72); opacity: .95; }
+            72%, 100% { transform: scale(1.58); opacity: 0; }
+        }
+
+        @keyframes raicitaIrisCore {
+            0%, 100% { transform: scale(.96); opacity: .62; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .raicita-launcher::before,
+            .raicita-launcher::after {
+                inset: -10px;
+                border-width: 2px;
+                box-shadow: 0 0 0 5px rgba(140, 207, 85, .13), 0 0 26px rgba(140, 207, 85, .58);
+            }
+            .raicita-launcher .raicita-pulse {
+                border-width: 2px;
+                box-shadow: 0 0 14px rgba(157, 221, 98, .88), inset 0 0 12px rgba(157, 221, 98, .35);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .raicita-launcher::before,
+            .raicita-launcher::after,
+            .raicita-launcher .raicita-pulse { animation: none; opacity: .7; }
+        }
+    </style>
+
+
+    <style id="subcategorias-mobile-no-clip">
+        /* Corrección robusta: el panel de subcategorías nunca se recorta en móviles */
+        #categoryModal.modal {
+            box-sizing: border-box;
+            padding: 16px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            align-items: center;
+        }
+
+        #categoryModal .modal-content {
+            box-sizing: border-box;
+            width: min(700px, 100%);
+            max-width: 700px;
+            max-height: calc(100dvh - 32px);
+            margin: 0 auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        #categoryModal .modal-species {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            overflow: visible;
+        }
+
+        #categoryModal .species-item {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        #categoryModal .species-info,
+        #categoryModal .species-info h4,
+        #categoryModal .species-info p {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 600px) {
+            #categoryModal.modal {
+                padding: 8px;
+                align-items: flex-start;
+            }
+
+            #categoryModal .modal-content {
+                width: 100%;
+                max-width: none;
+                max-height: calc(100dvh - 16px);
+                margin: 0;
+                padding: 22px 12px 18px !important;
+                border-radius: 16px;
+            }
+
+            #categoryModal .modal-header {
+                margin-bottom: 20px;
+                padding-right: 36px;
+            }
+
+            #categoryModal .modal-header h2 {
+                font-size: clamp(30px, 9vw, 42px);
+                overflow-wrap: anywhere;
+            }
+
+            #categoryModal .modal-species {
+                width: 100%;
+                padding: 8px !important;
+                border-radius: 12px;
+            }
+
+            #categoryModal .species-item {
+                grid-template-columns: minmax(0, 64px) minmax(0, 1fr);
+                gap: 12px;
+                padding: 12px;
+                border-radius: 14px;
+            }
+
+            #categoryModal .species-controls-wrapper {
+                grid-column: 1 / -1;
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 360px) {
+            #categoryModal.modal { padding: 5px; }
+            #categoryModal .modal-content { max-height: calc(100dvh - 10px); padding-inline: 8px !important; }
+            #categoryModal .modal-species { padding: 6px !important; }
+            #categoryModal .species-item { grid-template-columns: minmax(0, 52px) minmax(0, 1fr); gap: 9px; padding: 10px; }
+            #categoryModal .species-icon { width: 52px; height: 52px; }
+        }
+    </style>
+
+
+    <style id="footer-subtle-glow">
+        /* Brillo sutil únicamente en los textos del pie de página */
+        footer p:first-of-type,
+        footer #copyrightYear {
+            transition: color .35s ease, text-shadow .35s ease;
+        }
+
+        footer p:first-of-type:hover,
+        footer #copyrightYear:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255,255,255,.55), 0 0 12px rgba(140,207,85,.32);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            footer p:first-of-type,
+            footer #copyrightYear { transition: none; }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -3628,7 +3808,7 @@
             <div class="location-copy">
                 <span class="location-eyebrow">Cómo encontrarnos</span>
                 <h2>Vení a<br><em>De Raíz Vivero</em></h2>
-                <p>Estamos en Loma Bola, Córdoba, en el corazón de Traslasierra. Mirá el mapa y encontrá el camino más cómodo para llegar al vivero.</p>
+                <p>Estamos en <strong>Loma Bola, Córdoba</strong>, en el corazón de Traslasierra. Mirá el mapa y encontrá el camino más cómodo para llegar al vivero.</p>
                 <div class="location-hours">
                     <strong>Atención al público</strong>
                     <span>Lunes a Jueves · 13:00 a 18:00 hs</span>
