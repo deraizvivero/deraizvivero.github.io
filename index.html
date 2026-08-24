@@ -1057,6 +1057,9 @@
             max-width: 480px;
         }
 
+
+        .species-stock { font-size: 12px; color: var(--verde-oscuro); font-weight: 700; margin-top: 5px; }
+        .species-stock::before { content: '✓ '; color: var(--verde); }
         .species-price {
             font-size: 18px;
             font-weight: 800;
@@ -4056,13 +4059,14 @@
     "Árboles": [
     { nombre: "ALAMO PIRAMIDAL", altura: "90 Centimetros", precio: 3500, icon: "🌳", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/alamo%20piramidal.jpg", desc: "El de crecimiento más rápido del vivero: en pocas temporadas alcanza gran altura y forma una pantalla verde y angosta, ideal para tapar medianeras sin ocupar espacio." },
     { nombre: "FRESNO AMERICANO", altura: "1 Metro", precio: 12000, icon: "🌳", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/fresno%20americano.jpg", desc: "Copa amplia y de rápido desarrollo que da sombra densa en verano y se pinta de dorado y naranja en otoño, un espectáculo que cambia el paisaje del patio." },
-    { nombre: "PINO CIPRES DE ARIZONA", altura: "1 Metro", precio: 20000, icon: "🌲", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/pino%20cipres.jpg", desc: "Follaje verde grisáceo que no se pela en invierno, forma prolija en cono y crecimiento parejo: la opción número uno para un cerco vivo tupido y sin mantenimiento." },
+    { nombre: "PINO CIPRES DE ARIZONA", altura: "1 Metro", precio: 20000, stock: 2, icon: "🌲", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/pino%20cipres.jpg", desc: "Follaje verde grisáceo que no se pela en invierno, forma prolija en cono y crecimiento parejo: la opción número uno para un cerco vivo tupido y sin mantenimiento." },
     { nombre: "PRUNUS PISSARDI", altura: "2 Metros", precio: 26000, icon: "🌳", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/prunus.jpeg", desc: "Hojas color vino que se mantienen así todo el año y en primavera se cubren de flores rosadas antes de que broten las hojas: el árbol que más contraste y color le pone a un jardín." }
 ],
 "Palmeras": [
     { nombre: "YUCA ESPADA", altura: "90 Centimetros", precio: 15000, icon: "🌴", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/yuca%20espada.jpg", desc: "Hojas rígidas en forma de espada que le dan un perfil arquitectónico único al jardín, resiste sequías largas y casi no necesita cuidados una vez implantada." }
 ],
 "Arbustos y Gramíneas": [
+    { nombre: "IRIS JAPONICA", altura: "20 Centimetros", precio: 14000, stock: 2, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Iriss-japonica.jpg", desc: "Follaje verde y flores delicadas que aportan textura y color; una planta resistente y elegante para canteros, borduras y rincones de media sombra." },
     { nombre: "ACHIRA ESPAÑOLA DOBLE", altura: "70 Centimetros", precio: 6000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/achira%20espa%C3%B1ola.jpg", desc: "Flores grandes en tonos rojos y anaranjados sobre hojas anchas tipo banano: rústica, de rápida multiplicación y siempre en flor durante la temporada cálida." },
     { nombre: "AGAPANTHUS", altura: "70 Centimetros", precio: 14000, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Agapanthus.jpg", desc: "Umbelas azules o blancas que se abren en pleno verano sobre tallos altos y prolijos: se multiplica sola año tras año y cada vez florece más." },
     { nombre: "CACTUS SERIUS", altura: "2 Metros", precio: 30000, icon: "🌵", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/cactus%20serius.jpg", desc: "Formas columnares de gran porte que funcionan como escultura viva: no pide riego frecuente ni cuidados especiales, ideal para jardines de diseño minimalista." },
@@ -4335,6 +4339,7 @@
                     <div class="species-info">
                         <h4>${prod.nombre}</h4>
                         <p class="species-height">${prod.altura}</p>
+                        ${Number.isFinite(prod.stock) ? `<p class="species-stock">${prod.stock} unidades disponibles</p>` : ''}
                         ${prod.desc ? `<p class="species-desc">${prod.desc}</p>` : ''}
                     </div>
                     <div class="species-controls-wrapper">
@@ -4344,7 +4349,7 @@
                         </div>
                         <div class="quantity-input" aria-label="Cantidad de ${escapeAttr(prod.nombre)}">
                             <button type="button" aria-label="Disminuir cantidad de ${escapeAttr(prod.nombre)}" onclick="decreaseQty(${idx})">−</button>
-                            <input type="number" id="qty-${idx}" value="0" min="0" aria-label="Cantidad de ${escapeAttr(prod.nombre)}" onchange="updateQty(${idx})">
+                            <input type="number" id="qty-${idx}" value="0" min="0" ${Number.isFinite(prod.stock) ? `max="${prod.stock}"` : ''} aria-label="Cantidad de ${escapeAttr(prod.nombre)}" onchange="updateQty(${idx})">
                             <button type="button" aria-label="Aumentar cantidad de ${escapeAttr(prod.nombre)}" onclick="increaseQty(${idx})">+</button>
                         </div>
                     </div>
@@ -4358,7 +4363,9 @@
 
         function increaseQty(idx) {
             const input = document.getElementById(`qty-${idx}`);
-            input.value = parseInt(input.value) + 1;
+            const prod = (productosData[currentCategory] || [])[idx];
+            const max = Number.isFinite(prod?.stock) ? prod.stock : Infinity;
+            input.value = Math.min(parseInt(input.value) || 0, max - 1) + 1;
             updateQty(idx);
         }
 
@@ -4372,7 +4379,11 @@
 
         function updateQty(idx) {
             const input = document.getElementById(`qty-${idx}`);
-            currentQuantities[idx] = parseInt(input.value) || 0;
+            const prod = (productosData[currentCategory] || [])[idx];
+            const max = Number.isFinite(prod?.stock) ? prod.stock : Infinity;
+            const value = Math.max(0, Math.min(parseInt(input.value) || 0, max));
+            input.value = value;
+            currentQuantities[idx] = value;
             updateModalTotal();
         }
 
