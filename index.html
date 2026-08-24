@@ -3581,6 +3581,106 @@
         }
     </style>
 
+
+    <style id="raicita-google-links">
+        .raicita-external-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: var(--verde-oscuro);
+            color: #fff !important;
+            font-size: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+        }
+        .raicita-external-link:hover {
+            transform: translateY(-2px);
+            background: var(--verde);
+            color: #17300f !important;
+            box-shadow: 0 8px 18px rgba(71,125,45,.24);
+        }
+        .raicita-map-link { background: #477d2d; }
+        @media (max-width: 600px) {
+            .raicita-external-link { width: 100%; justify-content: center; text-align: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .raicita-external-link { transition: none; }
+        }
+    </style>
+
+
+    <style id="raicita-verified-badge-svg-final">
+        .raicita-header-info strong {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .raicita-verified-svg {
+            display: block;
+            flex: 0 0 18px;
+            width: 18px !important;
+            height: 18px !important;
+            min-width: 18px;
+            min-height: 18px;
+            overflow: visible;
+            vertical-align: middle;
+        }
+        @media (max-width: 600px) {
+            .raicita-header-info strong { gap: 5px; }
+            .raicita-verified-svg {
+                flex-basis: 17px;
+                width: 17px !important;
+                height: 17px !important;
+                min-width: 17px;
+                min-height: 17px;
+            }
+        }
+    </style>
+
+
+    <style id="raicita-memory-styles">
+        .raicita-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: auto;
+        }
+        .raicita-memory-clear,
+        .raicita-close {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .raicita-memory-clear {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.10);
+            color: rgba(255,255,255,.88);
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+        .raicita-memory-clear:hover {
+            background: rgba(140,207,85,.28);
+            color: #fff;
+            transform: rotate(-18deg);
+        }
+        @media (max-width: 600px) {
+            .raicita-memory-clear { width: 28px; height: 28px; font-size: 17px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .raicita-memory-clear { transition: none; }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -3922,10 +4022,13 @@
         <div class="raicita-header">
             <div class="raicita-avatar"><div class="raicita-avatar-icon"></div></div>
             <div class="raicita-header-info">
-                <strong>Raicita </strong>
+                <strong>Raicita <svg class="raicita-verified-svg" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cuenta verificada" title="Cuenta verificada" focusable="false"><circle cx="12" cy="12" r="10" fill="#3897F0"/><path d="M7.2 12.2 10.4 15.3 16.9 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></strong>
                 <span>Asistente virtual · De Raíz Vivero</span>
             </div>
-            <button class="raicita-close" onclick="toggleRaicita()">✕</button>
+            <div class="raicita-header-actions">
+                <button class="raicita-memory-clear" onclick="raicitaClearMemory()" aria-label="Borrar memoria de la conversación" title="Borrar memoria">↺</button>
+                <button class="raicita-close" onclick="toggleRaicita()" aria-label="Cerrar Raicita">✕</button>
+            </div>
         </div>
         <div class="raicita-body" id="raicitaBody"></div>
         <div class="raicita-quick" id="raicitaQuick"></div>
@@ -4516,6 +4619,16 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
 
         const RAICITA_ICON_WA = '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>';
         const RAICITA_ICON_IG = '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>';
+        function raicitaGoogleSearchLink(query) {
+            const href = `https://www.google.com/search?q=${encodeURIComponent(query + ' cuidado de plantas')}`;
+            return `<a class="raicita-external-link" href="${href}" target="_blank" rel="noopener noreferrer">🔎 Buscar esta duda en Google ↗</a>`;
+        }
+
+        function raicitaMapLink() {
+            const href = 'https://www.google.com/maps/place/De+Ra%C3%ADz+Vivero+%7C+Loma+Bola,+C%C3%B3rdoba+-+Traslasierra/@-32.2345524,-65.0483164,13z/data=!4m6!3m5!1s0x95d2df5f0d584ef9:0x9eefed8c1754b575!8m2!3d-32.2040398!4d-65.0147139!16s%2Fg%2F11zw_qdx9k';
+            return `<a class="raicita-external-link raicita-map-link" href="${href}" target="_blank" rel="noopener noreferrer">📍 Ver ubicación en Google Maps ↗</a>`;
+        }
+
         const RAICITA_ICON_FB = '<svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>';
 
         function raicitaContactLink(type, href, label) {
@@ -4584,7 +4697,8 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             { id: 'horarios', keywords: ['horario','horarios','hora','atencion','atienden','abierto','cerrado','cuando'], chip: 'Horarios de atención',
               respuesta: `Atendemos al público en el vivero de <strong>Lunes a Jueves, de 10:00 a 20:00 hs.</strong><br><br>Las visitas son únicamente con <strong>reserva previa</strong>. Escribinos por WhatsApp para coordinar tu visita y confirmar disponibilidad.` },
             { id: 'ubicacion', keywords: ['ubicacion','direccion','donde estan','donde queda','como llego','mapa','loma bola'], chip: 'Ubicación',
-              respuesta: `Estamos en Loma Bola, Córdoba - Traslasierra 🌿<br><br>La ubicación exacta la compartimos <strong>por WhatsApp, Facebook y con cita previa</strong>, así coordinamos mejor tu visita.<br>
+              respuesta: `Estamos en <strong>Loma Bola, Córdoba</strong>, en el corazón de Traslasierra 🌿<br><br>Las visitas son únicamente con reserva previa. Podés abrir la ubicación exacta en Google Maps o escribirnos para coordinar tu visita.<br>
+              ${raicitaMapLink()}<br>
               <div class="raicita-contact-links">
                   ${raicitaContactLink('wa', waLink('Hola! Quisiera coordinar una cita para visitar el vivero y que me compartan la ubicación 🌱'), 'WhatsApp')}
                   ${raicitaContactLink('ig', 'https://www.instagram.com/deraizviverook/', 'Instagram')}
@@ -4623,16 +4737,16 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
 
         /* ---------- Consejos de cuidado por categoría ---------- */
         const raicitaCuidados = {
-            "Árboles": `🌳 <strong>Cuidados para árboles:</strong><br><br>Riego abundante y profundo las primeras 2 temporadas para que arraigue bien; después, solo en sequías largas. Necesitan sol pleno. La poda de formación se hace en invierno.`,
-            "Palmeras": `🌴 <strong>Cuidados para palmeras:</strong><br><br>Riego moderado, dejando secar la tierra entre riego y riego. Sol pleno. Protegé del frío fuerte los primeros años.`,
-            "Arbustos y Gramíneas": `🌿 <strong>Cuidados:</strong><br><br>Riego moderado y regular, sin encharcar. Sol pleno o media sombra. Podá después de la floración.`,
-            "Rosales de Pie Bajo": `🌹 <strong>Cuidados para rosales:</strong><br><br>Regá en la base sin mojar las hojas. Necesitan sol directo varias horas al día. Podá en invierno y fertilizá en primavera.`,
-            "Cítricos Injertados": `🍊 <strong>Cuidados para cítricos:</strong><br><br>Riego regular sin encharcar. Sol pleno. Sensibles a heladas fuertes los primeros años. Fertilizá en primavera-verano.`,
-            "Frutales Injertados": `🍑 <strong>Cuidados para frutales:</strong><br><br>Riego profundo y espaciado, más frecuente en floración. Sol pleno. Poda de formación en invierno.`,
-            "Parras": `🍇 <strong>Cuidados para parras:</strong><br><br>Riego moderado, sol pleno todo el día. Necesitan estructura para guiarlas y poda de invierno.`
+            "Árboles": `🌳 <strong>Cuidados para árboles:</strong><br><br>Ubicalos en un lugar con buena luz y dejá espacio para que desarrollen la copa. Durante las primeras dos temporadas hacé riegos profundos, verificando que el agua llegue a las raíces; después regá cuando el suelo se seque en profundidad. Evitá el encharcamiento y colocá mulch sin apoyar contra el tronco. La poda de formación suele hacerse en invierno, retirando ramas cruzadas o débiles.`,
+            "Palmeras": `🌴 <strong>Cuidados para palmeras:</strong><br><br>Necesitan buena luz y suelo con drenaje. Regá de manera abundante pero espaciada, dejando que la superficie seque entre riegos. Durante los primeros años protegé el cuello y las hojas de heladas fuertes. No cortes hojas verdes: retiralas solo cuando estén completamente secas.`,
+            "Arbustos y Gramíneas": `🌿 <strong>Cuidados para arbustos y gramíneas:</strong><br><br>Regá de forma regular sin encharcar y elegí sol pleno o media sombra según la especie. Una capa fina de compost o mulch ayuda a conservar la humedad. Podá los arbustos después de la floración y recortá las gramíneas secas a fines del invierno o comienzos de la primavera.`,
+            "Rosales de Pie Bajo": `🌹 <strong>Cuidados para rosales:</strong><br><br>Colocalos donde reciban varias horas de sol directo y haya buena circulación de aire. Regá en la base, evitando mojar las hojas y las flores. Fertilizá en primavera y después de la floración. La poda principal se realiza en invierno: quitá ramas secas, débiles o cruzadas y dejá una estructura abierta.`,
+            "Cítricos Injertados": `🍊 <strong>Cuidados para cítricos:</strong><br><br>Necesitan sol pleno, riego profundo sin anegamiento y suelo con buen drenaje. En verano controlá la humedad con mayor frecuencia; en invierno reducí el riego. Protegelos de heladas fuertes durante los primeros años. Fertilizá en primavera y verano siguiendo las indicaciones del producto, y retirás los brotes que aparezcan debajo del injerto.`,
+            "Frutales Injertados": `🍑 <strong>Cuidados para frutales:</strong><br><br>Elegí un sitio soleado y dejá la distancia necesaria para su tamaño adulto. Regá profundo durante el establecimiento y aumentá la frecuencia en floración, calor intenso o períodos secos. La poda de formación se hace en invierno. Mantené libre de malezas la base y controlá que ningún brote crezca por debajo del punto de injerto.`,
+            "Parras": `🍇 <strong>Cuidados para parras:</strong><br><br>Ubicalas a pleno sol y prepará una estructura firme para guiarlas. Regá durante el establecimiento y luego de manera moderada, evitando mojar el follaje en exceso. La poda de invierno es fundamental para ordenar la planta y favorecer la producción; guiá los brotes nuevos y retirálos si nacen por debajo del injerto.`
         };
-        const raicitaCuidadosGenerico = `🌱 <strong>Consejos generales:</strong><br><br>La mayoría necesita buena luz solar y riego regular sin encharcar. Contame qué planta tenés (ej: "cuidados de los cítricos") y te doy algo más específico.`;
-        const raicitaCuidadoTriggers = ['cuidado','cuidados','cuido','cuidar','riego','regar','poda','podar','sol','luz','abono','abonar','fertiliza','fertilizar','trasplant'];
+        const raicitaCuidadosGenerico = `🌱 <strong>Consejos generales para cuidar plantas:</strong><br><br>1. Observá la luz que recibe el lugar y elegí una especie adecuada.<br>2. Regá cuando el sustrato lo necesite, no por rutina: comprobá la humedad con un dedo antes de volver a regar.<br>3. Asegurá buen drenaje y nunca dejes la maceta permanentemente en agua.<br>4. Fertilizá en época de crecimiento siguiendo la dosis del producto.<br>5. Revisá hojas y tallos semanalmente para detectar plagas, hongos o estrés.<br>6. Podá con herramientas limpias y retirale a la planta solo lo necesario.<br><br>Decime qué planta tenés, dónde está y qué síntoma ves, y te oriento mejor. También podés buscar una consulta específica en Google.`;
+        const raicitaCuidadoTriggers = ['cuidado','cuidados','cuido','cuidar','riego','regar','poda','podar','sol','luz','abono','abonar','fertiliza','fertilizar','trasplant','plaga','hongo','hoja amarilla','hojas amarillas','enferma','enfermedad','sustrato','tierra','maceta','drenaje','floracion','floración','insecto'];
 
         function raicitaEsConsultaCuidado(norm) { return raicitaCuidadoTriggers.some(k => norm.includes(normalizeText(k))); }
         function raicitaCategoriaEnTexto(norm) { return Object.keys(raicitaCuidados).find(cat => norm.includes(normalizeText(cat))); }
@@ -4698,13 +4812,16 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             return raicitaSmallTalk.find(item => item.keywords.some(k => norm.includes(normalizeText(k))));
         }
 
-        function raicitaAddMsg(text, sender) {
+        function raicitaAddMsg(text, sender, remember = true) {
             const body = document.getElementById('raicitaBody');
             const msg = document.createElement('div');
             msg.className = `raicita-msg ${sender}`;
             msg.innerHTML = text;
             body.appendChild(msg);
             body.scrollTop = body.scrollHeight;
+            if (remember && (sender === 'user' || sender === 'bot')) {
+                raicitaRememberMessage(sender === 'user' ? 'user' : 'assistant', text);
+            }
         }
 
         function raicitaShowTyping() {
@@ -4724,7 +4841,51 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
 
         // URL de tu Worker (IA). Sin esto configurado, solo responde lo que ya sabe.
         const RAICITA_AI_URL = 'https://TU-WORKER.TU-USUARIO.workers.dev';
+        const RAICITA_MEMORY_KEY = 'deraizvivero_raicita_memory_v1';
+        const RAICITA_MAX_MESSAGES = 40;
         let raicitaHistorial = [];
+
+        function raicitaLoadMemory() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(RAICITA_MEMORY_KEY) || '[]');
+                return Array.isArray(saved) ? saved.filter(item => item && (item.role === 'user' || item.role === 'assistant') && typeof item.content === 'string') : [];
+            } catch (err) {
+                return [];
+            }
+        }
+
+        function raicitaSaveMemory() {
+            try {
+                raicitaHistorial = raicitaHistorial.slice(-RAICITA_MAX_MESSAGES);
+                localStorage.setItem(RAICITA_MEMORY_KEY, JSON.stringify(raicitaHistorial));
+            } catch (err) {
+                // Si el navegador bloquea localStorage, Raicita continúa funcionando sin memoria persistente.
+            }
+        }
+
+        function raicitaRememberMessage(role, content) {
+            if (!content || (role !== 'user' && role !== 'assistant')) return;
+            raicitaHistorial.push({ role, content, savedAt: Date.now() });
+            raicitaSaveMemory();
+        }
+
+        function raicitaRestoreMemory() {
+            const saved = raicitaLoadMemory();
+            raicitaHistorial = saved;
+            if (!saved.length) return false;
+            saved.forEach(item => raicitaAddMsg(item.content, item.role === 'user' ? 'user' : 'bot', false));
+            return true;
+        }
+
+        function raicitaClearMemory() {
+            try { localStorage.removeItem(RAICITA_MEMORY_KEY); } catch (err) {}
+            raicitaHistorial = [];
+            const body = document.getElementById('raicitaBody');
+            if (body) body.innerHTML = '';
+            raicitaOpened = true;
+            raicitaRenderChips();
+            raicitaAddMsg('Listo: borré la memoria de esta conversación en este dispositivo. 🌱', 'bot', false);
+        }
 
         async function raicitaAsk(userText, matchedItem) {
             if (raicitaIsBlocked()) {
@@ -4790,8 +4951,13 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
                 return;
             }
 
-            // Fallback: IA (requiere RAICITA_AI_URL configurado con tu Worker)
-            raicitaHistorial.push({ role: 'user', content: userText });
+            // Fallback compatible con GitHub Pages: búsqueda externa preparada en Google.
+            // Un HTML público no puede consultar Google directamente de forma segura sin un servidor.
+            if (!RAICITA_AI_URL || RAICITA_AI_URL.includes('TU-WORKER')) {
+                raicitaHideTyping();
+                raicitaAddMsg(`No tengo una respuesta específica guardada para esa consulta todavía 🌱<br><br>Te dejo una búsqueda preparada para encontrar información actualizada. Contrastá siempre los consejos con la especie, el clima y las indicaciones de un viverista:<br>${raicitaGoogleSearchLink(userText)}<br><br>Si querés, también podés escribirnos por WhatsApp y te ayudamos personalmente.`, 'bot');
+                return;
+            }
             try {
                 const res = await fetch(RAICITA_AI_URL, {
                     method: 'POST',
@@ -4826,7 +4992,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             raicitaAsk(val);
         }
 
-        const raicitaSaludo = `¡Holaa! Soy <strong>Raicita</strong> 🌱, la asistente virtual de De Raíz Vivero.<br><br>Puedo ayudarte con horarios, ubicación, envíos, cómo hacer tu pedido, cuidados de plantas o charlar de lo que quieras. ¿Qué necesitás?`;
+        const raicitaSaludo = `¡Holaa! Soy <strong>Raicita</strong> 🌱, la asistente virtual de De Raíz Vivero.<br><br>Puedo ayudarte con toda la información de esta página: categorías y precios del catálogo, disponibilidad de ejemplares, cuidados de plantas, horarios, visitas con reserva, ubicación, envíos, pedidos, reseñas y redes sociales. Si mi respuesta no alcanza, te preparo una búsqueda directa en Google. ¿Qué necesitás?`;
         let raicitaOpened = false;
 
         function toggleRaicita() {
@@ -4848,8 +5014,11 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
                 } else if (!raicitaOpened) {
                     raicitaOpened = true;
                     raicitaRenderChips();
-                    raicitaShowTyping();
-                    setTimeout(() => { raicitaHideTyping(); raicitaAddMsg(raicitaSaludo, 'bot'); }, 500);
+                    const restored = raicitaRestoreMemory();
+                    if (!restored) {
+                        raicitaShowTyping();
+                        setTimeout(() => { raicitaHideTyping(); raicitaAddMsg(raicitaSaludo, 'bot'); }, 500);
+                    }
                 }
             }
             if (isActive && !raicitaIsBlocked()) {
