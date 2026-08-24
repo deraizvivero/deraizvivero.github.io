@@ -296,7 +296,7 @@
             align-items: center;
         }
 
-        @media (min-width: 951px) {
+        @media (min-width: 768px) {
             .search-wrapper:hover .search-input-container,
             .search-wrapper.active .search-input-container {
                 width: 180px;
@@ -3405,6 +3405,51 @@
     </style>
 
 
+
+
+    <style id="catalogo-desktop-listas-compactas">
+        @media (min-width: 768px) {
+            #categoryModal.modal { align-items: center; padding: 28px; }
+            #categoryModal .modal-content {
+                width: min(920px, calc(100vw - 56px)); max-width: 920px;
+                max-height: min(86vh, 760px); padding: 30px 34px 24px;
+                display: flex; flex-direction: column; overflow: hidden;
+            }
+            #categoryModal .modal-header { flex: 0 0 auto; margin-bottom: 18px; padding-bottom: 15px; }
+            #categoryModal .modal-header h2 { font-size: 38px; }
+            #categoryModal .modal-category-count { font-size: 10px; }
+            #categoryModal .modal-species {
+                flex: 1 1 auto; min-height: 0; overflow-y: auto;
+                overscroll-behavior: contain; padding: 3px 9px 3px 2px;
+                scrollbar-width: thin; scrollbar-color: var(--verde) #eef4ea;
+            }
+            #categoryModal .modal-species::-webkit-scrollbar { width: 8px; }
+            #categoryModal .modal-species::-webkit-scrollbar-track { background: #eef4ea; border-radius: 20px; }
+            #categoryModal .modal-species::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 20px; }
+            #categoryModal .species-item {
+                grid-template-columns: 64px minmax(0, 1fr) auto;
+                gap: 16px; padding: 14px 16px; margin-bottom: 8px; border-radius: 14px;
+            }
+            #categoryModal .species-icon { width: 64px; height: 64px; border-radius: 12px; font-size: 24px; }
+            #categoryModal .species-info h4 { font-size: 14px; margin-bottom: 3px; }
+            #categoryModal .species-info p { font-size: 12px; }
+            #categoryModal .species-info p.species-desc { margin-top: 4px; font-size: 11px; line-height: 1.42; max-width: none; }
+            #categoryModal .species-stock { font-size: 11px; margin-top: 4px; }
+            #categoryModal .species-controls-wrapper { gap: 14px; }
+            #categoryModal .species-price { font-size: 16px; }
+            #categoryModal .quantity-input button { width: 25px; height: 25px; }
+            #categoryModal .quantity-input input { width: 34px; }
+            #categoryModal .modal-footer { flex: 0 0 auto; margin-top: 16px; padding-top: 16px; }
+        }
+    </style>
+
+
+    <style id="lista-completa-card">
+        .category-card-complete .category-card-title { text-wrap: balance; }
+        .category-card-complete .category-card-cta { background: rgba(140,207,85,.18); border-color: rgba(255,255,255,.85); }
+    </style>
+
+
     <style id="raicita-iris-mobile">
         /* Pulso verde tipo iris para Raicita, especialmente visible en teléfonos */
         .raicita-launcher {
@@ -3684,6 +3729,60 @@
         }
     </style>
 
+    <style id="catalogo-desktop-listas-final">
+        @media (min-width: 768px) {
+            #categoryModal.modal { align-items: flex-start; padding: 86px 28px 28px !important; }
+            #categoryModal .modal-content {
+                width: min(920px, calc(100vw - 56px)) !important;
+                max-width: 920px !important;
+                max-height: calc(100vh - 114px) !important;
+                padding: 30px 34px 24px !important;
+                display: flex; flex-direction: column; overflow: hidden !important;
+            }
+            #categoryModal .modal-header { flex: 0 0 auto; margin-bottom: 18px; padding-bottom: 15px; }
+            #categoryModal .modal-header h2 { font-size: 38px; }
+            #categoryModal .modal-species {
+                flex: 1 1 auto; min-height: 0; max-height: none !important;
+                grid-template-rows: none !important; grid-auto-rows: max-content !important; align-content: start;
+                overflow-y: auto !important; overflow-x: hidden;
+                overscroll-behavior: contain; padding: 3px 9px 3px 2px !important;
+                scrollbar-width: thin; scrollbar-color: var(--verde) #eef4ea;
+            }
+            #categoryModal .modal-species::-webkit-scrollbar { width: 8px; }
+            #categoryModal .modal-species::-webkit-scrollbar-track { background: #eef4ea; border-radius: 20px; }
+            #categoryModal .modal-species::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 20px; }
+            #categoryModal .species-item { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-rows: auto; height: auto !important; min-height: 104px; gap: 16px; padding: 14px 16px; margin-bottom: 8px; border-radius: 14px; overflow: visible !important; }
+            #categoryModal .species-icon { width: 64px; height: 64px; border-radius: 12px; font-size: 24px; }
+            #categoryModal .species-info h4 { font-size: 14px; margin-bottom: 3px; }
+            #categoryModal .species-info p { font-size: 12px; }
+            #categoryModal .species-info p.species-desc { margin-top: 4px; font-size: 11px; line-height: 1.42; max-width: none; }
+            #categoryModal .species-stock { font-size: 11px; margin-top: 4px; }
+            #categoryModal .species-controls-wrapper { gap: 14px; }
+            #categoryModal .species-price { font-size: 16px; }
+            #categoryModal .quantity-input button { width: 25px; height: 25px; }
+            #categoryModal .quantity-input input { width: 34px; }
+            #categoryModal .modal-footer { flex: 0 0 auto; margin-top: 16px; padding-top: 16px; }
+        }
+    </style>
+    <style id="cart-close-visible-final">
+        .cart-header { display: flex; align-items: center; padding-right: 62px; }
+        .cart-close {
+            z-index: 2;
+            background: rgba(140, 207, 85, .24);
+            border: 1px solid rgba(255, 255, 255, .42);
+            color: #ffffff;
+            font-size: 27px;
+            font-weight: 400;
+            line-height: 1;
+            box-shadow: 0 4px 12px rgba(0,0,0,.16);
+        }
+        .cart-close:hover, .cart-close:focus-visible {
+            background: var(--verde);
+            color: var(--negro);
+            outline: 2px solid rgba(140,207,85,.55);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 
 <body>
@@ -3856,7 +3955,7 @@
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             🛒 Tu Pedido
-            <button class="cart-close" onclick="toggleCart()">✕</button>
+            <button class="cart-close" type="button" aria-label="Cerrar carrito" title="Cerrar carrito" onclick="closeCart()">×</button>
         </div>
         <div class="cart-items" id="cartItems">
             <div class="cart-empty">
@@ -4116,6 +4215,8 @@
 ]
 };
 
+        productosData["Lista completa"] = Object.values(productosData).flat();
+
         const categorias = [
             { nombre: "Árboles", imagen: "https://images.unsplash.com/photo-1722004760950-107129360877?q=80&w=1217&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Palmeras", imagen: "https://images.unsplash.com/photo-1581372006468-b538631da9d4?q=80&w=1334&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
@@ -4123,7 +4224,8 @@
             { nombre: "Rosales de Pie Bajo", imagen: "https://images.unsplash.com/photo-1687652858993-75e9baf63cff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Frutales Injertados", imagen: "https://images.unsplash.com/photo-1628101721835-bb1c2b775aad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Cítricos Injertados", imagen: "https://images.unsplash.com/photo-1536657464919-892534f60d6e?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-            { nombre: "Parras", imagen: "https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+            { nombre: "Parras", imagen: "https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            { nombre: "Lista completa", imagen: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Picsart_26-07-29_18-46-44-144.png" }
         ];
 
         // ============ CARRITO ============
@@ -4190,40 +4292,24 @@
                 .trim();
         }
 
-                function renderCategories(filter = "") {
+        function renderCategories(filter = "") {
             const contenedor = document.getElementById("cards");
             if (!contenedor) return;
             contenedor.innerHTML = "";
-
             const normalizedFilter = normalizeText(filter);
-
             const filtered = categorias.filter(cat => {
                 const matchFilter = currentFilter === 'all' || cat.nombre === currentFilter || cat.nombre.includes(currentFilter);
-
-                // Busca coincidencia en el nombre de la categoría o en el nombre de cualquier producto dentro de ella
-                const matchSearch = normalizedFilter === "" ||
-                    normalizeText(cat.nombre).includes(normalizedFilter) ||
-                    (productosData[cat.nombre] || []).some(p => normalizeText(p.nombre).includes(normalizedFilter));
-
+                const matchSearch = normalizedFilter === "" || normalizeText(cat.nombre).includes(normalizedFilter) || (productosData[cat.nombre] || []).some(p => normalizeText(p.nombre).includes(normalizedFilter));
                 return matchFilter && matchSearch;
             });
-
             filtered.forEach((cat, index) => {
                 const productos = productosData[cat.nombre] || [];
-                
-                let priceHTML = '';
-                if (productos.length > 0) {
-                    const precioMinimo = Math.min(...productos.map(p => p.precio));
-                    priceHTML = `<strong>Desde ${formatPrice(precioMinimo)}</strong>`;
-                } else {
-                    priceHTML = '<em style="opacity:0.7">Consultar disponibilidad</em>';
-                }
-
+                const priceHTML = productos.length > 0 ? `<strong>Desde ${formatPrice(Math.min(...productos.map(p => p.precio)))}</strong>` : '<em style="opacity:0.7">Consultar disponibilidad</em>';
                 const countText = productos.length > 0 ? `${productos.length} variedades` : 'Próximamente';
                 const badgeText = productos.length > 0 ? `${productos.length}` : '—';
-
+                const isComplete = cat.nombre === 'Lista completa';
                 contenedor.innerHTML += `
-                <div class="category-card visible" role="button" tabindex="0" aria-label="Ver ejemplares de ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" onclick="openCategory('${cat.nombre}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCategory('${cat.nombre}')}" style="animation-delay: ${index * 0.08}s">
+                <div class="category-card visible ${isComplete ? 'category-card-complete' : ''}" role="button" tabindex="0" aria-label="Ver ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" onclick="openCategory('${cat.nombre}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCategory('${cat.nombre}') }" style="animation-delay: ${index * 0.08}s">
                     <div class="category-card-bg" style="background-image: url('${cat.imagen}')"></div>
                     <div class="category-card-overlay"></div>
                     <div class="category-card-badge">${badgeText}</div>
@@ -4231,25 +4317,18 @@
                         <div class="category-card-count">${countText}</div>
                         <div class="category-card-title">${cat.nombre}</div>
                         <div class="category-card-price">${priceHTML}</div>
-                        <div class="category-card-cta">
-                            Ver ejemplares
-                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-                        </div>
+                        <div class="category-card-cta">${isComplete ? 'Ver lista completa' : 'Ver ejemplares'} <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58-5.59L12 20l8-8z"/></svg></div>
                     </div>
-                </div>
-                `;
+                </div>`;
             });
         }
 
         function filterByCategory(category, btn) {
             currentFilter = category;
-            
-            // Actualizar botones activos
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
-            
-            renderCategories();
-        renderReviews();
+            renderCategories(document.getElementById('searchInput')?.value || '');
+            renderReviews();
         }
 
         const categoryHashMap = {
@@ -4428,6 +4507,10 @@
 
         function toggleCart() {
             document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('active');
         }
 
         function updateCartUI() {
