@@ -2779,55 +2779,7 @@
             .location-map-card iframe { height: 360px; }
         }
     </style>
-<style id="footer-logo-hover-glow">
-        .footer-logo-glow {
-            position: relative;
-            display: block;
-            width: fit-content;
-            margin: 20px auto;
-            line-height: 0;
-            text-decoration: none;
-        }
-        .footer-logo-glow img {
-            position: relative;
-            z-index: 1;
-            transition: transform .25s ease, filter .25s ease;
-        }
-        .footer-logo-glow::after {
-            content: "";
-            position: absolute;
-            z-index: 2;
-            inset: -10px -16px;
-            pointer-events: none;
-            opacity: 0;
-            background: linear-gradient(112deg, transparent 35%, rgba(255,255,255,.9) 49%, transparent 62%);
-            transform: translateX(-145%);
-            mix-blend-mode: screen;
-        }
-        .footer-logo-glow:hover img {
-            transform: translateY(-2px);
-            filter: drop-shadow(0 0 5px rgba(255,255,255,.95)) drop-shadow(0 0 14px rgba(139,195,74,.75));
-        }
-        .footer-logo-glow:hover::after {
-            opacity: .85;
-            animation: footerLogoShine 1.15s ease-out 1;
-        }
-        .footer-text-hover {
-            transition: color .25s ease, text-shadow .25s ease;
-        }
-        .footer-text-hover:hover {
-            color: #ffffff;
-            text-shadow: 0 0 4px rgba(255,255,255,.95), 0 0 12px rgba(139,195,74,.72);
-        }
-        @keyframes footerLogoShine {
-            0% { transform: translateX(-145%); }
-            100% { transform: translateX(145%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .footer-logo-glow img { transition: none; }
-            .footer-logo-glow:hover::after { animation: none; }
-        }
-    </style>
+
 <style id="products-professional-polish">
         .category-card {
             min-height: 420px;
@@ -3359,9 +3311,100 @@
         }
     </style>
 
+
+    <style id="premium-final-polish">
+        :root {
+            --verde-brillante: #9bdd62;
+            --verde-profundo: #315b22;
+            --crema: #fbfcf8;
+            --radio-lg: 24px;
+        }
+
+        html { scroll-padding-top: 86px; }
+        body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+        ::selection { background: var(--verde); color: var(--negro); }
+        :focus-visible { outline: 3px solid var(--verde-brillante); outline-offset: 4px; }
+
+        .skip-link {
+            position: fixed; left: 18px; top: -80px; z-index: 10000;
+            padding: 12px 18px; border-radius: 999px; background: var(--verde-oscuro);
+            color: #fff; font-weight: 800; text-decoration: none; transition: top .25s ease;
+        }
+        .skip-link:focus { top: 18px; }
+
+        header { z-index: 3000; }
+        header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,.14); }
+        .nav-menu { gap: clamp(16px, 2.2vw, 30px); }
+        .nav-menu a { text-shadow: 0 1px 12px rgba(0,0,0,.2); }
+        .nav-item-dropdown .dropdown-menu { z-index: 3100; box-shadow: 0 18px 45px rgba(0,0,0,.22); }
+        .hamburger { border-radius: 10px; }
+
+        .hero-content { max-width: 920px; }
+        .hero h1 { text-wrap: balance; letter-spacing: -.02em; }
+        .hero p { text-wrap: balance; }
+        .hero-buttons .btn-principal, .hero-buttons .btn-secundario { min-height: 50px; }
+
+        .catalogo, .reviews-section, .location-section, .contacto { position: relative; }
+        .catalogo { background: linear-gradient(180deg, #fff 0%, var(--crema) 100%); }
+        .catalogo-header p { max-width: 620px; margin-left: auto; margin-right: auto; }
+        .catalogo-filters { position: relative; z-index: 2; }
+        .filter-btn { min-height: 42px; }
+        .category-card {
+            border-radius: 20px !important;
+            overflow: hidden;
+            isolation: isolate;
+            box-shadow: 0 16px 34px rgba(31,52,25,.12) !important;
+        }
+        .category-card::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+            border: 1px solid rgba(255,255,255,.16); border-radius: inherit;
+        }
+        .category-card-badge { box-shadow: 0 8px 18px rgba(0,0,0,.18); }
+        .category-card-content { text-wrap: balance; }
+        .category-card-cta { min-height: 42px; }
+
+        .modal-content { box-shadow: 0 28px 90px rgba(17,17,17,.25); }
+        .species-item { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+        .species-item:focus-within { border-color: var(--verde-oscuro); box-shadow: 0 10px 24px rgba(49,91,34,.14); }
+
+        .instagram-preview { overflow: hidden; }
+        .instagram-slide { box-shadow: 0 12px 28px rgba(17,17,17,.14); }
+        .instagram-control { box-shadow: 0 8px 20px rgba(17,17,17,.12); }
+
+        .reviews-section { background-color: #f3f6ef; }
+        .review-card { border: 1px solid rgba(71,125,45,.12); transition: transform .25s ease, box-shadow .25s ease; }
+        .review-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(17,17,17,.12); }
+        .review-text { line-height: 1.75; }
+
+        .location-inner, .contacto-layout { position: relative; z-index: 1; }
+        .ubicacion-preview { box-shadow: 0 18px 38px rgba(17,17,17,.2); }
+        .social-item { min-height: 52px; }
+
+        @media (max-width: 950px) {
+            .nav-menu a { text-shadow: none; }
+            .nav-item-dropdown .dropdown-menu { box-shadow: none; }
+        }
+        @media (max-width: 700px) {
+            .hero { min-height: 640px; }
+            .hero-content { padding-inline: 22px; }
+            .hero h1 { font-size: clamp(42px, 12vw, 64px); }
+            .hero p { font-size: 16px; }
+            .catalogo, .reviews-section, .location-section { padding-inline: 18px; }
+            .categories-grid { gap: 18px; }
+            .category-card { min-height: 410px; }
+            .category-card-content { padding: 27px 22px 23px !important; }
+            .category-card-title { font-size: 31px !important; }
+            .reviews-header h2 { font-size: 47px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        }
+    </style>
+
 </head>
 
 <body>
+    <a class="skip-link" href="#catalogo">Saltar al contenido principal</a>
 
 <div id="supreme-overlay"></div>
     
@@ -3682,11 +3725,10 @@
     </div>
     
     <footer>
-    <a class="footer-logo-glow" href="#inicio" aria-label="Volver al inicio">
-        <img src="/pie%20de%20pagina.png" style="max-width: 120px; width: 100%; height: auto; margin: 0; display: block;">
-    </a>
-    <p class="footer-text-hover">Desde 2013 Cultivando Naturaleza</p>
-    <p id="copyrightYear" class="footer-text-hover">© 2026 De Raíz Vivero</p>
+    <img src="/pie%20de%20pagina.png"
+     style="max-width: 120px; width: 100%; height: auto; margin: 20px auto; display: block;">
+    <p>Desde 2013 Cultivando Naturaleza</p>
+    <p id="copyrightYear">© 2026 De Raíz Vivero</p>
 </footer>
 
     <!-- RAICITA - ASISTENTE VIRTUAL -->
@@ -4751,28 +4793,28 @@ const reviewsData = {
             city: "Cruz de Caña",
             stars: 5,
             text: "Muy buena atención las plantas muy lindas",
-            date: "21/8/26"
+            date: "Nueva reseña"
         },
         {
             name: "Maria Eva Diaz",
             city: "Luyaba",
             stars: 5,
             text: "Muy buena atención, muy buenas las plantas... todo perfecto para la entrega y mucha cordialidad en el trato... 😊 Está bueno poder pensar en el autoconsumo partiendo de la compra de frutales de calidad y tan accesibles.",
-            date: "7/8/26"
+            date: "Nueva reseña"
         },
         {
             name: "Isabel",
             city: "Villa de Merlo",
             stars: 5,
             text: "Excelente atencion y predisposición",
-            date: "15/8/26"
+            date: "Nueva reseña"
         },
         {
             name: "Noe Moyano",
             city: "Yacanto",
             stars: 5,
             text: "Muy buena atención! Gracias por todas las recomendaciones.",
-            date: "18/8/26"
+            date: "Nueva reseña"
         }
     ]
 };
@@ -5224,6 +5266,20 @@ injectBusinessReviewSchema();
             actualizarContador();
             setInterval(actualizarContador, 1000);
         })();
+    </script>
+
+
+    <script id="final-accessibility-polish">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainSections = document.querySelectorAll('section[id]');
+            mainSections.forEach(section => {
+                if (!section.hasAttribute('tabindex') && !section.id.includes('modal')) section.setAttribute('tabindex', '-1');
+            });
+            document.querySelectorAll('img:not([alt])').forEach(img => img.setAttribute('alt', 'Planta de De Raíz Vivero'));
+            document.querySelectorAll('.category-card').forEach(card => {
+                if (!card.getAttribute('aria-label')) card.setAttribute('aria-label', 'Ver ejemplares');
+            });
+        });
     </script>
 
 </body>
