@@ -5831,125 +5831,37 @@
 </style>
 
 
-<style id="raicita-mobile-mas-pequena">
+<style id="raicita-mobile-reducida-v2">
 @media (max-width:600px) {
-  .raicita-launcher {
-    width:48px !important;
-    height:48px !important;
-    right:14px !important;
-    bottom:14px !important;
-  }
+  /* Burbuja pequeña y cómoda, sin ocupar espacio excesivo. */
+  .raicita-launcher,
   .raicita-launcher-icon {
-    width:48px !important;
-    height:48px !important;
+    width:44px !important;
+    height:44px !important;
+  }
+  .raicita-launcher {
+    right:12px !important;
+    bottom:12px !important;
   }
   .raicita-launcher svg {
-    width:22px !important;
-    height:22px !important;
+    width:20px !important;
+    height:20px !important;
   }
+  /* Panel de conversación compacto, no pantalla completa. */
   .raicita-window {
-    width:calc(100vw - 28px) !important;
-    max-width:330px !important;
-    right:14px !important;
-    bottom:72px !important;
-    border-radius:16px !important;
-  }
-  .raicita-header { padding:12px 14px !important; }
-  .raicita-header h3 { font-size:15px !important; }
-  .raicita-messages { max-height:250px !important; padding:12px !important; }
-  .raicita-input-area { padding:9px !important; }
-}
-</style>
-
-
-<style id="raicita-mobile-mucho-mas-pequena">
-@media (max-width:600px) {
-  .raicita-launcher {
-    width:38px !important;
-    height:38px !important;
-    right:10px !important;
-    bottom:10px !important;
-    min-width:38px !important;
-    min-height:38px !important;
-  }
-  .raicita-launcher-icon {
-    width:38px !important;
-    height:38px !important;
-  }
-  .raicita-launcher svg {
-    width:18px !important;
-    height:18px !important;
-  }
-  .raicita-window {
-    width:270px !important;
-    max-width:calc(100vw - 28px) !important;
-    height:auto !important;
-    max-height:360px !important;
-    right:10px !important;
+    width:276px !important;
+    max-width:calc(100vw - 24px) !important;
+    height:390px !important;
+    max-height:calc(100dvh - 78px) !important;
+    right:12px !important;
     left:auto !important;
-    bottom:58px !important;
-    border-radius:13px !important;
+    bottom:66px !important;
+    border-radius:14px !important;
   }
-  .raicita-header { padding:9px 11px !important; }
+  .raicita-header { min-height:52px !important; padding:8px 10px !important; }
   .raicita-header h3 { font-size:13px !important; }
-  .raicita-messages { max-height:185px !important; padding:9px !important; font-size:12px !important; }
-  .raicita-input-area { padding:7px !important; }
-  .raicita-input-area input { font-size:12px !important; padding:7px !important; }
-  .raicita-input-area button { width:30px !important; height:30px !important; }
-}
-</style>
-
-
-<style id="raicita-panel-only-mobile">
-@media (max-width:600px) {
-  /* La burbuja conserva el tamaño cómodo anterior. */
-  .raicita-launcher,
-  .raicita-launcher-icon {
-    width:48px !important;
-    height:48px !important;
-  }
-  .raicita-launcher { right:14px !important; bottom:14px !important; }
-  .raicita-launcher svg { width:22px !important; height:22px !important; }
-
-  /* Se reduce únicamente el panel que aparece después de tocar la burbuja. */
-  .raicita-window {
-    width:292px !important;
-    max-width:calc(100vw - 28px) !important;
-    height:430px !important;
-    max-height:calc(100dvh - 92px) !important;
-    right:14px !important;
-    left:auto !important;
-    bottom:74px !important;
-    border-radius:16px !important;
-  }
-  .raicita-header { min-height:58px !important; padding:10px 12px !important; }
-  .raicita-header h3 { font-size:14px !important; }
-  .raicita-messages { min-height:0 !important; max-height:none !important; height:calc(100% - 112px) !important; padding:10px !important; }
-  .raicita-input-area { min-height:54px !important; padding:8px 10px !important; }
-}
-</style>
-
-
-<style id="raicita-alineada-con-carrito">
-@media (max-width:600px) {
-  /* Raicita queda igual que el carrito: 65 px y misma altura inferior. */
-  .raicita-launcher,
-  .raicita-launcher-icon {
-    width:65px !important;
-    height:65px !important;
-  }
-  .raicita-launcher {
-    right:30px !important;
-    bottom:30px !important;
-  }
-  .raicita-launcher svg {
-    width:28px !important;
-    height:28px !important;
-  }
-  /* El panel se eleva ligeramente, dejando espacio sobre la burbuja. */
-  .raicita-window {
-    bottom:105px !important;
-  }
+  .raicita-messages { height:calc(100% - 100px) !important; max-height:none !important; padding:8px !important; }
+  .raicita-input-area { min-height:48px !important; padding:7px 8px !important; }
 }
 </style>
 
