@@ -5899,6 +5899,36 @@
 }
 </style>
 
+
+<style id="raicita-panel-only-mobile">
+@media (max-width:600px) {
+  /* La burbuja conserva el tamaño cómodo anterior. */
+  .raicita-launcher,
+  .raicita-launcher-icon {
+    width:48px !important;
+    height:48px !important;
+  }
+  .raicita-launcher { right:14px !important; bottom:14px !important; }
+  .raicita-launcher svg { width:22px !important; height:22px !important; }
+
+  /* Se reduce únicamente el panel que aparece después de tocar la burbuja. */
+  .raicita-window {
+    width:292px !important;
+    max-width:calc(100vw - 28px) !important;
+    height:430px !important;
+    max-height:calc(100dvh - 92px) !important;
+    right:14px !important;
+    left:auto !important;
+    bottom:74px !important;
+    border-radius:16px !important;
+  }
+  .raicita-header { min-height:58px !important; padding:10px 12px !important; }
+  .raicita-header h3 { font-size:14px !important; }
+  .raicita-messages { min-height:0 !important; max-height:none !important; height:calc(100% - 112px) !important; padding:10px !important; }
+  .raicita-input-area { min-height:54px !important; padding:8px 10px !important; }
+}
+</style>
+
 </head>
 
 <body>
