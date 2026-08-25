@@ -5784,36 +5784,41 @@
 </style>
 
 
-<style id="menu-hamburger-texto-mas-grande">
+<style id="descripciones-plantas-mas-legibles">
+#categoryModal .species-info p.species-desc {
+  font-size:14px !important;
+  line-height:1.55 !important;
+  color:#6d746b !important;
+}
 @media (max-width:600px) {
-  .nav-menu > li > a {
-    font-size:20px !important;
-    line-height:1.4 !important;
-    letter-spacing:.35px !important;
+  #categoryModal .species-info p.species-desc {
+    font-size:16px !important;
+    line-height:1.5 !important;
+    color:#666d64 !important;
   }
-  .nav-item-dropdown .dropdown-menu li a {
-    font-size:17px !important;
-    line-height:1.4 !important;
-    padding:9px 2px !important;
-  }
-  .nav-menu { width:50vw !important; min-width:0 !important; max-width:none !important; }
 }
 </style>
 
 
-<style id="plant-descriptions-more-readable">
-/* Descripciones de plantas más legibles en las tarjetas del catálogo. */
-#categoryModal .species-info p.species-desc {
-  font-size:13px !important;
-  line-height:1.5 !important;
-  color:#6f756d !important;
+<style id="lightbox-above-category-modal">
+/* El visor de fotos debe estar por encima del modal y de todas las tarjetas. */
+#lightbox.lightbox {
+  position:fixed !important;
+  inset:0 !important;
+  z-index:2147483647 !important;
+  isolation:isolate !important;
+  background:rgba(10,10,10,.94) !important;
+  backdrop-filter:blur(10px) !important;
+  -webkit-backdrop-filter:blur(10px) !important;
 }
+#lightbox.lightbox.active { display:flex !important; visibility:visible !important; opacity:1 !important; pointer-events:auto !important; }
+#lightbox .lightbox-figure { position:relative !important; z-index:1 !important; }
+#lightbox .lightbox-close { z-index:2 !important; }
 @media (max-width:600px) {
-  #categoryModal .species-info p.species-desc {
-    font-size:15px !important;
-    line-height:1.5 !important;
-    letter-spacing:0 !important;
-  }
+  #lightbox.lightbox { padding:28px 18px !important; }
+  #lightbox .lightbox-figure { max-width:94vw !important; max-height:88dvh !important; }
+  #lightbox .lightbox-figure img { max-width:94vw !important; max-height:72dvh !important; }
+  body:has(#lightbox.active) #categoryModal { z-index:2000 !important; }
 }
 </style>
 
