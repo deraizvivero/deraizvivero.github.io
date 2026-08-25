@@ -5865,9 +5865,28 @@
 }
 </style>
 
+
+<style id="fade-inicial-pagina-restaurado">
+#supreme-overlay {
+  position:fixed !important;
+  inset:0 !important;
+  z-index:2147483000 !important;
+  background:#111 !important;
+  opacity:1;
+  pointer-events:none !important;
+  animation:fadeInicialPagina 900ms ease-out forwards !important;
+}
+@keyframes fadeInicialPagina {
+  0% { opacity:1; visibility:visible; }
+  70% { opacity:.55; }
+  100% { opacity:0; visibility:hidden; }
+}
+</style>
+
 </head>
 
 <body>
+<div id="supreme-overlay" aria-hidden="true"></div>
     <a class="skip-link" href="#catalogo">Saltar al contenido principal</a>
 
 
