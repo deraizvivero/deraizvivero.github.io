@@ -5671,6 +5671,23 @@
 }
 </style>
 
+
+<style id="category-modal-initial-state-fix">
+@media (max-width:600px) {
+  /* El modal no debe aparecer al cargar la página. */
+  #categoryModal.modal:not(.active) {
+    display:none !important; visibility:hidden !important; opacity:0 !important;
+    pointer-events:none !important;
+  }
+  #categoryModal.modal.active {
+    display:block !important; visibility:visible !important; opacity:1 !important;
+    pointer-events:auto !important;
+  }
+  body:not(.category-modal-open) > *:not(#categoryModal) { visibility:visible !important; opacity:1 !important; }
+  body:not(.category-modal-open) { overflow-x:hidden !important; overflow-y:auto !important; }
+}
+</style>
+
 </head>
 
 <body>
