@@ -5703,34 +5703,32 @@
 </style>
 
 
-<style id="hamburger-menu-quarter-width">
-@media (max-width:950px) {
+<style id="final-clean-mobile-rules">
+/* El overlay negro no debe bloquear nunca la página. */
+#supreme-overlay { display:none !important; visibility:hidden !important; opacity:0 !important; pointer-events:none !important; }
+@media (max-width:600px) {
+  /* La página normal permanece visible al cargar. */
+  body { visibility:visible !important; opacity:1 !important; background:#fff !important; overflow-x:hidden !important; overflow-y:auto !important; }
+  body > * { visibility:visible !important; opacity:1 !important; }
+  #categoryModal.modal:not(.active) { display:none !important; visibility:hidden !important; opacity:0 !important; pointer-events:none !important; }
+  #categoryModal.modal.active { display:block !important; visibility:visible !important; opacity:1 !important; }
+  /* Menú hamburguesa: panel lateral de un cuarto del ancho. */
   .nav-menu {
-    width:25vw !important;
-    min-width:0 !important;
-    max-width:none !important;
-    right:-25vw !important;
-    padding:72px 10px 22px !important;
-    gap:14px !important;
-    overflow-x:hidden !important;
-    overflow-y:auto !important;
+    width:25vw !important; min-width:0 !important; max-width:none !important;
+    right:-25vw !important; padding:72px 9px 22px !important;
+    overflow-x:hidden !important; overflow-y:auto !important;
   }
   .nav-menu.active { right:0 !important; }
-  .nav-menu > li,
-  .nav-menu > li > a { width:100% !important; min-width:0 !important; }
+  .nav-menu > li, .nav-menu > li > a { width:100% !important; min-width:0 !important; }
   .nav-menu > li > a {
-    font-size:clamp(9px, 2.2vw, 15px) !important;
-    letter-spacing:.4px !important;
-    white-space:normal !important;
-    overflow-wrap:anywhere !important;
+    font-size:clamp(9px,2.2vw,15px) !important; letter-spacing:.3px !important;
+    white-space:normal !important; overflow-wrap:anywhere !important;
   }
-  .nav-item-dropdown .dropdown-menu { min-width:0 !important; width:100% !important; }
+  .nav-item-dropdown .dropdown-menu { width:100% !important; min-width:0 !important; }
   .nav-item-dropdown .dropdown-menu li a {
-    padding:7px 2px !important;
-    margin:0 !important;
-    font-size:clamp(8px, 1.9vw, 12px) !important;
-    letter-spacing:.2px !important;
-    white-space:normal !important;
+    margin:0 !important; padding:6px 1px !important;
+    font-size:clamp(8px,1.8vw,12px) !important; letter-spacing:0 !important;
+    white-space:normal !important; overflow-wrap:anywhere !important;
   }
 }
 </style>
@@ -5740,7 +5738,7 @@
 <body>
     <a class="skip-link" href="#catalogo">Saltar al contenido principal</a>
 
-<div id="supreme-overlay"></div>
+
     
     <header id="mainHeader">
         <nav class="navbar">
