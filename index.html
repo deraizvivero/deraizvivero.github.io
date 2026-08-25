@@ -5762,6 +5762,27 @@
 }
 </style>
 
+
+<style id="mobile-category-title-light-close-adjustment">
+@media (max-width:600px) {
+  /* Título interno de cada categoría: fino, como en la referencia. */
+  #categoryModal .modal-header h2,
+  #categoryModal #modalTitle {
+    font-family:'Cormorant Garamond', serif !important;
+    font-weight:400 !important;
+    letter-spacing:-.01em !important;
+  }
+  /* X dentro del header: separada del borde superior y completamente visible. */
+  #categoryModal .modal-header > .close-modal {
+    top:10px !important;
+    right:8px !important;
+    width:38px !important;
+    height:38px !important;
+    line-height:36px !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
