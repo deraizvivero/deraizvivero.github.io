@@ -5815,6 +5815,21 @@
 }
 </style>
 
+
+<style id="photo-viewer-source-level-mobile">
+@media (max-width:600px) {
+  #lightbox.lightbox.active {
+    display:flex !important; position:fixed !important; inset:0 !important;
+    z-index:2147483647 !important; width:100vw !important; height:100dvh !important;
+    opacity:1 !important; visibility:visible !important; pointer-events:auto !important;
+    background:#101410 !important; transform:none !important;
+  }
+  #lightbox.lightbox.active .lightbox-figure,
+  #lightbox.lightbox.active .lightbox-figure img,
+  #lightbox.lightbox.active .lightbox-close { z-index:2147483647 !important; }
+}
+</style>
+
 </head>
 
 <body>
@@ -6766,7 +6781,14 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         function openLightbox(src, caption) {
             document.body.classList.add('lightbox-open');
             const lightbox = document.getElementById('lightbox');
+            const categoryModal = document.getElementById('categoryModal');
             document.body.appendChild(lightbox);
+            lightbox.style.setProperty('z-index', '2147483647', 'important');
+            lightbox.style.setProperty('position', 'fixed', 'important');
+            lightbox.style.setProperty('display', 'flex', 'important');
+            lightbox.style.setProperty('visibility', 'visible', 'important');
+            lightbox.style.setProperty('opacity', '1', 'important');
+            if (categoryModal) categoryModal.style.setProperty('visibility', 'hidden', 'important');
             const img = document.getElementById('lightboxImg');
             const captionEl = document.getElementById('lightboxCaption');
             img.src = src;
@@ -6780,6 +6802,13 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             document.body.classList.remove('lightbox-open');
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
+            lightbox.style.removeProperty('z-index');
+            lightbox.style.removeProperty('position');
+            lightbox.style.removeProperty('display');
+            lightbox.style.removeProperty('visibility');
+            lightbox.style.removeProperty('opacity');
+            const categoryModal = document.getElementById('categoryModal');
+            if (categoryModal) categoryModal.style.removeProperty('visibility');
             document.body.style.overflow = '';
         }
 
