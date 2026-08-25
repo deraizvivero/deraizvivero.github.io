@@ -5688,6 +5688,20 @@
 }
 </style>
 
+
+<style id="restore-mobile-page-final">
+@media (max-width:600px) {
+  /* La página normal siempre debe ser visible cuando el modal está cerrado. */
+  body, body:not(.category-modal-open) { visibility:visible !important; opacity:1 !important; background:#fff !important; overflow-x:hidden !important; overflow-y:auto !important; }
+  body:not(.category-modal-open) > * { visibility:visible !important; opacity:1 !important; }
+  body:not(.category-modal-open) > #categoryModal { display:none !important; visibility:hidden !important; opacity:0 !important; }
+  /* El fondo oscuro/translúcido solo existe mientras se abre una categoría. */
+  body.category-modal-open > #categoryModal { display:block !important; visibility:visible !important; opacity:1 !important; }
+  body.category-modal-open > header,
+  body.category-modal-open > .hero { visibility:hidden !important; }
+}
+</style>
+
 </head>
 
 <body>
