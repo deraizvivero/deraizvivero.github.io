@@ -5800,44 +5800,18 @@
 </style>
 
 
-<style id="lightbox-above-category-modal">
-/* El visor de fotos debe estar por encima del modal y de todas las tarjetas. */
-#lightbox.lightbox {
-  position:fixed !important;
-  inset:0 !important;
-  z-index:2147483647 !important;
-  isolation:isolate !important;
-  background:rgba(10,10,10,.94) !important;
-  backdrop-filter:blur(10px) !important;
-  -webkit-backdrop-filter:blur(10px) !important;
-}
-#lightbox.lightbox.active { display:flex !important; visibility:visible !important; opacity:1 !important; pointer-events:auto !important; }
-#lightbox .lightbox-figure { position:relative !important; z-index:1 !important; }
-#lightbox .lightbox-close { z-index:2 !important; }
+<style id="lightbox-mobile-above-list-final">
 @media (max-width:600px) {
-  #lightbox.lightbox { padding:28px 18px !important; }
-  #lightbox .lightbox-figure { max-width:94vw !important; max-height:88dvh !important; }
-  #lightbox .lightbox-figure img { max-width:94vw !important; max-height:72dvh !important; }
-  body:has(#lightbox.active) #categoryModal { z-index:2000 !important; }
-}
-</style>
-
-
-<style id="lightbox-mobile-top-layer">
-@media (max-width:600px) {
-  body.lightbox-open { overflow:hidden !important; }
   #lightbox.lightbox.active {
-    display:flex !important; visibility:visible !important; opacity:1 !important;
-    position:fixed !important; inset:0 !important; z-index:2147483647 !important;
-    width:100vw !important; height:100dvh !important; padding:24px 14px !important;
-    background:rgba(8,12,8,.96) !important; pointer-events:auto !important;
-    transform:none !important;
+    display:flex !important; position:fixed !important; inset:0 !important;
+    width:100vw !important; height:100dvh !important; z-index:2147483647 !important;
+    visibility:visible !important; opacity:1 !important; pointer-events:auto !important;
+    background:rgba(8,12,8,.97) !important; transform:none !important;
   }
-  #lightbox.lightbox.active .lightbox-figure { z-index:2 !important; max-width:96vw !important; max-height:88dvh !important; }
-  #lightbox.lightbox.active .lightbox-figure img { max-width:96vw !important; max-height:70dvh !important; object-fit:contain !important; }
-  #lightbox.lightbox.active .lightbox-close { z-index:3 !important; top:-8px !important; right:-4px !important; }
-  /* Mientras la foto está abierta, el modal de categoría no puede quedar por delante. */
-  body.lightbox-open #categoryModal { z-index:1 !important; visibility:hidden !important; pointer-events:none !important; }
+  #lightbox.lightbox.active .lightbox-figure { position:relative !important; z-index:2147483648 !important; }
+  #lightbox.lightbox.active .lightbox-close { position:absolute !important; z-index:2147483649 !important; }
+  /* El listado no puede permanecer visible por delante del visor. */
+  body.lightbox-open #categoryModal { visibility:hidden !important; opacity:0 !important; pointer-events:none !important; z-index:0 !important; }
 }
 </style>
 
@@ -6792,6 +6766,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         function openLightbox(src, caption) {
             document.body.classList.add('lightbox-open');
             const lightbox = document.getElementById('lightbox');
+            document.body.appendChild(lightbox);
             const img = document.getElementById('lightboxImg');
             const captionEl = document.getElementById('lightboxCaption');
             img.src = src;
