@@ -5921,13 +5921,6 @@
         @media (max-width: 800px) { .plant-search-mode { grid-template-columns: 1fr; } }
         @media (max-width: 520px) { .plant-search-card { grid-template-columns: 92px 1fr; min-height: 160px; } .plant-search-image { min-height: 160px; } .plant-search-body { padding: 14px; } .plant-search-body h3 { font-size: 23px; } .plant-search-description { font-size: 11px; } .plant-search-footer { align-items: flex-start; flex-direction: column; gap: 8px; } }
     </style>
-    <style id="secure-purchase-cart">
-        .secure-purchase-box { display: flex; align-items: flex-start; gap: 12px; margin: 0 0 16px; padding: 14px; border: 1px solid #cfe2c4; border-radius: 12px; background: #f4faef; color: #315b22; }
-        .secure-purchase-icon { flex: 0 0 25px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--verde-oscuro); color: #fff; font-weight: 800; font-size: 14px; }
-        .secure-purchase-box strong { display: block; margin-bottom: 3px; font-size: 13px; letter-spacing: .3px; }
-        .secure-purchase-box p { margin: 0; color: #58704d; font-size: 11px; line-height: 1.45; }
-        @media (max-width: 600px) { .secure-purchase-box { padding: 12px; gap: 10px; } .secure-purchase-box p { font-size: 10.5px; } }
-    </style>
 </head>
 
 <body>
@@ -6142,13 +6135,6 @@
                 <div class="form-group">
                     <label for="checkout-address">Dirección (Calle y Número)</label>
                     <input type="text" id="checkout-address" class="checkout-input" placeholder="Ej: Calle Los Olmos 450">
-                </div>
-            </div>
-            <div class="secure-purchase-box" role="note" aria-label="Compra segura">
-                <div class="secure-purchase-icon" aria-hidden="true">✓</div>
-                <div>
-                    <strong>Compra segura</strong>
-                    <p>Tu pedido se coordina de manera personalizada por WhatsApp. Confirmamos disponibilidad, forma de pago y envío antes de finalizar la compra.</p>
                 </div>
             </div>
             <div class="cart-total">
@@ -6379,7 +6365,8 @@
     { nombre: "MOSCATEL BLANCA", altura: "30 Centímetros", precio: 13000, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/moscatel-blancaa.jpg", desc: "Parra de uva blanca, dulce y aromática, ideal para cultivar en casa y disfrutar sus racimos frescos durante la temporada." },
     { nombre: "VID MOSCATEL", altura: "90 Centimetros", precio: 13000, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/moscatel.png", desc: "Grano dulce y muy perfumado, con ese aroma floral tan característico: ideal para comer de la parra o hacer vinos suaves y aromáticos." },
     { nombre: "VID PINOT NOIR", altura: "20 Centimetros", precio: 8000, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/pinot%20noir.png", desc: "Uva delicada de piel fina, con notas frutadas sutiles: la variedad más elegante y prestigiosa del mundo del vino, ahora casera." },
-    { nombre: "VID TORRONTES BLANCA", altura: "20 Centimetros", precio: 8000, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/torrontes.png", desc: "Grano blanco de aroma floral muy marcado, el mismo perfume que caracteriza al vino blanco insignia de Argentina." }
+    { nombre: "VID TORRONTES BLANCA", altura: "20 Centimetros", precio: 8000, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/torrontes.png", desc: "Grano blanco de aroma floral muy marcado, el mismo perfume que caracteriza al vino blanco insignia de Argentina." },
+    { nombre: "UVA FRAMBUA TINTA", altura: "50 Centímetros", precio: 0, consultar: true, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/uva-frambua.jpg", desc: "Aroma y sabor inconfundibles a frambuesas, frutillas y caramelos de frutos rojos." }
     ]
         };
 
