@@ -5991,6 +5991,7 @@
   #supreme-overlay .loading-spinner { width:40px; height:40px; border-width:3px; }
   #supreme-overlay .loading-message { font-size:clamp(13px, 3.8vw, 14px); letter-spacing:1.5px; }
   #supreme-overlay .loading-submessage { font-size:10px; max-width:270px; }
+  #supreme-overlay.is-ready { animation-duration:1.2s !important; }
 }
 @keyframes loadingSpin { to { transform:rotate(360deg); } }
 @keyframes loadingTextFloat { 0%,100% { opacity:.6; transform:translateY(1px); } 50% { opacity:1; transform:translateY(-1px); } }
@@ -8139,48 +8140,53 @@ injectBusinessReviewSchema();
             const overlay = document.getElementById('supreme-overlay');
             if (!overlay) return;
 
-            function waitForImages() {
-                const images = Array.from(document.images).filter(function (image) {
-                    const isLazy = image.getAttribute('loading') === 'lazy';
-                    if (!isLazy) return true;
-                    const rect = image.getBoundingClientRect();
-                    return rect.top < window.innerHeight * 1.5 && rect.bottom > -window.innerHeight * 0.5;
-                });
+            const loadingStartedAt = performance.now();
+            const isMobile = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+            const minVisibleTime = isMobile ? 2200 : 0;
+            const maxLoadWait = isMobile ? 3500 : 8000;
+            let loadSignalReceived = false;
 
-                return Promise.all(images.map(function (image) {
-                    if (image.complete) return Promise.resolve();
-                    return new Promise(function (resolve) {
-                        image.addEventListener('load', resolve, { once: true });
-                        image.addEventListener('error', resolve, { once: true });
-                    });
-                }));
+            function waitForPageLoad() {
+                return new Promise(function (resolve) {
+                    function finish() {
+                        if (loadSignalReceived) return;
+                        loadSignalReceived = true;
+                        resolve();
+                    }
+
+                    if (document.readyState === 'complete') {
+                        finish();
+                    } else {
+                        window.addEventListener('load', finish, { once: true });
+                    }
+
+                    // Evita que un recurso externo lento deje la pantalla fija indefinidamente.
+                    window.setTimeout(finish, maxLoadWait);
+                });
             }
 
             async function revealPage() {
-                try {
-                    if (document.fonts && document.fonts.ready) await document.fonts.ready;
-                    await waitForImages();
-                } finally {
-                    requestAnimationFrame(function () {
-                        let hidden = false;
-                        function hideOverlay() {
-                            if (hidden) return;
-                            hidden = true;
-                            overlay.style.setProperty('display', 'none', 'important');
-                            overlay.setAttribute('aria-hidden', 'true');
-                        }
-                        overlay.addEventListener('animationend', hideOverlay, { once: true });
-                        overlay.classList.add('is-ready');
-                        window.setTimeout(hideOverlay, 750);
-                    });
-                }
+                await waitForPageLoad();
+
+                const remainingTime = Math.max(0, minVisibleTime - (performance.now() - loadingStartedAt));
+                if (remainingTime) await new Promise(function (resolve) { window.setTimeout(resolve, remainingTime); });
+
+                requestAnimationFrame(function () {
+                    let hidden = false;
+                    function hideOverlay() {
+                        if (hidden) return;
+                        hidden = true;
+                        overlay.style.setProperty('display', 'none', 'important');
+                        overlay.setAttribute('aria-hidden', 'true');
+                    }
+                    overlay.addEventListener('animationend', hideOverlay, { once: true });
+                    overlay.classList.add('is-ready');
+                    const fadeSafetyTime = isMobile ? 1450 : 750;
+                    window.setTimeout(hideOverlay, fadeSafetyTime);
+                });
             }
 
-            if (document.readyState === 'complete') {
-                revealPage();
-            } else {
-                window.addEventListener('load', revealPage, { once: true });
-            }
+            revealPage();
         })();
     </script>
 
