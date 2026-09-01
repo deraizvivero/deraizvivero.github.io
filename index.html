@@ -5707,7 +5707,7 @@
 <style id="final-clean-mobile-rules">
 /* Overlay de entrada: acompaña la carga completa y luego se desvanece. */
 #supreme-overlay {
-  display:flex !important;
+  display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
@@ -8162,11 +8162,16 @@ injectBusinessReviewSchema();
                     await waitForImages();
                 } finally {
                     requestAnimationFrame(function () {
-                        overlay.classList.add('is-ready');
-                        overlay.addEventListener('animationend', function () {
-                            overlay.style.display = 'none';
+                        let hidden = false;
+                        function hideOverlay() {
+                            if (hidden) return;
+                            hidden = true;
+                            overlay.style.setProperty('display', 'none', 'important');
                             overlay.setAttribute('aria-hidden', 'true');
-                        }, { once: true });
+                        }
+                        overlay.addEventListener('animationend', hideOverlay, { once: true });
+                        overlay.classList.add('is-ready');
+                        window.setTimeout(hideOverlay, 750);
                     });
                 }
             }
