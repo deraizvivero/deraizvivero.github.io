@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Asesoramiento | De Raíz Vivero</title>
-<meta name="description" content="Guías de De Raíz Vivero para plantar, mantener y cuidar tus plantas durante el invierno.">
+<meta name="description" content="Consejos de De Raíz Vivero para plantar, mantener y cuidar tus plantas durante el invierno.">
 <link rel="canonical" href="https://deraizvivero.github.io/asesoramiento.html">
+<link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/favicon.jpg">
+<meta name="theme-color" content="#172015">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -52,11 +54,48 @@ body.content-protected img{-webkit-user-drag:none!important;user-drag:none!impor
 @media print{html,body{display:none!important}}
 .viewer figure{position:relative}
 
+
+/* Navegación adaptable y escala equilibrada para celular, tablet y PC */
+.menu-toggle{display:none;width:44px;height:44px;padding:9px;border:1px solid rgba(255,255,255,.32);border-radius:8px;background:transparent;color:#fff;cursor:pointer}
+.menu-toggle span{display:block;width:23px;height:2px;margin:5px auto;background:currentColor;transition:transform .25s ease,opacity .25s ease}
+.site-nav{display:flex;align-items:center;gap:clamp(16px,2.3vw,34px)}
+.site-nav>a:not(.back){color:#fff;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:color .25s ease}
+.site-nav>a:not(.back):hover{color:var(--lime)}
+.footer-logo{display:block;width:min(190px,55vw);height:auto;max-height:90px;object-fit:contain;margin:0 auto 16px}
+footer{display:grid;place-items:center;gap:2px;min-height:150px;padding:28px 20px}
+@media(max-width:760px){
+  .topbar{padding:0 16px}
+  .menu-toggle{display:block;position:relative;z-index:31}
+  .site-nav{position:absolute;top:100%;left:0;right:0;display:grid;gap:0;padding:8px 16px 14px;background:rgba(21,26,19,.97);border-bottom:1px solid rgba(255,255,255,.15);box-shadow:0 14px 30px rgba(0,0,0,.18);clip-path:inset(0 0 100% 0);opacity:0;pointer-events:none;transition:clip-path .28s ease,opacity .2s ease}
+  .site-nav.open{clip-path:inset(0);opacity:1;pointer-events:auto}
+  .site-nav>a:not(.back),.site-nav .back{display:block;padding:14px 4px;font-size:10px}
+  .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .hero h1{font-size:clamp(48px,14vw,78px);line-height:.9}
+  .hero p{font-size:14px;line-height:1.55}
+  .quicklinks a{padding:10px 13px;font-size:9px}
+  .intro h2,.copy h2{font-size:clamp(40px,11vw,60px)}
+  .copy p,.tip{font-size:14px}
+  .number{font-size:88px}
+  .contact h2{font-size:clamp(42px,12vw,60px)!important}
+  .whatsapp{right:16px;bottom:16px;width:54px;height:54px}
+}
+@media(min-width:761px) and (max-width:1100px){
+  .topbar{padding-inline:3vw}.site-nav{gap:16px}.hero h1{font-size:clamp(68px,9vw,104px)}
+  main{padding-inline:5vw}.guide{gap:46px}
+}
 </style>
 </head>
 <body>
-<header class="topbar"><a class="brand" href="https://deraizvivero.github.io/">De Raíz<span>Vivero</span></a><a class="back" href="https://deraizvivero.github.io/">← Volver a la tienda</a></header>
-<section class="hero"><div class="hero-inner fade"><div class="eyebrow">De Raíz Vivero · Guías prácticas</div><h1>El cuidado empieza desde la raíz</h1><p>Ideas simples y claras para plantar, mantener y acompañar tus plantas en cada estación.</p><nav class="quicklinks"><a href="#plantar">Plantación</a><a href="#mantenimiento">Mantenimiento</a><a href="#invierno">Invierno</a></nav></div></section>
+<header class="topbar">
+  <a class="brand" href="https://deraizvivero.github.io/" aria-label="De Raíz Vivero">De Raíz<span>Vivero</span></a>
+  <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+  <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+    <a href="#plantar">Plantación</a><a href="#mantenimiento">Mantenimiento</a><a href="#invierno">Invierno</a><a class="back" href="https://deraizvivero.github.io/">← Volver a la tienda</a>
+  </nav>
+</header>
+<section class="hero"><div class="hero-inner fade"><h1>El cuidado empieza desde la raíz</h1><p>Ideas simples y claras para plantar, mantener y acompañar tus plantas en cada estación.</p><nav class="quicklinks"><a href="#plantar">Plantación</a><a href="#mantenimiento">Mantenimiento</a><a href="#invierno">Invierno</a></nav></div></section>
 <section class="band band-plant fade"><div class="band-content"><strong>Todo comienza con un buen lugar</strong><span>Preparar · Plantar · Acompañar</span></div></section>
 <main>
 <div class="intro fade"><div class="eyebrow">Consejos del vivero</div><h2>Cultivar también es aprender</h2><p>Te acompañamos con criterios de cuidado para que cada ejemplar se adapte, crezca y disfrute de su lugar.</p></div>
@@ -69,11 +108,30 @@ body.content-protected img{-webkit-user-drag:none!important;user-drag:none!impor
 </main>
 <div class="viewer" id="viewer" onclick="closeViewer(event)"><button class="viewer-close" aria-label="Cerrar">×</button><figure onclick="event.stopPropagation()"><img id="viewerImage" src="" alt=""><figcaption id="viewerCaption"></figcaption></figure></div>
 <a class="whatsapp" href="https://wa.me/543544669550" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp flotante"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a>
-<footer>De Raíz Vivero · Loma Bola, Traslasierra · <a href="https://deraizvivero.github.io/">Volver a la tienda</a></footer>
+<footer>
+  <img class="footer-logo" src="https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/pie%20de%20pagina.png" alt="De Raíz Vivero">
+  <div>De Raíz Vivero · Loma Bola, Traslasierra · <a href="https://deraizvivero.github.io/">Volver a la tienda</a></div>
+</footer>
 <script>
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 const viewer=document.getElementById('viewer'),viewerImage=document.getElementById('viewerImage'),viewerCaption=document.getElementById('viewerCaption');function openViewer(img){viewerImage.src=img.src;viewerImage.alt=img.alt;viewerCaption.textContent=img.alt;viewer.classList.add('active')}function closeViewer(e){if(e.target===viewer||e.target.classList.contains('viewer-close')){viewer.classList.remove('active');viewerImage.src=''}}document.addEventListener('keydown',e=>{if(e.key==='Escape')viewer.classList.remove('active')});document.addEventListener('contextmenu',e=>{if(e.target.matches('img,.viewer'))e.preventDefault()});document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
-</script>
+
+  const menuToggle=document.querySelector('.menu-toggle');
+  const siteNav=document.querySelector('.site-nav');
+  if(menuToggle && siteNav){
+    menuToggle.addEventListener('click',()=>{
+      const isOpen=menuToggle.getAttribute('aria-expanded')==='true';
+      menuToggle.setAttribute('aria-expanded',String(!isOpen));
+      menuToggle.setAttribute('aria-label',isOpen?'Abrir menú':'Cerrar menú');
+      siteNav.classList.toggle('open',!isOpen);
+    });
+    siteNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+      menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.setAttribute('aria-label','Abrir menú');
+      siteNav.classList.remove('open');
+    }));
+  }
+  </script>
 
 <script>
   document.body.classList.add('content-protected');
