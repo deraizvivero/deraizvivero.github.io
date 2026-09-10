@@ -3501,6 +3501,11 @@
     </style>
 
 
+<style id="asesoramiento-card">
+        .category-card-advice { text-decoration: none; color: inherit; }
+        .category-card-advice .category-card-cta { color: #fff; }
+    </style>
+
     <style id="lista-completa-card">
         .category-card-complete .category-card-title { text-wrap: balance; }
         .category-card-complete .category-card-cta { background: rgba(140,207,85,.18); border-color: rgba(255,255,255,.85); }
@@ -6056,6 +6061,7 @@
                             <li><a href="#categoria-parras" onclick="filterByCategory('Parras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PARRAS</a></li>
                         </ul>
                     </li>
+                    <li><a href="https://deraizvivero.github.io/asesoramiento.html" target="_blank" rel="noopener noreferrer" onclick="closeMenu()">Asesoramiento</a></li>
                     <li><a href="#ubicacion" onclick="closeMenu()">Ubicación</a></li>
                     <li><a href="#resenas" onclick="closeMenu()">Reseñas</a></li>
                     <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
@@ -6495,7 +6501,8 @@
             { nombre: "Frutales Injertados", imagen: "https://images.unsplash.com/photo-1628101721835-bb1c2b775aad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Cítricos Injertados", imagen: "https://images.unsplash.com/photo-1536657464919-892534f60d6e?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Parras", imagen: "https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-            { nombre: "Lista completa", imagen: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Picsart_26-07-29_18-46-44-144.png" }
+            { nombre: "Lista completa", imagen: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Picsart_26-07-29_18-46-44-144.png" },
+            { nombre: "ASESORAMIENTO", imagen: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/metodo%20de%20plantaci%C3%B3n.png", externa: true }
         ];
 
         // ============ CARRITO ============
@@ -6617,18 +6624,23 @@
                 const countText = productos.length > 0 ? `${productos.length} variedades` : 'Próximamente';
                 const badgeText = productos.length > 0 ? `${productos.length}` : '—';
                 const isComplete = cat.nombre === 'Lista completa';
+                const isAdvice = cat.externa === true;
+                const cardStart = isAdvice
+                    ? `<a class="category-card visible category-card-advice" href="https://deraizvivero.github.io/asesoramiento.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir asesoramiento" style="animation-delay: ${index * 0.08}s">`
+                    : `<div class="category-card visible ${isComplete ? 'category-card-complete' : ''}" role="button" tabindex="0" aria-label="Ver ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" onclick="openCategory('${cat.nombre}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCategory('${cat.nombre}') }" style="animation-delay: ${index * 0.08}s">`;
+                const cardEnd = isAdvice ? '</a>' : '</div>';
                 contenedor.innerHTML += `
-                <div class="category-card visible ${isComplete ? 'category-card-complete' : ''}" role="button" tabindex="0" aria-label="Ver ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" onclick="openCategory('${cat.nombre}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCategory('${cat.nombre}') }" style="animation-delay: ${index * 0.08}s">
+                ${cardStart}
                     <div class="category-card-bg" style="background-image: url('${cat.imagen}')"></div>
                     <div class="category-card-overlay"></div>
-                    <div class="category-card-badge">${badgeText}</div>
+                    <div class="category-card-badge">${isAdvice ? 'GUÍA' : badgeText}</div>
                     <div class="category-card-content">
-                        <div class="category-card-count">${countText}</div>
+                        <div class="category-card-count">${isAdvice ? 'Consejos para tus plantas' : countText}</div>
                         <div class="category-card-title">${cat.nombre}</div>
-                        <div class="category-card-price">${priceHTML}</div>
-                        <div class="category-card-cta">${isComplete ? 'Ver lista completa' : 'Ver ejemplares'} <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58-5.59L12 20l8-8z"/></svg></div>
+                        <div class="category-card-price">${isAdvice ? '<strong>Ver recomendaciones</strong>' : priceHTML}</div>
+                        <div class="category-card-cta">${isAdvice ? 'Abrir asesoramiento' : (isComplete ? 'Ver lista completa' : 'Ver ejemplares')} <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58-5.59L12 20l8-8z"/></svg></div>
                     </div>
-                </div>`;
+                ${cardEnd}`;
             });
         }
 
