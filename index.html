@@ -6016,7 +6016,7 @@
         .plant-search-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 14px; }
         .plant-search-footer strong { font-size: 13px; color: var(--negro); }
         .plant-search-footer button { border: 0; border-radius: 999px; padding: 9px 13px; background: var(--verde-oscuro); color: #fff; cursor: pointer; font: 700 10px 'Manrope', sans-serif; letter-spacing: .5px; }
-        .plant-search-footer button:hover { background: var(--verde); color: #17300f; }
+        .plant-search-footer button:hover, .plant-search-footer a:hover { background: var(--verde); color: #17300f; } .plant-search-whatsapp-btn { background: #25D366 !important; color: #fff !important; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; } .plant-search-whatsapp-btn:hover { background: #1ebe5d !important; color: #fff !important; }
         .search-empty-state { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 160px; padding: 30px; border: 1px dashed #cbd8c3; border-radius: 14px; color: var(--gris-texto); text-align: center; }
         .search-empty-state strong { color: var(--negro); font-family: 'Cormorant Garamond', serif; font-size: 30px; }
         .search-empty-state span { font-size: 13px; }
@@ -6438,10 +6438,10 @@
     { nombre: "SEN DE CAMPO", altura: "1 Metro", precio: 22500, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/sen%20de%20campo.jpg", desc: "Arbusto de porte liviano y floración alegre, una opción rústica y luminosa para sumar movimiento al jardín." }
     ],
     "Rosales de Pie Bajo": [
+    { nombre: "ROSADO RAYA BLANCA", altura: "90 Centimetros", precio: 13000, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/rosado%20raya%20blanca.jpeg", desc: "Flores bicolor con rayas blancas sobre fondo rosado, un patrón que no se repite en ningún otro rosal y se roba todas las miradas." },
     { nombre: "AMARILLO", altura: "90 Centimetros", consultar: true, icon: "🌹", desc: "Amarillo puro y luminoso que resalta desde lejos y da un contraste imposible de ignorar en cualquier cantero." },
     { nombre: "BORDO PERFUMADO", altura: "90 Centimetros", consultar: true, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/bordo%20perfumado.jpeg", desc: "El más perfumado de la colección: aroma clásico a rosa antigua que se siente al pasar cerca, con un color bordo profundo." },
-    { nombre: "MATIZADO", altura: "90 Centimetros", consultar: true, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/matizado.jpeg", desc: "Cada flor abre con su propio degradé de color, nunca sale igual dos veces: una pieza de colección para el ojo entrenado." },
-    { nombre: "ROSADO RAYA BLANCA", altura: "90 Centimetros", precio: 13000, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/rosado%20raya%20blanca.jpeg", desc: "Flores bicolor con rayas blancas sobre fondo rosado, un patrón que no se repite en ningún otro rosal y se roba todas las miradas." }
+    { nombre: "MATIZADO", altura: "90 Centimetros", consultar: true, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/matizado.jpeg", desc: "Cada flor abre con su propio degradé de color, nunca sale igual dos veces: una pieza de colección para el ojo entrenado." }
     ],
     "Cítricos Injertados": [
     { nombre: "LIMA TAHITÍ", altura: "1,50 Metros", precio: 24000, icon: "🍋‍🟩", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/lima%20tahiti.png", desc: "Jugo ácido y muy aromático, sin semillas: la lima de bar profesional que le da ese punto justo a tragos, ceviches y comidas." },
@@ -6485,7 +6485,12 @@
         // Orden alfabético de los ejemplares dentro de cada categoría.
         const categoriasDeProductos = Object.keys(productosData);
         categoriasDeProductos.forEach(categoria => {
-            productosData[categoria].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+            productosData[categoria].sort((a, b) => {
+            // El ejemplar disponible se muestra primero en Rosales y en Lista completa.
+            if (a.nombre === 'ROSADO RAYA BLANCA') return -1;
+            if (b.nombre === 'ROSADO RAYA BLANCA') return 1;
+            return a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' });
+        });
         });
 
         // Lista completa agrupada por categoría y ordenada alfabéticamente dentro de cada grupo.
@@ -6502,7 +6507,6 @@
             { nombre: "Cítricos Injertados", imagen: "https://images.unsplash.com/photo-1536657464919-892534f60d6e?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Parras", imagen: "https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Lista completa", imagen: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Picsart_26-07-29_18-46-44-144.png" },
-            { nombre: "ASESORAMIENTO", imagen: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/metodo%20de%20plantaci%C3%B3n.png", externa: true }
         ];
 
         // ============ CARRITO ============
@@ -6596,16 +6600,19 @@
                 contenedor.classList.add('plant-search-mode');
                 resultados.forEach((prod, index) => {
                     const precio = prod.consultar ? 'A consultar' : `${formatPrice(prod.precio)} por ejemplar`;
-                    const stock = Number.isFinite(prod.stock) ? `${prod.stock} unidades disponibles` : 'Consultar disponibilidad';
+                    const stock = Number.isFinite(prod.stock) ? `${prod.stock} unidades disponibles` : 'A consultar';
+                    const accion = prod.consultar
+                        ? `<a class="plant-search-category-btn plant-search-whatsapp-btn" href="${escapeAttr(waLink(`Hola, quisiera consultar por ${prod.nombre} de la categoría ${prod.categoria}.`))}" target="_blank" rel="noopener noreferrer">WhatsApp</a>`
+                        : `<button type="button" class="plant-search-category-btn" data-category="${escapeAttr(prod.categoria)}">Ver en catálogo</button>`;
                     contenedor.innerHTML += `
                     <article class="plant-search-card" style="animation-delay: ${index * 0.05}s">
-                        <div class="plant-search-image">${prod.img ? `<img src="${escapeAttr(prod.img)}" alt="${escapeAttr(prod.nombre)}" loading="lazy">` : prod.icon}</div>
+                        <div class="plant-search-image">${prod.img ? `<img src="${escapeAttr(prod.img)}" alt="${escapeAttr(prod.nombre)}" loading="lazy" class="zoomable-img" data-full="${escapeAttr(prod.img)}" data-caption="${escapeAttr(prod.nombre)}">` : prod.icon}</div>
                         <div class="plant-search-body">
                             <span class="plant-search-category">${escapeAttr(prod.categoria)}</span>
                             <h3>${escapeAttr(prod.nombre)}</h3>
                             <p class="plant-search-meta">${escapeAttr(prod.altura)} · ${escapeAttr(stock)}</p>
                             <p class="plant-search-description">${escapeAttr(prod.desc || 'Ejemplar seleccionado de nuestro catálogo.')}</p>
-                            <div class="plant-search-footer"><strong>${precio}</strong><button type="button" onclick="openCategory('${escapeAttr(prod.categoria)}')">Ver categoría</button></div>
+                            <div class="plant-search-footer"><strong>${precio}</strong>${accion}</div>
                         </div>
                     </article>`;
                 });
@@ -6620,14 +6627,14 @@
             filtered.forEach((cat, index) => {
                 const productos = productosData[cat.nombre] || [];
                 const pricedProducts = productos.filter(p => !p.consultar && Number.isFinite(p.precio) && p.precio > 0);
-                const priceHTML = pricedProducts.length > 0 ? `<strong>Desde ${formatPrice(Math.min(...pricedProducts.map(p => p.precio)))}</strong>` : (productos.length > 0 ? '<em style="opacity:0.85">Precio a consultar</em>' : '<em style="opacity:0.7">Consultar disponibilidad</em>');
+                const priceHTML = pricedProducts.length > 0 ? `<strong>Desde ${formatPrice(Math.min(...pricedProducts.map(p => p.precio)))}</strong>` : (productos.length > 0 ? '<em style="opacity:0.85">A consultar</em>' : '<em style="opacity:0.7">A consultar</em>');
                 const countText = productos.length > 0 ? `${productos.length} variedades` : 'Próximamente';
                 const badgeText = productos.length > 0 ? `${productos.length}` : '—';
                 const isComplete = cat.nombre === 'Lista completa';
                 const isAdvice = cat.externa === true;
                 const cardStart = isAdvice
                     ? `<a class="category-card visible category-card-advice" href="https://deraizvivero.github.io/asesoramiento.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir asesoramiento" style="animation-delay: ${index * 0.08}s">`
-                    : `<div class="category-card visible ${isComplete ? 'category-card-complete' : ''}" role="button" tabindex="0" aria-label="Ver ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" onclick="openCategory('${cat.nombre}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCategory('${cat.nombre}') }" style="animation-delay: ${index * 0.08}s">`;
+                    : `<div class="category-card visible ${isComplete ? 'category-card-complete' : ''}" role="button" tabindex="0" aria-label="Ver ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" style="animation-delay: ${index * 0.08}s">`;
                 const cardEnd = isAdvice ? '</a>' : '</div>';
                 contenedor.innerHTML += `
                 ${cardStart}
@@ -6667,7 +6674,7 @@
             if (!category) return;
             const button = [...document.querySelectorAll('.filter-btn')].find(b => normalizeText(b.textContent) === normalizeText(category) || (category === 'Arbustos, Gramíneas y Trepadoras' && normalizeText(b.textContent) === 'arbustos'));
             filterByCategory(category, button || null);
-            setTimeout(() => document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' }), 50);
+            setTimeout(() => scrollToCatalogoWithOffset(110), 50);
         }
 
         window.addEventListener('hashchange', applyCategoryHash);
@@ -6685,13 +6692,19 @@
             }
         }
 
-        // Ejecuta la búsqueda "de verdad": filtra y recién ahí baja la pantalla
+        // Ejecuta la búsqueda "de verdad": filtra y baja hasta la zona de resultados para dejar visible el producto
+        function scrollToCatalogoWithOffset(extraOffset = 110) {
+            const catalogo = document.getElementById('catalogo');
+            if (!catalogo) return;
+            const top = catalogo.getBoundingClientRect().top + window.scrollY + extraOffset;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
         function doSearch() {
             const input = document.getElementById('searchInput');
             const val = input.value;
             renderCategories(val);
             if (val.trim().length > 0) {
-                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+                scrollToCatalogoWithOffset(220);
             }
         }
 
@@ -6711,12 +6724,34 @@
         }
 
         function escapeAttr(str) {
-            return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+            return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        const preloadedProductImages = new Set();
+        function preloadCategoryImages(categoryKey) {
+            const productos = productosData[categoryKey] || [];
+            productos.forEach(prod => {
+                if (!prod.img || preloadedProductImages.has(prod.img)) return;
+                preloadedProductImages.add(prod.img);
+                const image = new Image();
+                image.decoding = 'async';
+                image.src = prod.img;
+            });
+        }
+        function preloadAllProductImages() {
+            Object.keys(productosData).forEach(preloadCategoryImages);
+        }
+        function scheduleProductImagePreload() {
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(preloadAllProductImages, { timeout: 1200 });
+            } else {
+                window.setTimeout(preloadAllProductImages, 250);
+            }
         }
 
         function speciesIconHTML(prod) {
             if (prod.img) {
-                return `<img src="${escapeAttr(prod.img)}" alt="${escapeAttr(prod.nombre)}" loading="lazy" class="zoomable-img" data-full="${escapeAttr(prod.img)}" data-caption="${escapeAttr(prod.nombre)}">`;
+                return `<img src="${escapeAttr(prod.img)}" alt="${escapeAttr(prod.nombre)}" class="zoomable-img" data-full="${escapeAttr(prod.img)}" data-caption="${escapeAttr(prod.nombre)}">`;
             }
             return prod.icon;
         }
@@ -6751,13 +6786,16 @@
         }
 
         function openCategory(categoryKey) {
+            if (!categoryKey || !productosData[categoryKey]) return;
             document.body.classList.add('category-modal-open');
+            document.body.style.overflow = 'hidden';
             const categoryButtons = document.querySelectorAll('#categoryModal .close-modal');
             categoryButtons.forEach((button, index) => { if (index > 0) button.remove(); });
             currentCategory = categoryKey;
             syncMobileCategoryBar(categoryKey);
             currentQuantities = {};
             const productos = productosData[categoryKey] || [];
+            preloadCategoryImages(categoryKey);
             
             document.getElementById('modalTitle').textContent = categoryKey;
             document.getElementById('modalCount').textContent = `${productos.length} ejemplares disponibles`;
@@ -6876,6 +6914,7 @@
             document.body.classList.remove('category-modal-open');
             document.getElementById('categoryModal').classList.remove('active');
             document.getElementById('mobileCategoryBar')?.classList.remove('visible');
+            document.body.style.overflow = '';
         }
 
         function syncCartToHeader() {
@@ -7097,6 +7136,25 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             if (img) {
                 e.stopPropagation();
                 openLightbox(img.dataset.full, img.dataset.caption);
+            }
+        });
+
+        // Activación delegada: funciona también después de renderizar una búsqueda.
+        document.addEventListener('click', function (e) {
+            const categoryTrigger = e.target.closest('[data-category].category-card, .plant-search-category-btn');
+            if (categoryTrigger) {
+                e.preventDefault();
+                e.stopPropagation();
+                const category = categoryTrigger.dataset.category;
+                if (category) openCategory(category);
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            const categoryCard = e.target.closest('[data-category].category-card');
+            if (categoryCard && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                const category = categoryCard.dataset.category;
+                if (category) openCategory(category);
             }
         });
 
@@ -7962,6 +8020,7 @@ function injectBusinessReviewSchema() {
 
 // Inicializar
 renderCategories();
+scheduleProductImagePreload();
 updateCartUI();
     applyCategoryHash();
 renderReviews();
