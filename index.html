@@ -96,6 +96,19 @@
     }
     </script>
 
+
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"¿Dónde está De Raíz Vivero?","acceptedAnswer":{"@type":"Answer","text":"De Raíz Vivero está en Loma Bola, Córdoba, en Traslasierra. Las visitas se coordinan previamente."}},
+        {"@type":"Question","name":"¿Hacen entregas a domicilio en Traslasierra?","acceptedAnswer":{"@type":"Answer","text":"Sí. Coordinamos entregas desde San José hasta Cura Brochero y desde Cura Brochero hasta Merlo, San Luis, incluyendo toda la Costa, según recorrido, disponibilidad y cantidad de plantas."}},
+        {"@type":"Question","name":"¿Qué plantas ofrece De Raíz Vivero?","acceptedAnswer":{"@type":"Answer","text":"Árboles, palmeras, frutales injertados, cítricos, arbustos, rosales, parras y plantas ornamentales."}}
+      ]
+    }
+    </script>
+
     <!-- Schema: WebSite -->
     <script type="application/ld+json">
     {
@@ -6050,6 +6063,23 @@
         .service-area-list li::before { content: '✓'; position: absolute; left: 0; color: var(--verde-oscuro); font-weight: 800; }
         .contacto-entregas { opacity: .8; font-size: 13px; }
         @media (max-width: 800px) { .service-area-section { padding: 70px 6%; } .service-area-inner { grid-template-columns: 1fr; gap: 35px; } .service-area-list { padding: 26px; } }
+
+        .local-pages-section, .faq-section { background: #fff; padding: 82px 5%; }
+        .local-pages-inner, .faq-inner { max-width: 1180px; margin: 0 auto; }
+        .local-pages-inner > h2, .faq-inner > h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 64px); line-height: 1; margin: 14px 0 16px; }
+        .local-pages-inner > p { max-width: 680px; color: var(--gris-texto); margin-bottom: 30px; }
+        .local-pages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .local-pages-grid a { display: flex; flex-direction: column; gap: 7px; padding: 22px; border: 1px solid #e2eadf; border-radius: 16px; color: var(--negro); text-decoration: none; background: #f8fbf6; transition: var(--transicion); }
+        .local-pages-grid a:hover { transform: translateY(-4px); border-color: var(--verde); box-shadow: var(--sombra); }
+        .local-pages-grid strong { font-size: 15px; color: var(--verde-oscuro); }
+        .local-pages-grid span { font-size: 12px; color: var(--gris-texto); }
+        .faq-section { background: var(--gris); }
+        .faq-inner { max-width: 880px; }
+        .faq-inner details { border-bottom: 1px solid #dfe5dc; padding: 20px 0; }
+        .faq-inner summary { cursor: pointer; font-weight: 800; color: var(--verde-oscuro); }
+        .faq-inner details p { color: var(--gris-texto); font-size: 14px; padding-top: 12px; }
+        @media (max-width: 900px) { .local-pages-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .local-pages-section, .faq-section { padding: 60px 6%; } .local-pages-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 
@@ -6202,6 +6232,35 @@
                 </ul>
                 <small>La entrega se coordina previamente por WhatsApp según recorrido, disponibilidad y cantidad de plantas.</small>
             </div>
+        </div>
+    </section>
+
+
+    <section id="localidades" class="local-pages-section" aria-labelledby="local-pages-title">
+        <div class="local-pages-inner">
+            <span class="section-label">Cobertura local</span>
+            <h2 id="local-pages-title">Entregas de plantas en Traslasierra</h2>
+            <p>Conocé cómo coordinamos entregas a domicilio desde Loma Bola para cada zona de Traslasierra y el corredor hasta Merlo, San Luis.</p>
+            <div class="local-pages-grid">
+                <a href="vivero-san-jose.html"><strong>San José y San Pedro</strong><span>Plantas y entregas coordinadas</span></a>
+                <a href="vivero-villa-dolores.html"><strong>Villa Dolores</strong><span>Vivero con entrega a domicilio</span></a>
+                <a href="vivero-las-tapias.html"><strong>Las Tapias y Villa Sarmiento</strong><span>Consultá cobertura y recorrido</span></a>
+                <a href="vivero-costa-traslasierra.html"><strong>Toda la Costa</strong><span>Entregas coordinadas en la zona</span></a>
+                <a href="vivero-mina-clavero.html"><strong>Mina Clavero y Nono</strong><span>Plantas para tu espacio</span></a>
+                <a href="vivero-cura-brochero.html"><strong>Cura Brochero</strong><span>Envíos desde Loma Bola</span></a>
+                <a href="vivero-merlo-san-luis.html"><strong>Merlo, San Luis</strong><span>Coordinamos el recorrido</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="preguntas-frecuentes" class="faq-section" aria-labelledby="faq-title">
+        <div class="faq-inner">
+            <span class="section-label">Preguntas frecuentes</span>
+            <h2 id="faq-title">Entregas de plantas en Traslasierra</h2>
+            <details><summary>¿Dónde está De Raíz Vivero?</summary><p>De Raíz Vivero está en Loma Bola, Córdoba, en Traslasierra. Las visitas al vivero se coordinan previamente.</p></details>
+            <details><summary>¿Hacen entregas a domicilio?</summary><p>Sí. Coordinamos entregas desde San José hasta Cura Brochero y desde Cura Brochero hasta Merlo, San Luis, incluyendo toda la Costa, según recorrido, disponibilidad y cantidad de plantas.</p></details>
+            <details><summary>¿El costo de entrega es fijo?</summary><p>No necesariamente. Confirmamos por WhatsApp el costo y la fecha según la localidad, el recorrido y el tamaño del pedido.</p></details>
+            <details><summary>¿Qué plantas puedo pedir?</summary><p>Podés consultar por árboles, palmeras, frutales injertados, cítricos, arbustos, rosales, parras y plantas ornamentales.</p></details>
         </div>
     </section>
 
