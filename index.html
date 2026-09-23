@@ -96,19 +96,6 @@
     }
     </script>
 
-
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"FAQPage",
-      "mainEntity":[
-        {"@type":"Question","name":"¿Dónde está De Raíz Vivero?","acceptedAnswer":{"@type":"Answer","text":"De Raíz Vivero está en Loma Bola, Córdoba, en Traslasierra. Las visitas se coordinan previamente."}},
-        {"@type":"Question","name":"¿Hacen entregas a domicilio en Traslasierra?","acceptedAnswer":{"@type":"Answer","text":"Sí. Coordinamos entregas desde San José hasta Cura Brochero y desde Cura Brochero hasta Merlo, San Luis, incluyendo toda la Costa, según recorrido, disponibilidad y cantidad de plantas."}},
-        {"@type":"Question","name":"¿Qué plantas ofrece De Raíz Vivero?","acceptedAnswer":{"@type":"Answer","text":"Árboles, palmeras, frutales injertados, cítricos, arbustos, rosales, parras y plantas ornamentales."}}
-      ]
-    }
-    </script>
-
     <!-- Schema: WebSite -->
     <script type="application/ld+json">
     {
@@ -6058,28 +6045,11 @@
         .service-area-list { background: #fff; border: 1px solid #dfead8; border-radius: 24px; padding: 34px; box-shadow: 0 18px 50px rgba(35,65,28,.08); }
         .service-area-list h3 { font-family: 'Cormorant Garamond', serif; font-size: 34px; margin-bottom: 8px; }
         .service-area-list p, .service-area-list small { color: var(--gris-texto); font-size: 13px; }
-        .service-area-list ul { list-style: none; margin: 20px 0; display: grid; gap: 10px; }
-        .service-area-list li { color: #384536; font-size: 14px; padding-left: 24px; position: relative; }
-        .service-area-list li::before { content: '✓'; position: absolute; left: 0; color: var(--verde-oscuro); font-weight: 800; }
+        .service-area-list ul { list-style: none; margin: 16px 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 14px; }
+        .service-area-list li { color: #384536; font-size: 12px; line-height: 1.35; }
         .contacto-entregas { opacity: .8; font-size: 13px; }
         @media (max-width: 800px) { .service-area-section { padding: 70px 6%; } .service-area-inner { grid-template-columns: 1fr; gap: 35px; } .service-area-list { padding: 26px; } }
-
-        .local-pages-section, .faq-section { background: #fff; padding: 82px 5%; }
-        .local-pages-inner, .faq-inner { max-width: 1180px; margin: 0 auto; }
-        .local-pages-inner > h2, .faq-inner > h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 64px); line-height: 1; margin: 14px 0 16px; }
-        .local-pages-inner > p { max-width: 680px; color: var(--gris-texto); margin-bottom: 30px; }
-        .local-pages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-        .local-pages-grid a { display: flex; flex-direction: column; gap: 7px; padding: 22px; border: 1px solid #e2eadf; border-radius: 16px; color: var(--negro); text-decoration: none; background: #f8fbf6; transition: var(--transicion); }
-        .local-pages-grid a:hover { transform: translateY(-4px); border-color: var(--verde); box-shadow: var(--sombra); }
-        .local-pages-grid strong { font-size: 15px; color: var(--verde-oscuro); }
-        .local-pages-grid span { font-size: 12px; color: var(--gris-texto); }
-        .faq-section { background: var(--gris); }
-        .faq-inner { max-width: 880px; }
-        .faq-inner details { border-bottom: 1px solid #dfe5dc; padding: 20px 0; }
-        .faq-inner summary { cursor: pointer; font-weight: 800; color: var(--verde-oscuro); }
-        .faq-inner details p { color: var(--gris-texto); font-size: 14px; padding-top: 12px; }
-        @media (max-width: 900px) { .local-pages-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 520px) { .local-pages-section, .faq-section { padding: 60px 6%; } .local-pages-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 520px) { .service-area-list ul { grid-template-columns: 1fr 1fr; gap: 7px 12px; } }
     </style>
 </head>
 
@@ -6214,53 +6184,20 @@
             <div class="service-area-copy">
                 <span class="section-label">Servicio de entregas</span>
                 <h2 id="entregas-title">Tu vivero de confianza en Traslasierra</h2>
-                <p>Somos <strong>De Raíz Vivero, de Loma Bola, Córdoba - Traslasierra</strong>. Si estás buscando un vivero en San José, San Pedro, Villa Sarmiento, Villa Dolores, Las Tapias, Cura Brochero, Merlo o cualquier localidad de la Costa, podés consultarnos por plantas, árboles, frutales, cítricos, palmeras y ornamentales.</p>
-                <p>Coordinamos <strong>entregas a domicilio desde San José hasta Cura Brochero y desde Cura Brochero hasta Merlo, San Luis, incluyendo toda la Costa</strong>. El costo y el día de entrega se confirman por WhatsApp según la localidad, la cantidad de ejemplares y el recorrido.</p>
+                <p>Somos <strong>De Raíz Vivero, ubicados en Loma Bola, Córdoba - Traslasierra</strong>. Si estás buscando un vivero cerca de tu zona y no encontrás uno, podés consultarnos por plantas de tu interés. Contamos con árboles, frutales, cítricos, palmeras y plantas ornamentales.</p>
+                <p>Realizamos <strong>envíos a domicilio a todo el Valle de Traslasierra</strong> y ciudades cercanas de San Luis incluidas en nuestra lista de cobertura. El costo del envío corre por cuenta del cliente. El día y el horario de entrega se coordinan por WhatsApp y pueden variar según la localidad, la cantidad de ejemplares y el recorrido que realiza nuestro repartidor.</p>
                 <a class="location-button" href="https://wa.me/543544669550?text=Hola%2C%20quiero%20consultar%20entrega%20a%20domicilio%20en%20Traslasierra" target="_blank" rel="noopener noreferrer">Consultar entrega por WhatsApp <span>↗</span></a>
             </div>
             <div class="service-area-list" aria-label="Localidades con entregas coordinadas">
-                <h3>San José, toda la Costa y Traslasierra</h3>
-                <p>Coordinamos entregas a domicilio en el corredor:</p>
+                <h3>Ciudades con envíos a domicilio</h3>
+                <p>Estas son las localidades incluidas en nuestra cobertura, ordenadas por recorrido:</p>
                 <ul>
-                    <li>San José, San Pedro, Villa Sarmiento y Villa Dolores</li>
-                    <li>Las Tapias, Villa de las Rosas, La Paz y localidades cercanas</li>
-                    <li>Toda la Costa de Traslasierra</li>
-                    <li>San Javier y Yacanto, Las Chacras, Luyaba y Travesía</li>
-                    <li>Mina Clavero, Nono, Las Rabonas y Arroyo de los Patos</li>
-                    <li>Villa Cura Brochero, Panaholma, Las Calles y Los Hornillos</li>
-                    <li>Desde Cura Brochero hasta Merlo, Carpintería y zonas cercanas de San Luis</li>
+                    <li>Villa Cura Brochero</li><li>Mina Clavero</li><li>Arroyo de los Patos</li><li>Nono</li><li>San Humberto</li><li>Las Rabonas</li><li>Los Hornillos</li><li>Quebrada de los Pozos</li>
+                    <li>Villa de las Rosas</li><li>Las Tapias</li><li>Villa Dolores</li><li>Villa Sarmiento</li><li>San José</li><li>San Pedro</li><li>San Javier y Yacanto</li><li>La Población</li>
+                    <li>Luyaba</li><li>La Paz</li><li>Las Chacras</li><li>Quebracho Ladeado</li><li>La Ramada</li><li>Merlo, San Luis</li><li>Carpintería, San Luis</li><li>Los Molles, San Luis</li>
                 </ul>
-                <small>La entrega se coordina previamente por WhatsApp según recorrido, disponibilidad y cantidad de plantas.</small>
+                <small>El envío se coordina previamente por WhatsApp según recorrido, disponibilidad y cantidad de plantas.</small>
             </div>
-        </div>
-    </section>
-
-
-    <section id="localidades" class="local-pages-section" aria-labelledby="local-pages-title">
-        <div class="local-pages-inner">
-            <span class="section-label">Cobertura local</span>
-            <h2 id="local-pages-title">Entregas de plantas en Traslasierra</h2>
-            <p>Conocé cómo coordinamos entregas a domicilio desde Loma Bola para cada zona de Traslasierra y el corredor hasta Merlo, San Luis.</p>
-            <div class="local-pages-grid">
-                <a href="vivero-san-jose.html"><strong>San José y San Pedro</strong><span>Plantas y entregas coordinadas</span></a>
-                <a href="vivero-villa-dolores.html"><strong>Villa Dolores</strong><span>Vivero con entrega a domicilio</span></a>
-                <a href="vivero-las-tapias.html"><strong>Las Tapias y Villa Sarmiento</strong><span>Consultá cobertura y recorrido</span></a>
-                <a href="vivero-costa-traslasierra.html"><strong>Toda la Costa</strong><span>Entregas coordinadas en la zona</span></a>
-                <a href="vivero-mina-clavero.html"><strong>Mina Clavero y Nono</strong><span>Plantas para tu espacio</span></a>
-                <a href="vivero-cura-brochero.html"><strong>Cura Brochero</strong><span>Envíos desde Loma Bola</span></a>
-                <a href="vivero-merlo-san-luis.html"><strong>Merlo, San Luis</strong><span>Coordinamos el recorrido</span></a>
-            </div>
-        </div>
-    </section>
-
-    <section id="preguntas-frecuentes" class="faq-section" aria-labelledby="faq-title">
-        <div class="faq-inner">
-            <span class="section-label">Preguntas frecuentes</span>
-            <h2 id="faq-title">Entregas de plantas en Traslasierra</h2>
-            <details><summary>¿Dónde está De Raíz Vivero?</summary><p>De Raíz Vivero está en Loma Bola, Córdoba, en Traslasierra. Las visitas al vivero se coordinan previamente.</p></details>
-            <details><summary>¿Hacen entregas a domicilio?</summary><p>Sí. Coordinamos entregas desde San José hasta Cura Brochero y desde Cura Brochero hasta Merlo, San Luis, incluyendo toda la Costa, según recorrido, disponibilidad y cantidad de plantas.</p></details>
-            <details><summary>¿El costo de entrega es fijo?</summary><p>No necesariamente. Confirmamos por WhatsApp el costo y la fecha según la localidad, el recorrido y el tamaño del pedido.</p></details>
-            <details><summary>¿Qué plantas puedo pedir?</summary><p>Podés consultar por árboles, palmeras, frutales injertados, cítricos, arbustos, rosales, parras y plantas ornamentales.</p></details>
         </div>
     </section>
 
@@ -6332,26 +6269,30 @@
                     <label for="checkout-city">Ciudad (Traslasierra)</label>
                     <select id="checkout-city" class="checkout-input">
                         <option value="" disabled selected>Seleccione su ciudad...</option>
-                        <option value="Loma Bola">Loma Bola</option>
-                        <option value="La Paz">La Paz</option>
-                        <option value="Las Chacras">Las Chacras</option>
-                        <option value="Luyaba">Luyaba</option>
-                        <option value="Travesia">Travesia</option>
-                        <option value="Yacanto">Yacanto</option>
-                        <option value="San Javier">San Javier</option>
+                        <option value="Villa Cura Brochero">Villa Cura Brochero</option>
+                        <option value="Mina Clavero">Mina Clavero</option>
+                        <option value="Arroyo de los Patos">Arroyo de los Patos</option>
+                        <option value="Nono">Nono</option>
+                        <option value="San Humberto">San Humberto</option>
+                        <option value="Las Rabonas">Las Rabonas</option>
+                        <option value="Los Hornillos">Los Hornillos</option>
+                        <option value="Quebrada de los Pozos">Quebrada de los Pozos</option>
                         <option value="Villa de las Rosas">Villa de las Rosas</option>
                         <option value="Las Tapias">Las Tapias</option>
                         <option value="Villa Dolores">Villa Dolores</option>
                         <option value="Villa Sarmiento">Villa Sarmiento</option>
+                        <option value="San José">San José</option>
                         <option value="San Pedro">San Pedro</option>
-                        <option value="San Jose">San Jose</option>
-                        <option value="Mina Clavero">Mina Clavero</option>
-                        <option value="Cura Brochero">Cura Brochero</option>
-                        <option value="Nono">Nono</option>
-                        <option value="Los Hornillos">Los Hornillos</option>
-                        <option value="Merlo">Merlo (San Luis)</option>
-                        <option value="Carpinteria">Carpinteria (San Luis)</option>
-                        <option value="Los Molles">Los Molles (San Luis)</option>
+                        <option value="San Javier y Yacanto">San Javier y Yacanto</option>
+                        <option value="La Población">La Población</option>
+                        <option value="Luyaba">Luyaba</option>
+                        <option value="La Paz">La Paz</option>
+                        <option value="Las Chacras">Las Chacras</option>
+                        <option value="Quebracho Ladeado">Quebracho Ladeado</option>
+                        <option value="La Ramada">La Ramada</option>
+                        <option value="Merlo, San Luis">Merlo, San Luis</option>
+                        <option value="Carpintería, San Luis">Carpintería, San Luis</option>
+                        <option value="Los Molles, San Luis">Los Molles, San Luis</option>
                         <option value="Otro">Otro (Especificar en dirección)</option>
                     </select>
                 </div>
