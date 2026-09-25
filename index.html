@@ -6146,6 +6146,9 @@
             #supreme-overlay .loading-dots i:nth-child(3) { animation-delay: .3s !important; }
         }
     </style>
+<style id="category-search-feature">
+.category-product-search svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}.category-product-search{display:flex;align-items:center;gap:9px;width:min(100%,430px);margin:14px auto 0;padding:9px 13px;border:1px solid #dfe6d8;border-radius:999px;background:#fff;color:var(--verde-oscuro);box-shadow:0 4px 14px rgba(24,39,20,.06)}.category-product-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--negro);font:500 13px/1.3 'Manrope',sans-serif}.category-product-search input::placeholder{color:#8a9484}.category-search-empty{padding:42px 20px;text-align:center;color:var(--gris-texto)}.category-search-empty strong,.category-search-empty span{display:block}.category-search-empty strong{color:var(--verde-oscuro);margin-bottom:7px}@media(max-width:600px){.category-product-search{margin-top:12px;padding:8px 11px}.category-product-search input{font-size:12px}}
+</style>
 </head>
 
 <body>
@@ -6334,6 +6337,7 @@
                 <button class="close-modal" type="button" aria-label="Cerrar productos" onclick="closeModal()">×</button>
                 <h2 id="modalTitle">Categoría</h2>
                 <div class="modal-category-count" id="modalCount"></div>
+                <label class="category-product-search" for="categoryProductSearch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="categoryProductSearch" type="search" placeholder="Buscar dentro de esta categoría" autocomplete="off"></label>
             </div>
             <div class="modal-species" id="modalSpecies"></div>
             <div class="modal-footer">
@@ -6556,6 +6560,7 @@
         const productosData = {
     "Árboles": [
     { nombre: "CRESPÓN BLANCO", altura: "1,20 Metros", precio: 28000, stock: 10, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/crespon-blanco.png", desc: "Arbusto de flores blancas luminosas, versátil para borduras, macizos y composiciones de estilo natural." },
+    { nombre: "EUCALIPTUS MEDICINAL", altura: "1 Metro", precio: 26000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/eucaliptus%20medicinal%20pag.jpg", desc: "Eucaliptus medicinal de follaje aromático, ideal para sumar presencia y verde al jardín." },
     { nombre: "CRESPÓN LILA", altura: "1,20 Metros", precio: 28000, stock: 10, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/crespon-lila.png", desc: "Variedad de floración lila y porte elegante, perfecta para sumar una nota suave y vistosa al jardín." },
     { nombre: "CRESPÓN ROSADO", altura: "1,20 Metros", precio: 28000, stock: 10, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/crespon-rosado.jpg", desc: "Arbusto ornamental de abundantes flores rosadas, ideal para llenar de color canteros y borduras." },
     { nombre: "AGUARIBAY COMÚN", altura: "1,80 Metros", precio: 22000, stock: 2, icon: "🌳", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/aguaribay.jpg", desc: "Ejemplar de crecimiento más natural y rústico, con porte amplio y desarrollo pensado para espacios abiertos." },
@@ -6770,9 +6775,10 @@
 
                 contenedor.classList.add('plant-search-mode');
                 resultados.forEach((prod, index) => {
-                    const precio = prod.consultar ? 'A consultar' : `${formatPrice(prod.precio)} por ejemplar`;
-                    const stock = Number.isFinite(prod.stock) ? `${prod.stock} unidades disponibles` : 'A consultar';
-                    const accion = prod.consultar
+                    const tienePrecio = Number.isFinite(prod.precio) && prod.precio > 0;
+                    const precio = tienePrecio ? `${formatPrice(prod.precio)} por ejemplar` : 'A consultar';
+                    const stock = Number.isFinite(prod.stock) ? `${prod.stock} unidades disponibles` : '';
+                    const accion = (!tienePrecio && prod.consultar)
                         ? `<a class="plant-search-category-btn plant-search-whatsapp-btn" href="${escapeAttr(waLink(`Hola, quisiera consultar por ${prod.nombre} de la categoría ${prod.categoria}.`))}" target="_blank" rel="noopener noreferrer">WhatsApp</a>`
                         : `<button type="button" class="plant-search-category-btn" data-category="${escapeAttr(prod.categoria)}">Ver en catálogo</button>`;
                     contenedor.innerHTML += `
@@ -6797,7 +6803,7 @@
             });
             filtered.forEach((cat, index) => {
                 const productos = productosData[cat.nombre] || [];
-                const pricedProducts = productos.filter(p => !p.consultar && Number.isFinite(p.precio) && p.precio > 0);
+                const pricedProducts = productos.filter(p => Number.isFinite(p.precio) && p.precio > 0);
                 const priceHTML = pricedProducts.length > 0 ? `<strong>Desde ${formatPrice(Math.min(...pricedProducts.map(p => p.precio)))}</strong>` : (productos.length > 0 ? '<em style="opacity:0.85">A consultar</em>' : '<em style="opacity:0.7">A consultar</em>');
                 const countText = productos.length > 0 ? `${productos.length} variedades` : 'Próximamente';
                 const badgeText = productos.length > 0 ? `${productos.length}` : '—';
@@ -6956,6 +6962,24 @@
             }
         }
 
+        function renderCategoryProducts(categoryKey, query = '') {
+            const modalSpecies = document.getElementById('modalSpecies');
+            if (!modalSpecies) return;
+            const productos = productosData[categoryKey] || [];
+            const q = normalizeText(query);
+            const matches = productos.map((prod, originalIndex) => ({prod, originalIndex})).filter(({prod}) => !q || [prod.nombre, prod.altura, prod.desc, prod.categoria].filter(Boolean).some(v => normalizeText(v).includes(q)));
+            if (!matches.length) { modalSpecies.innerHTML = '<div class="category-search-empty"><strong>No encontramos ejemplares</strong><span>Probá con otro nombre o descripción.</span></div>'; return; }
+            let html = '', last = null;
+            matches.forEach(({prod, originalIndex}) => {
+                currentQuantities[originalIndex] = currentQuantities[originalIndex] || 0;
+                const heading = categoryKey === 'Lista completa' && prod.categoria !== last ? `<div class="complete-list-category-heading" style="grid-column:1/-1; margin:28px 0 8px; padding:10px 14px; border-left:4px solid var(--verde-oscuro); background:var(--verde-suave); color:var(--verde-oscuro); font-family:Cormorant Garamond,serif; font-size:27px; font-weight:700;">${escapeAttr(prod.categoria)}</div>` : '';
+                last = prod.categoria || last;
+                const hasPrice = Number.isFinite(prod.precio) && prod.precio > 0;
+                html += `${heading}<div class="species-item"><div class="species-icon">${speciesIconHTML(prod)}</div><div class="species-info"><h4>${prod.nombre}</h4><p class="species-height">${prod.altura}</p>${Number.isFinite(prod.stock) ? `<p class="species-stock">${prod.stock} unidades disponibles</p>` : ''}${prod.desc ? `<p class="species-desc">${prod.desc}</p>` : ''}</div><div class="species-controls-wrapper"><div class="species-price-box"><span class="species-price-label">Por ejemplar</span><div class="species-price">${hasPrice ? formatPrice(prod.precio) : 'A consultar'}</div></div><div class="quantity-input" aria-label="Cantidad de ${escapeAttr(prod.nombre)}"><button type="button" aria-label="Disminuir cantidad" onclick="decreaseQty(${originalIndex})">−</button><input type="number" id="qty-${originalIndex}" value="${currentQuantities[originalIndex]}" min="0" ${Number.isFinite(prod.stock) ? `max="${prod.stock}"` : ''} onchange="updateQty(${originalIndex})"><button type="button" aria-label="Aumentar cantidad" onclick="increaseQty(${originalIndex})">+</button></div></div></div>`;
+            });
+            modalSpecies.innerHTML = html;
+        }
+
         function openCategory(categoryKey) {
             if (!categoryKey || !productosData[categoryKey]) return;
             document.body.classList.add('category-modal-open');
@@ -6971,38 +6995,12 @@
             document.getElementById('modalTitle').textContent = categoryKey;
             document.getElementById('modalCount').textContent = `${productos.length} ejemplares disponibles`;
             
-            let html = '';
-            let ultimaCategoria = null;
+            currentQuantities = {};
+            productos.forEach((_, idx) => { currentQuantities[idx] = 0; });
+            renderCategoryProducts(categoryKey, '');
+            const categorySearch = document.getElementById('categoryProductSearch');
+            if (categorySearch) { categorySearch.value = ''; categorySearch.oninput = () => renderCategoryProducts(categoryKey, categorySearch.value); }
             
-            productos.forEach((prod, idx) => {
-                currentQuantities[idx] = 0;
-                const encabezadoCategoria = categoryKey === 'Lista completa' && prod.categoria !== ultimaCategoria ? `<div class="complete-list-category-heading" style="grid-column: 1 / -1; margin: 28px 0 8px; padding: 10px 14px; border-left: 4px solid var(--verde-oscuro); background: var(--verde-suave); color: var(--verde-oscuro); font-family: Cormorant Garamond, serif; font-size: 27px; font-weight: 700;">${escapeAttr(prod.categoria)}</div>` : '';
-                ultimaCategoria = prod.categoria || ultimaCategoria;
-                html += `${encabezadoCategoria}
-                <div class="species-item">
-                    <div class="species-icon">${speciesIconHTML(prod)}</div>
-                    <div class="species-info">
-                        <h4>${prod.nombre}</h4>
-                        <p class="species-height">${prod.altura}</p>
-                        ${Number.isFinite(prod.stock) ? `<p class="species-stock">${prod.stock} unidades disponibles</p>` : ''}
-                        ${prod.desc ? `<p class="species-desc">${prod.desc}</p>` : ''}
-                    </div>
-                    <div class="species-controls-wrapper">
-                        <div class="species-price-box">
-                            <span class="species-price-label">Por ejemplar</span>
-                            <div class="species-price">${prod.consultar ? 'A consultar' : formatPrice(prod.precio)}</div>
-                        </div>
-                        <div class="quantity-input" aria-label="Cantidad de ${escapeAttr(prod.nombre)}">
-                            <button type="button" aria-label="Disminuir cantidad de ${escapeAttr(prod.nombre)}" onclick="decreaseQty(${idx})">−</button>
-                            <input type="number" id="qty-${idx}" value="0" min="0" ${Number.isFinite(prod.stock) ? `max="${prod.stock}"` : ''} aria-label="Cantidad de ${escapeAttr(prod.nombre)}" onchange="updateQty(${idx})">
-                            <button type="button" aria-label="Aumentar cantidad de ${escapeAttr(prod.nombre)}" onclick="increaseQty(${idx})">+</button>
-                        </div>
-                    </div>
-                </div>
-                `;
-            });
-            
-            document.getElementById('modalSpecies').innerHTML = html;
             const categoryModal = document.getElementById('categoryModal');
             const categoryModalContent = categoryModal.querySelector('.modal-content');
             const categoryModalHeader = categoryModal.querySelector('.modal-header');
