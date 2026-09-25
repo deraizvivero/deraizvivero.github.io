@@ -2540,7 +2540,7 @@
             .instagram-control { flex-basis: 38px; width: 38px; height: 38px; font-size: 24px; }
             .instagram-slide { aspect-ratio: 4 / 5; }
             .instagram-slide::after { background: linear-gradient(0deg, rgba(0,0,0,.68), rgba(0,0,0,.06) 72%); }
-            
+        }
 
         @media (prefers-reduced-motion: reduce) {
             .instagram-track, .instagram-control, .instagram-dot, .btn-instagram { transition: none; }
@@ -6051,6 +6051,101 @@
         @media (max-width: 800px) { .service-area-section { padding: 70px 6%; } .service-area-inner { grid-template-columns: 1fr; gap: 35px; } .service-area-list { padding: 26px; } }
         @media (max-width: 520px) { .service-area-list ul { grid-template-columns: 1fr 1fr; gap: 7px 12px; } }
     </style>
+    <style id="mobile-hero-overlap-fix">
+        /* En teléfonos el encabezado es absoluto: reservamos espacio para que no tape el título. */
+        @media (max-width: 600px) {
+            .hero {
+                min-height: 780px;
+                height: auto;
+                align-items: flex-start;
+            }
+            .hero-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 112px 18px 42px;
+                transform: none;
+            }
+            .hero h1 {
+                margin: 0 0 24px;
+                font-size: clamp(40px, 12.5vw, 56px);
+                line-height: 1.02;
+            }
+            .hero p {
+                max-width: 350px;
+                margin: 0 auto;
+                font-size: 15px;
+                line-height: 1.55;
+            }
+            .hero-buttons {
+                margin-top: 34px;
+            }
+        }
+        @media (max-width: 360px) {
+            .hero {
+                min-height: 820px;
+            }
+            .hero-content {
+                padding-top: 108px;
+                padding-inline: 16px;
+            }
+            .hero h1 {
+                font-size: 39px;
+            }
+        }
+    </style>
+    <style id="mobile-motion-effects-final">
+        /* En móvil se mantienen activos los efectos visuales solicitados por el sitio. */
+        @media (max-width: 600px) {
+            .raicita-launcher {
+                animation: raicitaBreath 3.8s ease-in-out infinite !important,
+                           raicitaGlow 3.8s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            .raicita-launcher-icon {
+                animation: raicitaBreath 3.8s ease-in-out infinite reverse !important;
+                animation-play-state: running !important;
+            }
+            .raicita-bubble {
+                animation: raicita-bubble-float 2.6s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            .raicita-launcher::before {
+                animation: raicitaIris 2.8s cubic-bezier(.18,.72,.25,1) infinite !important;
+                animation-play-state: running !important;
+            }
+            .raicita-launcher::after {
+                animation: raicitaIris 2.8s cubic-bezier(.18,.72,.25,1) 1.4s infinite !important;
+                animation-play-state: running !important;
+            }
+            .raicita-launcher .raicita-pulse {
+                animation: raicitaIrisCore 2.2s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            .logo {
+                animation: deraizLogoGlow 3.8s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            .logo::after {
+                opacity: .72 !important;
+                animation: deraizLogoShine 5.5s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            #supreme-overlay .loading-spinner {
+                animation: loadingSpin .85s linear infinite !important;
+                animation-play-state: running !important;
+            }
+            #supreme-overlay .loading-message-label {
+                animation: loadingTextFloat 1.6s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            #supreme-overlay .loading-dots i {
+                animation: loadingDot .9s ease-in-out infinite !important;
+                animation-play-state: running !important;
+            }
+            #supreme-overlay .loading-dots i:nth-child(2) { animation-delay: .15s !important; }
+            #supreme-overlay .loading-dots i:nth-child(3) { animation-delay: .3s !important; }
+        }
+    </style>
 </head>
 
 <body>
@@ -8179,9 +8274,8 @@ injectBusinessReviewSchema();
             function stopAutoPlay() { window.clearInterval(autoPlayTimer); }
             function startAutoPlay() {
                 stopAutoPlay();
-                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    autoPlayTimer = window.setInterval(nextSlide, 5000);
-                }
+                // El usuario solicitó movimiento visual también en dispositivos móviles.
+                autoPlayTimer = window.setInterval(nextSlide, 5000);
             }
 
             previousButton.addEventListener('click', () => { previousSlide(); startAutoPlay(); });
