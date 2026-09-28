@@ -6175,7 +6175,7 @@
                             <li><a href="#categoria-arboles" onclick="filterByCategory('Árboles'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ARBOLES</a></li>
                             <li><a href="#categoria-palmeras" onclick="filterByCategory('Palmeras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PALMERAS</a></li>
                             <li><a href="#categoria-arbustos" onclick="filterByCategory('Arbustos, Gramíneas y Trepadoras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ARBUSTOS</a></li>
-                            <li><a href="#categoria-rosales" onclick="filterByCategory('Rosales de Pie Bajo'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ROSALES</a></li>
+                            <li><a href="#categoria-rosales" onclick="filterByCategory('Rosales'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">ROSALES</a></li>
                             <li><a href="#categoria-citricos" onclick="filterByCategory('Cítricos Injertados'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">CITRICOS</a></li>
                             <li><a href="#categoria-frutales" onclick="filterByCategory('Frutales Injertados'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">FRUTALES</a></li>
                             <li><a href="#categoria-parras" onclick="filterByCategory('Parras'); closeMenu(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">PARRAS</a></li>
@@ -6264,7 +6264,7 @@
             <button class="filter-btn" onclick="filterByCategory('Árboles', this)">Árboles</button>
             <button class="filter-btn" onclick="filterByCategory('Palmeras', this)">Palmeras</button>
             <button class="filter-btn" onclick="filterByCategory('Arbustos, Gramíneas y Trepadoras', this)">Arbustos, Gramíneas y Trepadoras</button>
-            <button class="filter-btn" onclick="filterByCategory('Rosales de Pie Bajo', this)">Rosales</button>
+            <button class="filter-btn" onclick="filterByCategory('Rosales', this)">Rosales</button>
             <button class="filter-btn" onclick="filterByCategory('Cítricos Injertados', this)">Cítricos</button>
             <button class="filter-btn" onclick="filterByCategory('Frutales Injertados', this)">Frutales</button>
             <button class="filter-btn" onclick="filterByCategory('Parras', this)">Parras</button>
@@ -6601,8 +6601,9 @@
     { nombre: "JAZMÍN PARAGUAYO", altura: "1 Metro", precio: 45000, icon: "🌼", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/jazmin-paraguayo-flores.jpeg", desc: "Arbusto ornamental de floración vistosa y fragante, ideal para sumar perfume y presencia al jardín." },
     { nombre: "PHILODENDRON MISIONERO", altura: "40 Centímetros", precio: 22000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/philodendron%20misionero.jpg", desc: "Planta de follaje ornamental, ideal para aportar volumen y verde a espacios protegidos." },
     { nombre: "AJUGA REPTANS RASTRERA", altura: "10 Centímetros", precio: 7000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/ajuga%20reptans.webp", desc: "Planta rastrera de crecimiento bajo, útil para cubrir superficies y sumar textura al jardín." },
+    { nombre: "HELECHO PLUMOSO", altura: "40 Centímetros", precio: 10000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Asparagus%20setaceus.jpg", desc: "Follaje plumoso y delicado, ideal para aportar textura y verde a espacios protegidos o de media sombra." },
     ],
-    "Rosales de Pie Bajo": [
+    "Rosales": [
     { nombre: "ROSADO RAYA BLANCA", altura: "60 Centimetros", precio: 13000, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/rosado%20raya%20blanca.jpeg", desc: "Flores bicolor con rayas blancas sobre fondo rosado, un patrón que no se repite en ningún otro rosal y se roba todas las miradas." },
     { nombre: "ROSA ROCOCO FUCSIA", altura: "40 Centímetros", precio: 28000, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/rosal%20trepador%20rococo%20rosado.png", desc: "Rosal de flores fucsias y porte ornamental, ideal para aportar color y protagonismo al jardín." },
     { nombre: "AMARILLO", altura: "90 Centimetros", consultar: true, icon: "🌹", desc: "Amarillo puro y luminoso que resalta desde lejos y da un contraste imposible de ignorar en cualquier cantero." },
@@ -6675,7 +6676,7 @@
             { nombre: "Árboles", imagen: "https://images.unsplash.com/photo-1722004760950-107129360877?q=80&w=1217&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Palmeras", imagen: "https://images.unsplash.com/photo-1581372006468-b538631da9d4?q=80&w=1334&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Arbustos, Gramíneas y Trepadoras", imagen: "https://images.unsplash.com/photo-1574968965900-0c3cd2d9753e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-            { nombre: "Rosales de Pie Bajo", imagen: "https://images.unsplash.com/photo-1687652858993-75e9baf63cff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            { nombre: "Rosales", imagen: "https://images.unsplash.com/photo-1687652858993-75e9baf63cff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Frutales Injertados", imagen: "https://images.unsplash.com/photo-1628101721835-bb1c2b775aad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Cítricos Injertados", imagen: "https://images.unsplash.com/photo-1536657464919-892534f60d6e?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             { nombre: "Parras", imagen: "https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
@@ -6837,7 +6838,7 @@
             '#categoria-arboles': 'Árboles',
             '#categoria-palmeras': 'Palmeras',
             '#categoria-arbustos': 'Arbustos, Gramíneas y Trepadoras',
-            '#categoria-rosales': 'Rosales de Pie Bajo',
+            '#categoria-rosales': 'Rosales',
             '#categoria-citricos': 'Cítricos Injertados',
             '#categoria-frutales': 'Frutales Injertados',
             '#categoria-parras': 'Parras'
@@ -7433,7 +7434,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             { id: 'envio', keywords: ['envio','envios','entrega','flete','traslado','mandan','llevan'], chip: 'Envíos',
               respuesta: `Coordinamos envíos a distintas localidades de Traslasierra y zonas cercanas de San Luis 🚚<br><br>El costo depende de la ciudad y la cantidad de plantas, así que te lo confirmamos por WhatsApp junto con tu pedido.` },
             { id: 'categorias', keywords: ['categoria','categorias','que venden','que tienen','arboles','palmeras','frutales','citricos','rosales','parras','arbustos','plantas'], chip: 'Categorías disponibles',
-              respuesta: `Trabajamos con: 🌳 Árboles, 🌴 Palmeras, 🌿 Arbustos, Gramíneas y Trepadoras, 🌹 Rosales de Pie Bajo, 🍊 Cítricos Injertados, 🍑 Frutales Injertados y 🍇 Parras.<br><br>Podés verlos todos en la sección "Catálogo" más arriba.` },
+              respuesta: `Trabajamos con: 🌳 Árboles, 🌴 Palmeras, 🌿 Arbustos, Gramíneas y Trepadoras, 🌹 Rosales, 🍊 Cítricos Injertados, 🍑 Frutales Injertados y 🍇 Parras.<br><br>Podés verlos todos en la sección "Catálogo" más arriba.` },
             { id: 'precio', keywords: ['precio','precios','cuanto sale','cuanto cuesta','valor'], chip: 'Precios',
               respuesta: `Cada planta tiene su precio detallado dentro de cada categoría del catálogo 🌱<br><br>Abrí la categoría que te interesa y vas a ver el precio y la altura de cada ejemplar.` },
             { id: 'contacto', keywords: ['contacto','whatsapp','instagram','facebook','redes','telefono','hablar con alguien','persona'], chip: 'Contacto',
@@ -7464,7 +7465,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             "Árboles": `🌳 <strong>Cuidados para árboles:</strong><br><br>Ubicalos en un lugar con buena luz y dejá espacio para que desarrollen la copa. Durante las primeras dos temporadas hacé riegos profundos, verificando que el agua llegue a las raíces; después regá cuando el suelo se seque en profundidad. Evitá el encharcamiento y colocá mulch sin apoyar contra el tronco. La poda de formación suele hacerse en invierno, retirando ramas cruzadas o débiles.`,
             "Palmeras": `🌴 <strong>Cuidados para palmeras:</strong><br><br>Necesitan buena luz y suelo con drenaje. Regá de manera abundante pero espaciada, dejando que la superficie seque entre riegos. Durante los primeros años protegé el cuello y las hojas de heladas fuertes. No cortes hojas verdes: retiralas solo cuando estén completamente secas.`,
             "Arbustos, Gramíneas y Trepadoras": `🌿 <strong>Cuidados para arbustos y gramíneas:</strong><br><br>Regá de forma regular sin encharcar y elegí sol pleno o media sombra según la especie. Una capa fina de compost o mulch ayuda a conservar la humedad. Podá los arbustos después de la floración y recortá las gramíneas secas a fines del invierno o comienzos de la primavera.`,
-            "Rosales de Pie Bajo": `🌹 <strong>Cuidados para rosales:</strong><br><br>Colocalos donde reciban varias horas de sol directo y haya buena circulación de aire. Regá en la base, evitando mojar las hojas y las flores. Fertilizá en primavera y después de la floración. La poda principal se realiza en invierno: quitá ramas secas, débiles o cruzadas y dejá una estructura abierta.`,
+            "Rosales": `🌹 <strong>Cuidados para rosales:</strong><br><br>Colocalos donde reciban varias horas de sol directo y haya buena circulación de aire. Regá en la base, evitando mojar las hojas y las flores. Fertilizá en primavera y después de la floración. La poda principal se realiza en invierno: quitá ramas secas, débiles o cruzadas y dejá una estructura abierta.`,
             "Cítricos Injertados": `🍊 <strong>Cuidados para cítricos:</strong><br><br>Necesitan sol pleno, riego profundo sin anegamiento y suelo con buen drenaje. En verano controlá la humedad con mayor frecuencia; en invierno reducí el riego. Protegelos de heladas fuertes durante los primeros años. Fertilizá en primavera y verano siguiendo las indicaciones del producto, y retirás los brotes que aparezcan debajo del injerto.`,
             "Frutales Injertados": `🍑 <strong>Cuidados para frutales:</strong><br><br>Elegí un sitio soleado y dejá la distancia necesaria para su tamaño adulto. Regá profundo durante el establecimiento y aumentá la frecuencia en floración, calor intenso o períodos secos. La poda de formación se hace en invierno. Mantené libre de malezas la base y controlá que ningún brote crezca por debajo del punto de injerto.`,
             "Parras": `🍇 <strong>Cuidados para parras:</strong><br><br>Ubicalas a pleno sol y prepará una estructura firme para guiarlas. Regá durante el establecimiento y luego de manera moderada, evitando mojar el follaje en exceso. La poda de invierno es fundamental para ordenar la planta y favorecer la producción; guiá los brotes nuevos y retirálos si nacen por debajo del injerto.`
