@@ -1937,6 +1937,18 @@
             font-weight: 700;
         }
 
+        .cart-total.cart-shipping {
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gris-texto);
+        }
+
+        .cart-total.cart-shipping span:last-child {
+            font-size: 16px;
+            color: var(--negro);
+        }
+
         .cart-total span:last-child {
             font-size: 24px;
             color: var(--verde-oscuro);
@@ -6278,7 +6290,7 @@
                 <span class="section-label">Servicio de entregas</span>
                 <h2 id="entregas-title">Tu vivero de confianza en Traslasierra</h2>
                 <p>Somos <strong>De Raíz Vivero, de Loma Bola, Córdoba - Traslasierra</strong>. Si estás buscando un vivero cerca de tu zona y no encontrás uno, podés consultarnos por las plantas de tu interés. Contamos con árboles, frutales, cítricos, palmeras y plantas ornamentales.</p>
-                <p>Realizamos <strong>envíos a domicilio desde Loma Bola, Córdoba para todo el Valle de Traslasierra</strong> y las ciudades cercanas de San Luis incluidas en nuestra cobertura. El costo del envío corre por cuenta del cliente. El día y el horario de entrega se coordinan por WhatsApp y pueden variar según la localidad, la cantidad de ejemplares y el recorrido que realiza nuestro repartidor.</p>
+                <p>Realizamos <strong>envíos a domicilio desde Loma Bola, Córdoba para todo el Valle de Traslasierra</strong> y las ciudades cercanas de San Luis incluidas en nuestra cobertura. El costo del envío se calcula automáticamente en el pedido según la localidad seleccionada y se suma al valor de las plantas. El día y el horario de entrega se coordinan por WhatsApp.</p>
                 <a class="location-button" href="https://wa.me/543544669550?text=Hola%2C%20quiero%20consultar%20entrega%20a%20domicilio%20en%20Traslasierra" target="_blank" rel="noopener noreferrer">Consultar entrega por WhatsApp <span>↗</span></a>
             </div>
             <div class="service-area-list" aria-label="Localidades con entregas coordinadas">
@@ -6289,7 +6301,7 @@
                     <li>Villa de las Rosas</li><li>Las Tapias</li><li>Villa Dolores</li><li>Villa Sarmiento</li><li>San José</li><li>San Pedro</li><li>San Javier y Yacanto</li><li>La Población</li>
                     <li>Luyaba</li><li>La Paz</li><li>Las Chacras</li><li>Quebracho Ladeado</li><li>La Ramada</li><li>Merlo, San Luis</li><li>Carpintería, San Luis</li><li>Los Molles, San Luis</li>
                 </ul>
-                <small>El envío se coordina previamente por WhatsApp según recorrido, disponibilidad y cantidad de plantas.</small>
+                <small>El costo del envío se muestra en el carrito según la localidad. Para “Otro”, el envío se coordina por WhatsApp.</small>
             </div>
         </div>
     </section>
@@ -6395,8 +6407,12 @@
                     <input type="text" id="checkout-address" class="checkout-input" placeholder="Ej: Calle Los Olmos 450">
                 </div>
             </div>
+            <div class="cart-total cart-shipping">
+                <span>Envío</span>
+                <span id="shippingCost">Seleccione ciudad</span>
+            </div>
             <div class="cart-total">
-                <span>Total del Pedido</span>
+                <span>Total (plantas + envío)</span>
                 <span id="cartTotal">0</span>
             </div>
             <button class="btn-checkout" onclick="checkout()">Confirmar Pedido vía WhatsApp</button>
@@ -6659,7 +6675,7 @@
     { nombre: "DURAZNO TEMPRANERO CHATO O TOMATE", altura: "1,90 Metros", precio: 28000, icon: "🍑", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/durazno%20chato.png", desc: "Fruto achatado tipo 'tomate', de pulpa jugosa y dulce que madura antes que ningún otro durazno: la primera fruta fresca de la temporada, directo del árbol a la mesa." },
     { nombre: "GRANADA WONDERFUL", altura: "1,20 Metros", precio: 32000, icon: "🍎", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/granada.png", desc: "Granos grandes, jugosos y dulces con muy poca acidez, fáciles de desgranar: mucho mejor sabor que la granada de verdulería." },
     { nombre: "HIGUERA BLACK MISSION", altura: "1,50 Metros", precio: 32000, icon: "🌳", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/higuera.png", desc: "Higos de piel oscura y pulpa roja muy dulce, de sabor a miel: se disfrutan frescos, en dulce o directo de la rama, tibios de sol." },
-    { nombre: "MANZANO RED DELICIOUS", altura: "2,50 Metros", precio: 30000, icon: "🍎", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/manzana%20roja.png", desc: "Pulpa crocante y muy dulce, con piel roja brillante: la manzana clásica de mordida jugosa que le gusta a toda la familia." },
+    { nombre: "MANZANO RED DELICIOUS", altura: "1 Metros", precio: 30000, icon: "🍎", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/manzana%20roja.png", desc: "Pulpa crocante y muy dulce, con piel roja brillante: la manzana clásica de mordida jugosa que le gusta a toda la familia." },
     { nombre: "MANZANO VERDE GRANNY SMITH", altura: "2 Metros", precio: 28500, icon: "🍏", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/manzana%20verde.png", desc: "Pulpa firme y bien ácida, la contracara perfecta de la manzana dulce: ideal para tartas y para quienes buscan ese golpe de acidez fresca." },
     { nombre: "MEMBRILLO WRANJA", altura: "2,50 Metros", precio: 30000, icon: "🍎", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/membrillo.png", desc: "Pulpa dura y muy aromática que no se come cruda pero rinde el mejor dulce casero, con ese perfume que llena la cocina al cocinarlo." },
     { nombre: "MEMBRILLO WRANJA", altura: "2 Metros", precio: 28000, icon: "🍎", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/membrillo.png", desc: "Frutal de membrillo, ideal para cosechar frutos aromáticos y preparar dulces y conservas caseras." },
@@ -6672,6 +6688,8 @@
     { nombre: "NÍSPERO JAPONES", altura: "40 Centímetros", precio: 12000, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/nispero%20png.jpg", desc: "Frutal de frutos dulces y aromáticos, ideal para cultivar en casa y disfrutar de una cosecha temprana." },
     { nombre: "MANGO TOMMY ATKINS INJERTADO", altura: "50 Centímetros", precio: 62000, icon: "🥭", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/mango-tommy-atkins.webp", desc: "Mango de frutos grandes, piel rojiza y pulpa firme, dulce y jugosa, con buen rendimiento y excelente conservación." },
     { nombre: "PALTA HASS INJERTADA", altura: "90 Centímetros", precio: 49500, icon: "🥑", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/palta%20hass%20injertada.webp", desc: "Palta de piel rugosa y oscura, con pulpa cremosa, sabrosa y de excelente calidad, ideal para consumir fresca." },
+    { nombre: "GUAYABA FEIJOA", altura: "Puede alcanzar hasta 7 metros", consultar: true, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/guayaba%20feijoa.jpg", desc: "Puede llegar a alcanzar los siete metros y dar flores llamativas de color rosa, cuyos estambres se vuelven rojos. Además, sus grandes frutos, de pulpa agridulce y sabor algo parecido al de la piña, se utilizan para hacer compotas y mermeladas." },
+    { nombre: "AVELLANO", altura: "1 Metro", precio: 25000, icon: "🌰", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/avellano.jpg" },
     ],
     "Parras": [
     { nombre: "BONARDA", altura: "20 Centimetros", precio: 13000, icon: "🍇", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/bonarda.png", desc: "Uva tinta de piel gruesa y color muy intenso, con taninos suaves: la base perfecta para vinos tintos frutados y de cuerpo medio." },
@@ -6727,10 +6745,10 @@
                 if (!Array.isArray(parsedCart)) return;
 
                 cart = parsedCart
-                    .filter(item => item && typeof item.nombre === 'string' && Number.isFinite(Number(item.precio)) && Number.isFinite(Number(item.cantidad)) && Number(item.cantidad) > 0)
+                    .filter(item => item && typeof item.nombre === 'string' && (item.consultar === true || Number.isFinite(Number(item.precio))) && Number.isFinite(Number(item.cantidad)) && Number(item.cantidad) > 0)
                     .map(item => ({
                         ...item,
-                        precio: Number(item.precio),
+                        precio: Number.isFinite(Number(item.precio)) ? Number(item.precio) : null,
                         cantidad: Math.max(1, Math.floor(Number(item.cantidad)))
                     }));
             } catch (error) {
@@ -7135,17 +7153,53 @@
             document.getElementById('cartSidebar').classList.remove('active');
         }
 
+        // Tarifas fijas de envío en pesos argentinos por localidad.
+        // Las localidades no incluidas quedan a coordinar por WhatsApp.
+        const SHIPPING_RATES = {
+            'La Paz': 3000,
+            'Luyaba': 4000,
+            'Villa Dolores': 6000,
+            'La Población': 6000,
+            'San Javier y Yacanto': 6000,
+            'Las Tapias': 6000,
+            'Villa Sarmiento': 6000,
+            'San José': 6000,
+            'San Pedro': 6000,
+            'Mina Clavero': 10000,
+            'Arroyo de los Patos': 10000,
+            'Nono': 10000,
+            'San Humberto': 10000,
+            'Las Rabonas': 10000,
+            'Los Hornillos': 10000,
+            'Quebrada de los Pozos': 10000,
+            'Villa de las Rosas': 10000,
+            'Las Chacras': 10000,
+            'Quebracho Ladeado': 10000,
+            'La Ramada': 10000,
+            'Merlo, San Luis': 10000
+        };
+
+        function getShippingFee(city) {
+            return Object.prototype.hasOwnProperty.call(SHIPPING_RATES, city)
+                ? SHIPPING_RATES[city]
+                : null;
+        }
+
         function updateCartUI() {
             saveCart();
 
             const cartItemsDiv = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
+            const shippingCost = document.getElementById('shippingCost');
             const cartBadge = document.getElementById('cartBadge');
+            const city = document.getElementById('checkout-city')?.value || '';
+            const shippingFee = getShippingFee(city);
             
             if (cart.length === 0) {
                 cartItemsDiv.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🌱</div><p>Tu carrito está vacío</p></div>';
                 cartBadge.style.display = 'none';
-                cartTotal.textContent = '0';
+                shippingCost.textContent = city ? (shippingFee === null ? 'A coordinar' : formatPrice(shippingFee)) : 'Seleccione ciudad';
+                cartTotal.textContent = formatPrice(shippingFee ?? 0);
                 return;
             }
             
@@ -7176,7 +7230,8 @@
             });
             
             cartItemsDiv.innerHTML = html;
-            cartTotal.textContent = total.toLocaleString('es-AR');
+            shippingCost.textContent = city ? (shippingFee === null ? 'A coordinar' : formatPrice(shippingFee)) : 'Seleccione ciudad';
+            cartTotal.textContent = formatPrice(total + (shippingFee ?? 0));
             cartBadge.textContent = cart.length;
             cartBadge.style.display = 'flex';
         }
@@ -7231,8 +7286,15 @@ cart.forEach(item => {
     mensaje += `   • Subtotal: ${item.consultar ? 'A consultar' : formatPrice(subtotal)}\n\n`;
 });
 
+const shippingFee = getShippingFee(city);
 mensaje += "━━━━━━━━━━━━━━━━━━━━━━\n";
-mensaje += `*TOTAL ESTIMADO: ${formatPrice(total)} (sin incluir ejemplares a consultar)*\n`;
+mensaje += `*Costo de envío:* ${shippingFee === null ? 'A coordinar por WhatsApp' : formatPrice(shippingFee)}\n`;
+if (shippingFee === null) {
+    mensaje += `*Subtotal de plantas:* ${formatPrice(total)} (sin incluir ejemplares a consultar)\n`;
+    mensaje += "*Total final:* A confirmar cuando se coordine el envío\n";
+} else {
+    mensaje += `*TOTAL ESTIMADO (plantas + envío):* ${formatPrice(total + shippingFee)} (sin incluir ejemplares a consultar)\n`;
+}
 mensaje += "━━━━━━━━━━━━━━━━━━━━━━\n\n";
 mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares y coordinar el envío/retiro. ¡Muchas gracias!_";
             
@@ -7461,7 +7523,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             { id: 'pedido', keywords: ['pedido','comprar','como compro','como pido','carrito','como funciona','hacer un pedido'], chip: '¿Cómo compro?',
               respuesta: `¡Muy fácil! 🛒<br><br>1️⃣ Elegí una categoría en el catálogo.<br>2️⃣ Sumá la cantidad de cada planta que quieras.<br>3️⃣ Agregala al carrito.<br>4️⃣ Completá tu ciudad y dirección.<br>5️⃣ Confirmá el pedido, se envía directo por WhatsApp.<br><br>Ahí coordinamos el pago, envío o retiro con vos.` },
             { id: 'envio', keywords: ['envio','envios','entrega','flete','traslado','mandan','llevan'], chip: 'Envíos',
-              respuesta: `Coordinamos envíos a distintas localidades de Traslasierra y zonas cercanas de San Luis 🚚<br><br>El costo depende de la ciudad y la cantidad de plantas, así que te lo confirmamos por WhatsApp junto con tu pedido.` },
+              respuesta: `Coordinamos envíos a distintas localidades de Traslasierra y zonas cercanas de San Luis 🚚<br><br>El costo se calcula automáticamente en el carrito según la localidad seleccionada y se suma al valor de las plantas. Si elegís “Otro”, lo coordinamos por WhatsApp.` },
             { id: 'categorias', keywords: ['categoria','categorias','que venden','que tienen','arboles','palmeras','frutales','citricos','rosales','parras','arbustos','plantas'], chip: 'Categorías disponibles',
               respuesta: `Trabajamos con: 🌳 Árboles, 🌴 Palmeras, 🌿 Arbustos, Gramíneas y Trepadoras, 🌹 Rosales, 🍊 Cítricos Injertados, 🍑 Frutales Injertados y 🍇 Parras.<br><br>Podés verlos todos en la sección "Catálogo" más arriba.` },
             { id: 'precio', keywords: ['precio','precios','cuanto sale','cuanto cuesta','valor'], chip: 'Precios',
@@ -8219,6 +8281,7 @@ function injectBusinessReviewSchema() {
 // Inicializar
 renderCategories();
 scheduleProductImagePreload();
+document.getElementById('checkout-city')?.addEventListener('change', updateCartUI);
 updateCartUI();
     applyCategoryHash();
 renderReviews();
