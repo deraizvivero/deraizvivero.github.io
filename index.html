@@ -6178,36 +6178,47 @@
 
 
 <style id="site-qr-feature">
-    .site-qr-photo {
-        display: block;
-        width: 76px;
-        aspect-ratio: 1;
+    .site-qr-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 32px;
         margin: 22px auto 0;
-        padding: 0;
-        overflow: hidden;
-        background: transparent;
-        border: 0;
-        border-radius: 8px;
-        cursor: zoom-in;
-        transition: transform .22s ease, box-shadow .22s ease;
+        padding: 5px 13px;
+        color: #111;
+        background: rgba(255, 255, 255, .94);
+        border: 1px solid rgba(255, 255, 255, .78);
+        border-radius: 999px;
+        box-shadow: 0 3px 14px rgba(0, 0, 0, .14);
+        cursor: pointer;
+        font: 800 11px/1 'Manrope', sans-serif;
+        letter-spacing: 1.3px;
+        transition: transform .2s ease, box-shadow .2s ease;
     }
-    .site-qr-photo img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: inherit;
-        background: #fff;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+    .site-qr-trigger:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 0, 0, .22); }
+    .site-qr-trigger:focus-visible { outline: 2px solid #8ccf55; outline-offset: 4px; }
+    .qr-image-label { display: none; }
+    #lightbox.qr-image-only .qr-image-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 12px;
+        padding: 6px 16px;
+        color: #111;
+        background: rgba(255, 255, 255, .96);
+        border-radius: 999px;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, .2);
+        font: 800 12px/1.2 'Manrope', sans-serif;
+        letter-spacing: 1.5px;
     }
-    .site-qr-photo:hover { transform: scale(1.07); }
-    .site-qr-photo:focus-visible { outline: 2px solid #8ccf55; outline-offset: 4px; }
+    #lightbox.qr-image-only { backdrop-filter: blur(12px); }
     #lightbox.qr-image-only .lightbox-caption,
     #lightbox.qr-image-only .lightbox-hint { display: none !important; }
     #lightbox.qr-image-only .lightbox-figure { max-width: min(92vw, 760px); max-height: 90vh; }
     #lightbox.qr-image-only .lightbox-figure img { max-width: min(88vw, 680px); max-height: 82vh; }
-    @media (max-width: 520px) { .site-qr-photo { width: 68px; margin-top: 18px; } }
-    @media (prefers-reduced-motion: reduce) { .site-qr-photo, .site-qr-photo:hover { transition: none; transform: none; } }
+    @media (max-width: 520px) { .site-qr-trigger { margin-top: 18px; } }
+    @media (prefers-reduced-motion: reduce) { .site-qr-trigger, .site-qr-trigger:hover { transition: none; transform: none; } }
 </style>
 </head>
 
@@ -6512,9 +6523,7 @@
                 <span class="social-label">Facebook</span>
             </a>
         </div>
-        <button class="site-qr-photo" id="siteQrOpen" type="button" onclick="openSiteQr()" aria-controls="lightbox" aria-label="Ampliar el código QR para abrir esta página en otro celular">
-            <img src="https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/qr-de-raiz.png" alt="Código QR de De Raíz Vivero; ampliá la imagen para escanearla con otro teléfono" width="1024" height="1024" decoding="async">
-        </button>
+        <button class="site-qr-trigger" id="siteQrOpen" type="button" onclick="openSiteQr()" aria-controls="lightbox" aria-label="Abrir la vista previa del código QR">QR</button>
 
 
     </section>
@@ -6616,6 +6625,7 @@
     <div class="lightbox" id="lightbox">
         <div class="lightbox-figure">
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <span class="qr-image-label" aria-hidden="true">QR</span>
             <img id="lightboxImg" src="" alt="">
             <div class="lightbox-caption" id="lightboxCaption"></div>
             <div class="lightbox-hint">Tocá afuera o presioná ESC para cerrar</div>
