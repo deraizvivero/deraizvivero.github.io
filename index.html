@@ -6176,6 +6176,39 @@
 }
 </style>
 
+
+<style id="site-qr-feature">
+    .site-qr-photo {
+        display: block;
+        width: 76px;
+        aspect-ratio: 1;
+        margin: 22px auto 0;
+        padding: 0;
+        overflow: hidden;
+        background: transparent;
+        border: 0;
+        border-radius: 8px;
+        cursor: zoom-in;
+        transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .site-qr-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: inherit;
+        background: #fff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+    }
+    .site-qr-photo:hover { transform: scale(1.07); }
+    .site-qr-photo:focus-visible { outline: 2px solid #8ccf55; outline-offset: 4px; }
+    #lightbox.qr-image-only .lightbox-caption,
+    #lightbox.qr-image-only .lightbox-hint { display: none !important; }
+    #lightbox.qr-image-only .lightbox-figure { max-width: min(92vw, 760px); max-height: 90vh; }
+    #lightbox.qr-image-only .lightbox-figure img { max-width: min(88vw, 680px); max-height: 82vh; }
+    @media (max-width: 520px) { .site-qr-photo { width: 68px; margin-top: 18px; } }
+    @media (prefers-reduced-motion: reduce) { .site-qr-photo, .site-qr-photo:hover { transition: none; transform: none; } }
+</style>
 </head>
 
 <body>
@@ -6479,6 +6512,10 @@
                 <span class="social-label">Facebook</span>
             </a>
         </div>
+        <button class="site-qr-photo" id="siteQrOpen" type="button" onclick="openSiteQr()" aria-controls="lightbox" aria-label="Ampliar el código QR para abrir esta página en otro celular">
+            <img src="qr-de-raiz.png" alt="Código QR de De Raíz Vivero; ampliá la imagen para escanearla con otro teléfono" width="1024" height="1024" decoding="async">
+        </button>
+
 
     </section>
 
@@ -6537,6 +6574,8 @@
         </div>
     </div>
     
+
+
     <footer>
     <img src="/pie%20de%20pagina.png"
      style="max-width: 120px; width: 100%; height: auto; margin: 20px auto; display: block;">
@@ -7403,7 +7442,8 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         function closeLightbox() {
             document.body.classList.remove('lightbox-open');
             const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+            const wasQr = lightbox.classList.contains('qr-image-only');
+            lightbox.classList.remove('active', 'qr-image-only');
             lightbox.style.removeProperty('z-index');
             lightbox.style.removeProperty('position');
             lightbox.style.removeProperty('display');
@@ -7412,6 +7452,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             const categoryModal = document.getElementById('categoryModal');
             if (categoryModal) categoryModal.style.removeProperty('visibility');
             document.body.style.overflow = '';
+            if (wasQr) document.getElementById('siteQrOpen')?.focus();
         }
 
         // Delegación: cualquier imagen de producto (catálogo o carrito) abre el zoom
@@ -8552,6 +8593,17 @@ injectBusinessReviewSchema();
         })();
     </script>
 
+
+<script id="site-qr-dialog-script">
+    function openSiteQr() {
+        const lightbox = document.getElementById('lightbox');
+        const image = document.getElementById('lightboxImg');
+        if (!lightbox || !image || typeof openLightbox !== 'function') return;
+        lightbox.classList.add('qr-image-only');
+        openLightbox('/qr-de-raiz.png', '');
+        image.alt = 'Código QR para abrir De Raíz Vivero en otro celular';
+    }
+</script>
 </body>
 
 </html>
