@@ -6513,7 +6513,7 @@
             </a>
         </div>
         <button class="site-qr-photo" id="siteQrOpen" type="button" onclick="openSiteQr()" aria-controls="lightbox" aria-label="Ampliar el código QR para abrir esta página en otro celular">
-            <img src="qr-de-raiz.png" alt="Código QR de De Raíz Vivero; ampliá la imagen para escanearla con otro teléfono" width="1024" height="1024" decoding="async">
+            <img src="https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/qr-de-raiz.png" alt="Código QR de De Raíz Vivero; ampliá la imagen para escanearla con otro teléfono" width="1024" height="1024" decoding="async">
         </button>
 
 
@@ -8600,7 +8600,7 @@ injectBusinessReviewSchema();
         const image = document.getElementById('lightboxImg');
         if (!lightbox || !image || typeof openLightbox !== 'function') return;
         lightbox.classList.add('qr-image-only');
-        openLightbox('/qr-de-raiz.png', '');
+        openLightbox('https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/qr-de-raiz.png', '');
         image.alt = 'Código QR para abrir De Raíz Vivero en otro celular';
     }
 </script>
