@@ -6232,6 +6232,23 @@
             *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
         }
     </style>
+
+    <style id="raicita-quick-compact">
+        .raicita-quick {
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            gap: 6px;
+            padding: 7px 12px 9px;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+        .raicita-quick .raicita-chip {
+            flex: 0 0 auto;
+            padding: 6px 10px;
+            font-size: 10.5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -7767,18 +7784,22 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             const quick = document.getElementById('raicitaQuick');
             quick.innerHTML = '';
             if (raicitaIsBlocked()) return;
-            raicitaFAQ.forEach(item => {
+            // Dejamos visibles solo las consultas iniciales más usadas para no tapar la conversación.
+            const visibles = new Set(['pedido', 'envio', 'contacto']);
+            const etiquetas = {
+                pedido: '¿Cómo comprar?',
+                envio: '¿Realizan envíos?',
+                contacto: 'Contacto'
+            };
+            raicitaFAQ.filter(item => visibles.has(item.id)).forEach(item => {
                 const chip = document.createElement('button');
                 chip.className = 'raicita-chip';
-                chip.textContent = item.chip;
+                chip.type = 'button';
+                chip.textContent = etiquetas[item.id] || item.chip;
                 chip.onclick = () => raicitaAsk(item.chip, item);
                 quick.appendChild(chip);
             });
-            const chipCuidados = document.createElement('button');
-            chipCuidados.className = 'raicita-chip';
-            chipCuidados.textContent = 'Cuidado de plantas';
-            chipCuidados.onclick = () => raicitaAsk('¿Cómo cuido mis plantas?');
-            quick.appendChild(chipCuidados);
+            quick.setAttribute('aria-label', 'Preguntas frecuentes principales');
         }
 
         function raicitaMatch(text) {
