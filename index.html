@@ -6249,6 +6249,12 @@
             font-size: 10.5px;
         }
     </style>
+
+    <style id="out-of-stock-style">
+        .species-item-unavailable { opacity: .72; }
+        .species-out-of-stock, .species-out-of-stock-label { color: #a33b2f !important; font-weight: 800; }
+        .species-out-of-stock-label { padding: 9px 12px; border: 1px solid rgba(163,59,47,.3); border-radius: 999px; font-size: 11px; white-space: nowrap; }
+    </style>
 </head>
 
 <body>
@@ -6330,14 +6336,14 @@
             <div class="texto">
                 <h2>De Raíz Vivero</h2>
                 <p>Fundado en 2011 en General Pico, La Pampa, De Raíz Vivero comenzó con la venta de cactus y suculentas. Con el tiempo fuimos incorporando nuevas variedades hasta ofrecer una amplia diversidad de plantas.</p>
-                <p>A lo largo de nuestra historia como <strong>vivero productor</strong> hemos trabajado con <strong>más de 650 variedades</strong>. Producimos, cuidamos y seleccionamos cada ejemplar para recomendarlo con criterio, dedicación y conocimiento.</p>
+                <p>A lo largo de nuestra historia como <strong>vivero productor</strong> hemos trabajado con <strong>más de 600 variedades</strong>. Producimos, cuidamos y seleccionamos cada ejemplar para recomendarlo con criterio, dedicación y conocimiento.</p>
                 <p>Desde 2023 nos encontramos en Loma Bola, Córdoba Traslasierra, al pie de las sierras, donde te esperamos en un entorno natural, tranquilo y con vistas panorámicas para que disfrutes de una experiencia placentera y agradable.</p>
                 <p>Cada planta es cuidada con dedicación para garantizar ejemplares fuertes, sanos y adaptados a nuestros clientes :).</p>
                 <p>Nuestro objetivo es acompañarte en la creación de tus espacios verdes con plantas de excelente calidad.</p>
             </div>
             <aside class="trayectoria-bloque" aria-label="Trayectoria y aniversario de De Raíz Vivero">
                 <div class="trayectoria-dato">
-                    <strong>+650</strong>
+                    <strong>+600</strong>
                     <span>variedades<br>seleccionadas y trabajadas</span>
                 </div>
                 <div class="aniversario-contador">
@@ -6695,7 +6701,7 @@
     { nombre: "CACTUS SERIUS", altura: "2 Metros", precio: 30000, icon: "🌵", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/cactus%20serius.jpg", desc: "Formas columnares de gran porte que funcionan como escultura viva: no pide riego frecuente ni cuidados especiales, ideal para jardines de diseño minimalista." },
     { nombre: "ROSA DE SIRIA DOBLE", altura: "30 Centímetros", precio: 22000, stock: 5, icon: "🌺", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/hibisco-blanco-doble.webp", desc: "Rosa de Siria compacta de flor doble y aspecto exuberante, ideal para cultivar en maceta o incorporar a pequeños canteros." },
     { nombre: "ROSA DE SIRIA SIMPLE", altura: "1 Metro", precio: 20000, stock: 5, icon: "🌺", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/hibisco-blanco-simple.jpg", desc: "Rosa de Siria de flor simple y delicada, elegido por su floración alegre y su capacidad para vestir espacios soleados." },
-    { nombre: "IRIS JAPONICA", altura: "20 Centimetros", consultar: true, stock: 2, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Iriss-japonica.jpg", desc: "Follaje verde y flores delicadas que aportan textura y color; una planta resistente y elegante para canteros, borduras y rincones de media sombra." },
+    { nombre: "IRIS JAPONICA", altura: "20 Centimetros", consultar: true, sinStock: true, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/Iriss-japonica.jpg", desc: "Follaje verde y flores delicadas que aportan textura y color; una planta resistente y elegante para canteros, borduras y rincones de media sombra." },
     { nombre: "JAZMIN AMARILLO", altura: "1 Metro", precio: 12000, icon: "🌼", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/jazmin%20amarillo.jpg", desc: "Trepadora de crecimiento rápido que cubre muros y pérgolas en poco tiempo, con flores amarillas de perfume intenso que se sienten desde lejos." },
     { nombre: "OREJA DE ELEFANTE", altura: "50 Centimetros", consultar: true, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/oreja%20de%20elefante.jpg", desc: "Hojas gigantes en forma de corazón que crecen rápido y le dan volumen instantáneo a cualquier rincón, con ese aire tropical que se nota de entrada." },
     { nombre: "SACHA HUASCA", altura: "1 Metro", precio: 16000, stock: 2, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/sacha%20huasca.jpg", desc: "Trepadora ornamental de crecimiento vigoroso, ideal para cubrir estructuras, pérgolas y sectores que necesitan verde vertical." },
@@ -6711,7 +6717,7 @@
     { nombre: "ROSA CHINA SIMPLE", altura: "30 Centímetros", precio: 12000, icon: "🌺", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/rosa%20china%20simple.webp", desc: "Planta ornamental de flor simple y colorida, ideal para sumar floración al jardín." },
     { nombre: "ROSA CHINA DOBLE", altura: "30 Centímetros", precio: 15000, icon: "🌺", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/rosa%20china%20doble.jpeg", desc: "Planta ornamental de flores dobles y vistosas, perfecta para canteros y macetas." },
     { nombre: "LIRIO AMARILLO", altura: "60 Centímetros", precio: 18000, icon: "🌼", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/lirio%20amarillo.webp", desc: "Planta ornamental de flores amarillas luminosas, ideal para aportar color y elegancia al jardín." },
-    { nombre: "HORTENSIAS", altura: "30 Centímetros", precio: 15000, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/hortensias.jpg", desc: "Planta ornamental de floración abundante, ideal para espacios frescos y sectores de media sombra." },
+    { nombre: "HORTENSIAS", altura: "30 Centímetros", precio: 15000, sinStock: true, icon: "🌸", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/main/hortensias.jpg", desc: "Planta ornamental de floración abundante, ideal para espacios frescos y sectores de media sombra." },
     { nombre: "JAZMÍN PARAGUAYO", altura: "1 Metro", precio: 45000, icon: "🌼", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/jazmin-paraguayo-flores.jpeg", desc: "Arbusto ornamental de floración vistosa y fragante, ideal para sumar perfume y presencia al jardín." },
     { nombre: "PHILODENDRON MISIONERO", altura: "40 Centímetros", precio: 22000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/philodendron%20misionero.jpg", desc: "Planta de follaje ornamental, ideal para aportar volumen y verde a espacios protegidos." },
     { nombre: "AJUGA REPTANS RASTRERA", altura: "10 Centímetros", precio: 7000, icon: "🌿", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/ajuga%20reptans.webp", desc: "Planta rastrera de crecimiento bajo, útil para cubrir superficies y sumar textura al jardín." },
@@ -6724,7 +6730,7 @@
     "Rosales": [
     { nombre: "ROSADO RAYA BLANCA", altura: "60 Centimetros", precio: 23000, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/rosado%20raya%20blanca.jpeg", desc: "Flores bicolor con rayas blancas sobre fondo rosado, un patrón que no se repite en ningún otro rosal y se roba todas las miradas." },
     { nombre: "ROSA ROCOCO FUCSIA", altura: "40 Centímetros", precio: 28000, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/rosal%20trepador%20rococo%20rosado.png", desc: "Rosal de flores fucsias y porte ornamental, ideal para aportar color y protagonismo al jardín." },
-    { nombre: "AMARILLO", altura: "90 Centimetros", consultar: true, icon: "🌹", desc: "Amarillo puro y luminoso que resalta desde lejos y da un contraste imposible de ignorar en cualquier cantero." },
+    { nombre: "ROSAL AMARILLO", altura: "90 Centimetros", precio: 23000, icon: "🌹", desc: "Amarillo puro y luminoso que resalta desde lejos y da un contraste imposible de ignorar en cualquier cantero." },
     { nombre: "BORDO PERFUMADO", altura: "90 Centimetros", consultar: true, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/bordo%20perfumado.jpeg", desc: "El más perfumado de la colección: aroma clásico a rosa antigua que se siente al pasar cerca, con un color bordo profundo." },
     { nombre: "MATIZADO", altura: "90 Centimetros", consultar: true, icon: "🌹", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/matizado.jpeg", desc: "Cada flor abre con su propio degradé de color, nunca sale igual dos veces: una pieza de colección para el ojo entrenado." },
     { nombre: "LILA", altura: "50 a 60 Centímetros", precio: 23000, icon: "🌹", desc: "Rosal de pie bajo con flores de color lila." },
@@ -6740,7 +6746,7 @@
     { nombre: "LIMA TAHITÍ", altura: "1,50 Metros", precio: 30000, icon: "🍋‍🟩", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/lima%20tahiti.png", desc: "Jugo ácido y muy aromático, sin semillas: la lima de bar profesional que le da ese punto justo a tragos, ceviches y comidas." },
     { nombre: "LIMONERO GENOVA 4 ESTACIONES", altura: "1,50 Metros", precio: 30000, icon: "🍋", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/limonero%204%20estaciones.png", desc: "Limón de tipo Eureka, de pulpa jugosa y sabor ácido. La cosecha puede darse en distintas épocas, según el clima y el manejo." },
     { nombre: "LIMONERO PINK LEMON VARIAGADO 4 EST.", altura: "1 Metro", precio: 24000, icon: "🍋", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/limonero%20variagado%20enano.png", desc: "Jugo bien ácido y perfumado disponible casi todo el año, en una planta compacta con hojas variegadas que también lucen como ornamental." },
-    { nombre: "MANDARINA MURCOTT", altura: "1,50 Metros", precio: 30000, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/mandarina%20murcottt.png", desc: "Mandarina Murcott de pulpa naranja, tierna y muy jugosa, con sabor intenso. Puede tener desde pocas hasta numerosas semillas y su cáscara es relativamente adherente." },
+    { nombre: "MANDARINA MURCOTT", altura: "1,50 Metros", precio: 30000, sinStock: true, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/mandarina%20murcottt.png", desc: "Mandarina Murcott de pulpa naranja, tierna y muy jugosa, con sabor intenso. Puede tener desde pocas hasta numerosas semillas y su cáscara es relativamente adherente." },
     { nombre: "NARANJA DE OMBLIGO WHASHINGTON NAVEL", altura: "1,50 Metros", precio: 30000, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/naranja%20de%20ombligo.png", desc: "Pulpa dulce, sin semillas y muy jugosa, ideal para comer en gajos o exprimir un jugo espeso y con cuerpo." },
     { nombre: "NARANJA DE OMBLIGO WHASHINGTON NAVEL", altura: "1 Metros", precio: 24000, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/naranja%20de%20ombligo.png", desc: "Pulpa dulce, sin semillas y muy jugosa, ideal para comer en gajos o exprimir un jugo espeso y con cuerpo." },
     { nombre: "POMELO MARSH BLANCO", altura: "1,40 Metros", precio: 30000, icon: "🍊", img: "https://raw.githubusercontent.com/deraizvivero/deraizvivero.github.io/refs/heads/main/pomelo%20blanco.webp", desc: "Pomelo Marsh blanco de pulpa amarillo pálido, tierna y muy jugosa, de sabor suave. Ideal para consumir fresco o preparar jugos." },
@@ -6918,9 +6924,9 @@
 
                 contenedor.classList.add('plant-search-mode');
                 resultados.forEach((prod, index) => {
-                    const tienePrecio = Number.isFinite(prod.precio) && prod.precio > 0;
-                    const precio = tienePrecio ? `${formatPrice(prod.precio)} por ejemplar` : 'A consultar';
-                    const stock = Number.isFinite(prod.stock) ? `${prod.stock} unidades disponibles` : '';
+                    const tienePrecio = !prod.sinStock && Number.isFinite(prod.precio) && prod.precio > 0;
+                    const precio = prod.sinStock ? 'Sin stock' : (tienePrecio ? `${formatPrice(prod.precio)} por ejemplar` : 'A consultar');
+                    const stock = prod.sinStock ? 'Sin stock' : (Number.isFinite(prod.stock) ? `${prod.stock} unidades disponibles` : '');
                     const accion = (!tienePrecio && prod.consultar)
                         ? `<a class="plant-search-category-btn plant-search-whatsapp-btn" href="${escapeAttr(waLink(`Hola, quisiera consultar por ${prod.nombre} de la categoría ${prod.categoria}.`))}" target="_blank" rel="noopener noreferrer">WhatsApp</a>`
                         : `<button type="button" class="plant-search-category-btn" data-category="${escapeAttr(prod.categoria)}">Ver en catálogo</button>`;
@@ -7154,7 +7160,8 @@
                 const heading = categoryKey === 'Lista completa' && prod.categoria !== last ? `<div class="complete-list-category-heading" style="grid-column:1/-1; margin:28px 0 8px; padding:10px 14px; border-left:4px solid var(--verde-oscuro); background:var(--verde-suave); color:var(--verde-oscuro); font-family:Cormorant Garamond,serif; font-size:27px; font-weight:700;">${escapeAttr(prod.categoria)}</div>` : '';
                 last = prod.categoria || last;
                 const hasPrice = Number.isFinite(prod.precio) && prod.precio > 0;
-                html += `${heading}<div class="species-item"><div class="species-icon">${speciesIconHTML(prod)}</div><div class="species-info"><h4>${prod.nombre}</h4><p class="species-height">${prod.altura}</p>${Number.isFinite(prod.stock) ? `<p class="species-stock">${prod.stock} unidades disponibles</p>` : ''}${prod.desc ? `<p class="species-desc">${prod.desc}</p>` : ''}</div><div class="species-controls-wrapper"><div class="species-price-box"><span class="species-price-label">Por ejemplar</span><div class="species-price">${hasPrice ? formatPrice(prod.precio) : 'A consultar'}</div></div><div class="quantity-input" aria-label="Cantidad de ${escapeAttr(prod.nombre)}"><button type="button" aria-label="Disminuir cantidad" onclick="decreaseQty(${originalIndex})">−</button><input type="number" id="qty-${originalIndex}" value="${currentQuantities[originalIndex]}" min="0" ${Number.isFinite(prod.stock) ? `max="${prod.stock}"` : ''} onchange="updateQty(${originalIndex})"><button type="button" aria-label="Aumentar cantidad" onclick="increaseQty(${originalIndex})">+</button></div></div></div>`;
+                const isUnavailable = prod.sinStock === true;
+                html += `${heading}<div class="species-item${isUnavailable ? ' species-item-unavailable' : ''}"><div class="species-icon">${speciesIconHTML(prod)}</div><div class="species-info"><h4>${prod.nombre}</h4><p class="species-height">${prod.altura}</p>${isUnavailable ? '<p class="species-stock species-out-of-stock">Sin stock</p>' : (Number.isFinite(prod.stock) ? `<p class="species-stock">${prod.stock} unidades disponibles</p>` : '')}${prod.desc ? `<p class="species-desc">${prod.desc}</p>` : ''}</div><div class="species-controls-wrapper"><div class="species-price-box"><span class="species-price-label">Por ejemplar</span><div class="species-price">${hasPrice ? formatPrice(prod.precio) : 'A consultar'}</div></div>${isUnavailable ? '<div class="species-out-of-stock-label">Sin stock</div>' : `<div class="quantity-input" aria-label="Cantidad de ${escapeAttr(prod.nombre)}"><button type="button" aria-label="Disminuir cantidad" onclick="decreaseQty(${originalIndex})">−</button><input type="number" id="qty-${originalIndex}" value="${currentQuantities[originalIndex]}" min="0" ${Number.isFinite(prod.stock) ? `max="${prod.stock}"` : ''} onchange="updateQty(${originalIndex})"><button type="button" aria-label="Aumentar cantidad" onclick="increaseQty(${originalIndex})">+</button></div>`}</div></div>`;
             });
             modalSpecies.innerHTML = html;
         }
@@ -7197,6 +7204,7 @@
         function increaseQty(idx) {
             const input = document.getElementById(`qty-${idx}`);
             const prod = (productosData[currentCategory] || [])[idx];
+            if (prod?.sinStock) return;
             const max = Number.isFinite(prod?.stock) ? prod.stock : Infinity;
             input.value = Math.min(parseInt(input.value) || 0, max - 1) + 1;
             updateQty(idx);
@@ -7218,6 +7226,29 @@
             input.value = value;
             currentQuantities[idx] = value;
             updateModalTotal();
+            syncProductQuantityToCart(prod, currentCategory, value);
+        }
+
+        function syncProductQuantityToCart(prod, category, quantity) {
+            if (!prod || prod.sinStock) return;
+            const itemIndex = cart.findIndex(item => item.nombre === prod.nombre && item.categoria === category);
+            if (quantity > 0) {
+                const item = {
+                    nombre: prod.nombre,
+                    altura: prod.altura,
+                    precio: prod.precio,
+                    cantidad: quantity,
+                    icon: prod.icon,
+                    img: prod.img,
+                    consultar: prod.consultar,
+                    categoria: category
+                };
+                if (itemIndex >= 0) cart[itemIndex] = item;
+                else cart.push(item);
+            } else if (itemIndex >= 0) {
+                cart.splice(itemIndex, 1);
+            }
+            updateCartUI();
         }
 
         function updateModalTotal() {
@@ -7236,24 +7267,7 @@
         }
 
         function addAllToCart() {
-            const productos = productosData[currentCategory] || [];
-            
-            Object.keys(currentQuantities).forEach(idx => {
-                if (currentQuantities[idx] > 0) {
-                    const prod = productos[idx];
-                    cart.push({
-                        nombre: prod.nombre,
-                        altura: prod.altura,
-                        precio: prod.precio,
-                        cantidad: currentQuantities[idx],
-                        icon: prod.icon,
-                        img: prod.img,
-                        consultar: prod.consultar,
-                        categoria: currentCategory
-                    });
-                }
-            });
-            
+            // Los botones + y − ya mantienen el carrito actualizado en tiempo real.
             updateCartUI();
             closeModal();
         }
@@ -7671,7 +7685,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         };
 
         function raicitaPrecio(p) {
-            return p.consultar || !Number.isFinite(p.precio) ? 'A consultar' : '$' + p.precio.toLocaleString('es-AR');
+            return p.sinStock ? 'Sin stock' : (p.consultar || !Number.isFinite(p.precio) ? 'A consultar' : '$' + p.precio.toLocaleString('es-AR'));
         }
 
         function raicitaCatalogoContext() {
