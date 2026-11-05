@@ -6220,6 +6220,18 @@
     @media (max-width: 520px) { .site-qr-trigger { margin-top: 18px; } }
     @media (prefers-reduced-motion: reduce) { .site-qr-trigger, .site-qr-trigger:hover { transition: none; transform: none; } }
 </style>
+
+    <style id="mobile-performance-fix">
+        @media (max-width: 760px) {
+            .hero { background-attachment: scroll !important; }
+            .category-card:hover .category-card-bg,
+            .category-card:hover .category-card-overlay { transform: none !important; }
+            .category-card, .species-item, .review-card { will-change: auto !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+        }
+    </style>
 </head>
 
 <body>
@@ -6491,10 +6503,10 @@
                     <span>Lunes a Jueves · 10:00 a 19:00 hs</span>
                     <small>Las visitas son únicamente con reserva previa.</small>
                 </div>
-                <a class="location-button" href="https://www.google.com/maps/place/De+Ra%C3%ADz+Vivero+%7C+Loma+Bola,+C%C3%B3rdoba+-+Traslasierra/@-32.2345524,-65.0483164,13z/data=!4m6!3m5!1s0x95d2df5f0d584ef9:0x9eefed8c1754b575!8m2!3d-32.2040398!4d-65.0147139!16s%2Fg%2F11zw_qdx9k!5m1!1e4?authuser=2&entry=ttu&g_ep=EgoyMDI2MDgxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Abrir en Google Maps <span>↗</span></a>
+                <a class="location-button" href="https://maps.app.goo.gl/D68yoKStvamVbycf6" target="_blank" rel="noopener noreferrer">Abrir en Google Maps <span>↗</span></a>
             </div>
             <div class="location-map-card">
-                <iframe title="Mapa de De Raíz Vivero en Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53997.98787410566!2d-65.0483164!3d-32.234552449999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2df5f0d584ef9%3A0x9eefed8c1754b575!2sDe%20Ra%C3%ADz%20Vivero%20%7C%20Loma%20Bola%2C%20C%C3%B3rdoba%20-%20Traslasierra!5e0!3m2!1ses-419!2sar!4v1787172804617!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe loading="lazy" title="Mapa de De Raíz Vivero en Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53997.98787410566!2d-65.0483164!3d-32.234552449999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2df5f0d584ef9%3A0x9eefed8c1754b575!2sDe%20Ra%C3%ADz%20Vivero%20%7C%20Loma%20Bola%2C%20C%C3%B3rdoba%20-%20Traslasierra!5e0!3m2!1ses-419!2sar!4v1787172804617!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -6866,6 +6878,7 @@
             const contenedor = document.getElementById("cards");
             if (!contenedor) return;
             contenedor.innerHTML = "";
+            let renderedHTML = '';
             const normalizedFilter = normalizeText(filter);
 
             // Cuando se escribe en la lupa, mostrar directamente los ejemplares coincidentes.
@@ -6894,7 +6907,7 @@
                     const accion = (!tienePrecio && prod.consultar)
                         ? `<a class="plant-search-category-btn plant-search-whatsapp-btn" href="${escapeAttr(waLink(`Hola, quisiera consultar por ${prod.nombre} de la categoría ${prod.categoria}.`))}" target="_blank" rel="noopener noreferrer">WhatsApp</a>`
                         : `<button type="button" class="plant-search-category-btn" data-category="${escapeAttr(prod.categoria)}">Ver en catálogo</button>`;
-                    contenedor.innerHTML += `
+                    renderedHTML += `
                     <article class="plant-search-card" style="animation-delay: ${index * 0.05}s">
                         <div class="plant-search-image">${prod.img ? `<img src="${escapeAttr(prod.img)}" alt="${escapeAttr(prod.nombre)}" loading="lazy" class="zoomable-img" data-full="${escapeAttr(prod.img)}" data-caption="${escapeAttr(prod.nombre)}">` : prod.icon}</div>
                         <div class="plant-search-body">
@@ -6906,6 +6919,7 @@
                         </div>
                     </article>`;
                 });
+                contenedor.innerHTML = renderedHTML;
                 return;
             }
 
@@ -6926,9 +6940,9 @@
                     ? `<a class="category-card visible category-card-advice" href="https://deraizvivero.github.io/asesoramiento.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir asesoramiento" style="animation-delay: ${index * 0.08}s">`
                     : `<div class="category-card visible ${isComplete ? 'category-card-complete' : ''}" role="button" tabindex="0" aria-label="Ver ${escapeAttr(cat.nombre)}" data-category="${escapeAttr(cat.nombre)}" style="animation-delay: ${index * 0.08}s">`;
                 const cardEnd = isAdvice ? '</a>' : '</div>';
-                contenedor.innerHTML += `
+                renderedHTML += `
                 ${cardStart}
-                    <div class="category-card-bg" style="background-image: url('${cat.imagen}')"></div>
+                    <div class="category-card-bg" style="background-image: url('${responsiveImageURL(cat.imagen)}')"></div>
                     <div class="category-card-overlay"></div>
                     <div class="category-card-badge">${isAdvice ? 'GUÍA' : badgeText}</div>
                     <div class="category-card-content">
@@ -6939,6 +6953,7 @@
                     </div>
                 ${cardEnd}`;
             });
+            contenedor.innerHTML = renderedHTML;
         }
 
         function filterByCategory(category, btn) {
@@ -6969,9 +6984,11 @@
 
         window.addEventListener('hashchange', applyCategoryHash);
 
-        // Se ejecuta en cada tecla: SOLO filtra las tarjetas, no hace scroll
+        // Filtrado con un frame de espera: evita repintados excesivos al escribir en celulares.
+        let categorySearchFrame = 0;
         function filterCategories(val) {
-            renderCategories(val);
+            if (categorySearchFrame) cancelAnimationFrame(categorySearchFrame);
+            categorySearchFrame = requestAnimationFrame(() => renderCategories(val));
         }
 
         // Detecta la tecla Enter dentro del input de búsqueda
@@ -7020,28 +7037,60 @@
         const preloadedProductImages = new Set();
         function preloadCategoryImages(categoryKey) {
             const productos = productosData[categoryKey] || [];
-            productos.forEach(prod => {
-                if (!prod.img || preloadedProductImages.has(prod.img)) return;
+            // Solo anticipamos unas pocas imágenes; el resto se carga con loading="lazy".
+            productos.filter(prod => prod.img).slice(0, 4).forEach(prod => {
+                if (preloadedProductImages.has(prod.img)) return;
                 preloadedProductImages.add(prod.img);
                 const image = new Image();
                 image.decoding = 'async';
+                image.fetchPriority = 'low';
                 image.src = prod.img;
             });
         }
-        function preloadAllProductImages() {
-            Object.keys(productosData).forEach(preloadCategoryImages);
-        }
         function scheduleProductImagePreload() {
-            if ('requestIdleCallback' in window) {
-                window.requestIdleCallback(preloadAllProductImages, { timeout: 1200 });
-            } else {
-                window.setTimeout(preloadAllProductImages, 250);
-            }
+            // Intencionalmente no se precarga todo el catálogo al entrar a la página.
         }
+
+        function responsiveImageURL(url) {
+            if (!url || !/^https?:\/\/(images|plus)\.unsplash\.com\//.test(url)) return url;
+            const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const base = width <= 480 ? 480 : width <= 900 ? 768 : 1400;
+            const target = Math.round(base * dpr);
+            try {
+                const u = new URL(url);
+                u.searchParams.set('w', String(target));
+                u.searchParams.set('q', width <= 480 ? '65' : width <= 900 ? '75' : '82');
+                u.searchParams.set('auto', 'format');
+                u.searchParams.set('fit', 'crop');
+                return u.toString();
+            } catch (err) { return url; }
+        }
+        function responsiveImageSrcset(url) {
+            if (!url || !/^https?:\/\/(images|plus)\.unsplash\.com\//.test(url)) return '';
+            return [480, 768, 1200].map(w => {
+                const candidate = responsiveImageURL(url).replace(/([?&])w=\d+/, '$1w=' + w);
+                return `${candidate} ${w}w`;
+            }).join(', ');
+        }
+        let responsiveCatalogTimer = 0;
+        let responsiveCatalogBucket = '';
+        function refreshResponsiveCatalog() {
+            const width = window.innerWidth || document.documentElement.clientWidth || 0;
+            const bucket = width <= 480 ? 'small' : width <= 900 ? 'medium' : 'large';
+            if (bucket === responsiveCatalogBucket) return;
+            responsiveCatalogBucket = bucket;
+            const input = document.getElementById('searchInput');
+            if (typeof renderCategories === 'function') renderCategories(input ? input.value : '');
+        }
+        window.addEventListener('resize', () => {
+            window.clearTimeout(responsiveCatalogTimer);
+            responsiveCatalogTimer = window.setTimeout(refreshResponsiveCatalog, 180);
+        }, { passive: true });
 
         function speciesIconHTML(prod) {
             if (prod.img) {
-                return `<img src="${escapeAttr(prod.img)}" alt="${escapeAttr(prod.nombre)}" class="zoomable-img" data-full="${escapeAttr(prod.img)}" data-caption="${escapeAttr(prod.nombre)}">`;
+                return `<img src="${escapeAttr(responsiveImageURL(prod.img))}" srcset="${escapeAttr(responsiveImageSrcset(prod.img))}" sizes="(max-width: 600px) 88vw, (max-width: 950px) 44vw, 360px" alt="${escapeAttr(prod.nombre)}" class="zoomable-img" loading="lazy" decoding="async" fetchpriority="low" data-full="${escapeAttr(prod.img)}" data-caption="${escapeAttr(prod.nombre)}">`;
             }
             return prod.icon;
         }
@@ -7520,7 +7569,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
         }
 
         function raicitaMapLink() {
-            const href = 'https://www.google.com/maps/place/De+Ra%C3%ADz+Vivero+%7C+Loma+Bola,+C%C3%B3rdoba+-+Traslasierra/@-32.2345524,-65.0483164,13z/data=!4m6!3m5!1s0x95d2df5f0d584ef9:0x9eefed8c1754b575!8m2!3d-32.2040398!4d-65.0147139!16s%2Fg%2F11zw_qdx9k';
+            const href = 'https://maps.app.goo.gl/D68yoKStvamVbycf6';
             return `<a class="raicita-external-link raicita-map-link" href="${href}" target="_blank" rel="noopener noreferrer">📍 Ver ubicación en Google Maps ↗</a>`;
         }
 
@@ -7587,33 +7636,73 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             }
         }
 
+        /* ---------- Conocimiento integral de la tienda ---------- */
+        const RAICITA_STORE_INFO = {
+            nombre: 'De Raíz Vivero',
+            ubicacion: 'Loma Bola, Córdoba, Traslasierra, Argentina',
+            horarios: 'Lunes a Jueves, de 10:00 a 19:00 hs.',
+            visitas: 'Las visitas al vivero son únicamente con reserva previa.',
+            whatsapp: '543544669550',
+            whatsappVisible: '+54 3544 669550',
+            instagram: 'https://www.instagram.com/deraizviverook/',
+            facebook: 'https://www.facebook.com/deraizviverook/',
+            mapa: 'https://maps.app.goo.gl/D68yoKStvamVbycf6',
+            entregas: 'Se coordinan entregas a localidades de Traslasierra y zonas cercanas de San Luis. El costo se calcula en el carrito según la localidad; si se elige “Otro”, se coordina por WhatsApp.',
+            pagos: 'Los medios informados por la tienda son transferencia bancaria y efectivo. El pago se coordina al confirmar el pedido.',
+            categorias: 'Árboles, Palmeras, Arbustos, Gramíneas y Trepadoras, Rosales, Cítricos Injertados, Frutales Injertados y Parras.',
+            zonas: 'San José, San Pedro, Villa Sarmiento, Villa Dolores, Las Tapias, Mina Clavero, Nono, Villa de las Rosas, Merlo y localidades cercanas de Traslasierra y San Luis.'
+        };
+
+        function raicitaPrecio(p) {
+            return p.consultar || !Number.isFinite(p.precio) ? 'A consultar' : '$' + p.precio.toLocaleString('es-AR');
+        }
+
+        function raicitaCatalogoContext() {
+            const categorias = Object.entries(productosData).filter(([categoria]) => categoria !== 'Lista completa');
+            return categorias.map(([categoria, productos]) => {
+                const items = productos.map(p => `- ${p.nombre} | altura: ${p.altura || 'no informada'} | precio: ${raicitaPrecio(p)} | descripción: ${p.desc || 'sin descripción'}${p.stock ? ` | stock informado: ${p.stock}` : ''}`).join('\\n');
+                return `CATEGORÍA: ${categoria}\\n${items}`;
+            }).join('\\n\\n');
+        }
+
+        function raicitaKnowledgeContext() {
+            return `DATOS OFICIALES DE DE RAÍZ VIVERO\\nNombre: ${RAICITA_STORE_INFO.nombre}\\nUbicación: ${RAICITA_STORE_INFO.ubicacion}\\nHorarios: ${RAICITA_STORE_INFO.horarios}\\nVisitas: ${RAICITA_STORE_INFO.visitas}\\nWhatsApp: ${RAICITA_STORE_INFO.whatsappVisible}\\nEntregas: ${RAICITA_STORE_INFO.entregas}\\nPagos: ${RAICITA_STORE_INFO.pagos}\\nCategorías: ${RAICITA_STORE_INFO.categorias}\\nZonas: ${RAICITA_STORE_INFO.zonas}\\n\\nCATÁLOGO ACTUAL (usar estos datos y no inventar precios ni disponibilidad)\\n${raicitaCatalogoContext()}\\n\\nREGLAS: responder en español rioplatense, ser claro y amable; diferenciar “A consultar” de un precio; no asegurar stock si no está informado; ante dudas sobre entrega, pago o disponibilidad pedir que escriban por WhatsApp.`;
+        }
+
+        function raicitaRenderCategoria(categoria) {
+            const productos = productosData[categoria] || [];
+            if (!productos.length) return `No encontré esa categoría en el catálogo actual. Las categorías disponibles son: ${RAICITA_STORE_INFO.categorias}.`;
+            const lista = productos.map(p => `• <strong>${p.nombre}</strong> — ${raicitaPrecio(p)} · ${p.altura || 'altura no informada'}`).join('<br>');
+            return `<strong>${categoria}</strong><br><br>${lista}<br><br>Si querés, preguntame por una planta puntual para darte su descripción. Para confirmar disponibilidad, escribinos por WhatsApp.`;
+        }
+
+        function raicitaRenderResumenCatalogo() {
+            const grupos = Object.entries(productosData).filter(([categoria]) => categoria !== 'Lista completa').map(([categoria, productos]) => `• <strong>${categoria}</strong>: ${productos.length} ejemplares`).join('<br>');
+            return `En la tienda trabajamos con estas categorías:<br><br>${grupos}<br><br>Podés abrir cada categoría en el catálogo para ver fotos, alturas y precios. También podés preguntarme por el nombre de una planta.`;
+        }
+
         /* ---------- Base de conocimiento (FAQ) ---------- */
         const raicitaFAQ = [
             { id: 'horarios', keywords: ['horario','horarios','hora','atencion','atienden','abierto','cerrado','cuando'], chip: 'Horarios de atención',
-              respuesta: `Atendemos al público en el vivero de <strong>Lunes a Jueves, de 10:00 a 19:00 hs.</strong><br><br>Las visitas son únicamente con <strong>reserva previa</strong>. Escribinos por WhatsApp para coordinar tu visita y confirmar disponibilidad.` },
+              respuesta: `Atendemos al público en el vivero de <strong>${RAICITA_STORE_INFO.horarios}</strong><br><br>${RAICITA_STORE_INFO.visitas} Escribinos por WhatsApp para reservar y confirmar disponibilidad.` },
             { id: 'ubicacion', keywords: ['ubicacion','direccion','donde estan','donde queda','como llego','mapa','loma bola'], chip: 'Ubicación',
-              respuesta: `Estamos en <strong>Loma Bola, Córdoba</strong>, en el corazón de Traslasierra 🌿<br><br>Las visitas son únicamente con reserva previa. Podés abrir la ubicación exacta en Google Maps o escribirnos para coordinar tu visita.<br>
-              ${raicitaMapLink()}<br>
-              <div class="raicita-contact-links">
-                  ${raicitaContactLink('wa', waLink('Hola! Quisiera coordinar una cita para visitar el vivero y que me compartan la ubicación 🌱'), 'WhatsApp')}
-                  ${raicitaContactLink('ig', 'https://www.instagram.com/deraizviverook/', 'Instagram')}
-                  ${raicitaContactLink('fb', 'https://www.facebook.com/deraizviverook/', 'Facebook')}
-              </div>` },
+              respuesta: `Estamos en <strong>${RAICITA_STORE_INFO.ubicacion}</strong> 🌿<br><br>${RAICITA_STORE_INFO.visitas}<br>${raicitaMapLink()}<br><div class="raicita-contact-links">${raicitaContactLink('wa', waLink('Hola! Quisiera coordinar una cita para visitar el vivero y que me compartan la ubicación 🌱'), 'WhatsApp')}${raicitaContactLink('ig', RAICITA_STORE_INFO.instagram, 'Instagram')}${raicitaContactLink('fb', RAICITA_STORE_INFO.facebook, 'Facebook')}</div>` },
             { id: 'pedido', keywords: ['pedido','comprar','como compro','como pido','carrito','como funciona','hacer un pedido'], chip: '¿Cómo compro?',
-              respuesta: `¡Muy fácil! 🛒<br><br>1️⃣ Elegí una categoría en el catálogo.<br>2️⃣ Sumá la cantidad de cada planta que quieras.<br>3️⃣ Agregala al carrito.<br>4️⃣ Completá tu ciudad y dirección.<br>5️⃣ Confirmá el pedido, se envía directo por WhatsApp.<br><br>Ahí coordinamos el pago, envío o retiro con vos.` },
+              respuesta: `¡Muy fácil! 🛒<br><br>1️⃣ Elegí una categoría en el catálogo.<br>2️⃣ Sumá la cantidad de cada planta.<br>3️⃣ Agregala al carrito.<br>4️⃣ Completá tu ciudad y dirección.<br>5️⃣ Confirmá el pedido: se envía directo por WhatsApp.<br><br>Ahí coordinamos la disponibilidad, el pago, el envío o el retiro con vos.` },
             { id: 'envio', keywords: ['envio','envios','entrega','flete','traslado','mandan','llevan'], chip: 'Envíos',
-              respuesta: `Coordinamos envíos a distintas localidades de Traslasierra y zonas cercanas de San Luis 🚚<br><br>El costo se calcula automáticamente en el carrito según la localidad seleccionada y se suma al valor de las plantas. Si elegís “Otro”, lo coordinamos por WhatsApp.` },
-            { id: 'categorias', keywords: ['categoria','categorias','que venden','que tienen','arboles','palmeras','frutales','citricos','rosales','parras','arbustos','plantas'], chip: 'Categorías disponibles',
-              respuesta: `Trabajamos con: 🌳 Árboles, 🌴 Palmeras, 🌿 Arbustos, Gramíneas y Trepadoras, 🌹 Rosales, 🍊 Cítricos Injertados, 🍑 Frutales Injertados y 🍇 Parras.<br><br>Podés verlos todos en la sección "Catálogo" más arriba.` },
+              respuesta: `${RAICITA_STORE_INFO.entregas}<br><br>El valor del envío se suma al valor de las plantas. Para una localidad no listada, elegí “Otro” y coordinamos por WhatsApp.` },
+            { id: 'pagos', keywords: ['pago','pagos','transferencia','efectivo','abonar','medios de pago'], chip: 'Medios de pago',
+              respuesta: `${RAICITA_STORE_INFO.pagos}<br><br>El pedido se confirma por WhatsApp para coordinar todos los detalles.` },
+            { id: 'categorias', keywords: ['categoria','categorias','que venden','que tienen','arboles','palmeras','frutales','citricos','rosales','parras','arbustos','plantas','catalogo'], chip: '¿Qué venden?',
+              respuesta: () => raicitaRenderResumenCatalogo() },
             { id: 'precio', keywords: ['precio','precios','cuanto sale','cuanto cuesta','valor'], chip: 'Precios',
-              respuesta: `Cada planta tiene su precio detallado dentro de cada categoría del catálogo 🌱<br><br>Abrí la categoría que te interesa y vas a ver el precio y la altura de cada ejemplar.` },
+              respuesta: () => `Los precios y alturas están cargados en el catálogo actual. Estas son las categorías: ${RAICITA_STORE_INFO.categorias}.<br><br>Decime el nombre de una planta o una categoría y te paso el precio exacto. Los ejemplares marcados “A consultar” requieren confirmación por WhatsApp.` },
+            { id: 'visita', keywords: ['visita','visitar','vivero','reserva','cita','presencial'], chip: 'Visitar el vivero',
+              respuesta: `El vivero está en <strong>${RAICITA_STORE_INFO.ubicacion}</strong>. ${RAICITA_STORE_INFO.visitas}<br><br>Horario de atención: <strong>${RAICITA_STORE_INFO.horarios}</strong>.<br>${raicitaMapLink()}<br>${raicitaContactLink('wa', waLink('Hola! Quisiera reservar una visita al vivero 🌱'), 'Coordinar por WhatsApp')}` },
+            { id: 'asesoramiento', keywords: ['asesoramiento','asesoria','asesoría','recomendacion','recomendación','que planta elegir','cual planta','qué planta','sol','sombra'], chip: 'Asesoramiento',
+              respuesta: `Puedo ayudarte a elegir según el espacio, la luz, el riego y el objetivo del jardín. Contame: qué localidad tenés, si el lugar recibe sol o media sombra, cuánto espacio hay y qué buscás —sombra, cerco, floración, frutales u ornamental—. También podés consultar la sección de asesoramiento de la web.` },
             { id: 'contacto', keywords: ['contacto','whatsapp','instagram','facebook','redes','telefono','hablar con alguien','persona'], chip: 'Contacto',
-              respuesta: `Podés escribirnos directo:
-              <div class="raicita-contact-links">
-                  ${raicitaContactLink('wa', waLink('Holaa! Tengo una consulta para De Raíz Vivero 🌱'), 'WhatsApp')}
-                  ${raicitaContactLink('ig', 'https://www.instagram.com/deraizviverook/', 'Instagram')}
-                  ${raicitaContactLink('fb', 'https://www.facebook.com/deraizviverook/', 'Facebook')}
-              </div>` }
+              respuesta: `Podés escribirnos directo al WhatsApp <strong>${RAICITA_STORE_INFO.whatsappVisible}</strong>:<div class="raicita-contact-links">${raicitaContactLink('wa', waLink('Hola! Tengo una consulta para De Raíz Vivero 🌱'), 'WhatsApp')}${raicitaContactLink('ig', RAICITA_STORE_INFO.instagram, 'Instagram')}${raicitaContactLink('fb', RAICITA_STORE_INFO.facebook, 'Facebook')}</div>` }
         ];
 
         /* ---------- Charla natural (small talk) ---------- */
@@ -7626,7 +7715,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
               respuesta: () => '¡De nada! Cualquier otra cosa que necesites, avisame 🙂' },
             { keywords: ['chau','adios','nos vemos','hasta luego','bye'],
               respuesta: () => '¡Nos vemos! Que tengas un lindo día 🌳' },
-            { keywords: ['quien sos','que sos','sos un bot','sos una ia','sos humano'],
+            { keywords: ['quien sos','que sos','sos un bot','sos humano'],
               respuesta: () => 'Soy Raicita, la asistente virtual de De Raíz Vivero 🌿 Estoy para ayudarte con consultas sobre plantas, pedidos, envíos y más.' }
         ];
 
@@ -7735,8 +7824,8 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             if (typing) typing.remove();
         }
 
-        // URL de tu Worker (IA). Sin esto configurado, solo responde lo que ya sabe.
-        const RAICITA_AI_URL = 'https://TU-WORKER.TU-USUARIO.workers.dev';
+        // Servicio opcional de respuestas ampliadas.
+        const RAICITA_REMOTE_URL = 'https://TU-WORKER.TU-USUARIO.workers.dev';
         const RAICITA_MEMORY_KEY = 'deraizvivero_raicita_memory_v1';
         const RAICITA_MAX_MESSAGES = 40;
         let raicitaHistorial = [];
@@ -7819,7 +7908,8 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
                 return;
             }
             if (match) {
-                setTimeout(() => { raicitaHideTyping(); raicitaAddMsg(match.respuesta, 'bot'); }, 650);
+                const respuesta = typeof match.respuesta === 'function' ? match.respuesta() : match.respuesta;
+                setTimeout(() => { raicitaHideTyping(); raicitaAddMsg(respuesta, 'bot'); }, 650);
                 return;
             }
             if (productos.length > 0) {
@@ -7849,16 +7939,21 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
 
             // Fallback compatible con GitHub Pages: búsqueda externa preparada en Google.
             // Un HTML público no puede consultar Google directamente de forma segura sin un servidor.
-            if (!RAICITA_AI_URL || RAICITA_AI_URL.includes('TU-WORKER')) {
+            if (!RAICITA_REMOTE_URL || RAICITA_REMOTE_URL.includes('TU-WORKER')) {
                 raicitaHideTyping();
-                raicitaAddMsg(`No tengo una respuesta específica guardada para esa consulta todavía 🌱<br><br>Te dejo una búsqueda preparada para encontrar información actualizada. Contrastá siempre los consejos con la especie, el clima y las indicaciones de un viverista:<br>${raicitaGoogleSearchLink(userText)}<br><br>Si querés, también podés escribirnos por WhatsApp y te ayudamos personalmente.`, 'bot');
+                raicitaAddMsg(`Puedo orientarte con el catálogo y la información de la tienda 🌱<br><br>${raicitaRenderResumenCatalogo()}<br><br>Para una consulta más específica, preguntame por una planta, categoría, precio, altura, cuidado, envío o visita. Si necesitás confirmar disponibilidad, escribinos por WhatsApp:<br>${raicitaContactLink('wa', waLink('Hola! Tengo una consulta: ' + userText), 'WhatsApp')}<br><br>${raicitaGoogleSearchLink(userText)}`, 'bot');
                 return;
             }
             try {
-                const res = await fetch(RAICITA_AI_URL, {
+                const res = await fetch(RAICITA_REMOTE_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ historial: raicitaHistorial })
+                    body: JSON.stringify({
+                        historial: raicitaHistorial,
+                        mensaje: userText,
+                        contexto: raicitaKnowledgeContext(),
+                        instrucciones: 'Usá exclusivamente el contexto oficial de la tienda. Respondé en español rioplatense, no inventes datos y derivá a WhatsApp cuando falte confirmar stock, precio o envío.'
+                    })
                 });
                 const data = await res.json();
                 raicitaHideTyping();
@@ -7888,7 +7983,7 @@ mensaje += "_Hola, me gustaría confirmar la disponibilidad de estos ejemplares 
             raicitaAsk(val);
         }
 
-        const raicitaSaludo = `¡Holaa! Soy <strong>Raicita</strong> 🌱, la asistente virtual de De Raíz Vivero.<br><br>Puedo ayudarte con toda la información de esta página: categorías y precios del catálogo, disponibilidad de ejemplares, cuidados de plantas, horarios, visitas con reserva, ubicación, envíos, pedidos, reseñas y redes sociales. Si mi respuesta no alcanza, te preparo una búsqueda directa en Google. ¿Qué necesitás?`;
+        const raicitaSaludo = `¡Holaa! Soy <strong>Raicita</strong> 🌱, la asistente virtual de De Raíz Vivero.<br><br>Puedo ayudarte con la información de la tienda: catálogo completo con categorías, plantas, precios, alturas y descripciones; cuidados, horarios, visitas con reserva, ubicación, envíos, pagos, pedidos, reseñas y redes sociales. Si mi respuesta no alcanza, te preparo una búsqueda directa en Google. ¿Qué necesitás?`;
         let raicitaOpened = false;
 
         function toggleRaicita() {
