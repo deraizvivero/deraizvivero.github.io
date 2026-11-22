@@ -6474,28 +6474,30 @@
                     <label for="checkout-city">Ciudad (Traslasierra)</label>
                     <select id="checkout-city" class="checkout-input">
                         <option value="" disabled selected>Seleccione su ciudad...</option>
-                                                <option value="Mina Clavero">Mina Clavero</option>
-                        <option value="Arroyo de los Patos">Arroyo de los Patos</option>
-                        <option value="Nono">Nono</option>
-                        <option value="San Humberto">San Humberto</option>
-                        <option value="Las Rabonas">Las Rabonas</option>
-                        <option value="Los Hornillos">Los Hornillos</option>
-                        <option value="Quebrada de los Pozos">Quebrada de los Pozos</option>
-                        <option value="Villa de las Rosas">Villa de las Rosas</option>
-                        <option value="Las Tapias">Las Tapias</option>
-                        <option value="Villa Dolores">Villa Dolores</option>
-                        <option value="Villa Sarmiento">Villa Sarmiento</option>
-                        <option value="San José">San José</option>
-                        <option value="San Pedro">San Pedro</option>
-                        <option value="San Javier y Yacanto">San Javier y Yacanto</option>
-                        <option value="La Población">La Población</option>
-                        <option value="Luyaba">Luyaba</option>
+                        <option value="Loma Bola">Loma Bola</option>
                         <option value="La Paz">La Paz</option>
                         <option value="Las Chacras">Las Chacras</option>
                         <option value="Quebracho Ladeado">Quebracho Ladeado</option>
                         <option value="La Ramada">La Ramada</option>
+                        <option value="Luyaba">Luyaba</option>
+                        <option value="Travesía">Travesía</option>
+                        <option value="La Población">La Población</option>
+                        <option value="San Javier y Yacanto">San Javier y Yacanto</option>
+                        <option value="Las Tapias">Las Tapias</option>
+                        <option value="Villa Dolores">Villa Dolores</option>
+                        <option value="Villa Sarmiento">Villa Sarmiento</option>
+                        <option value="San Pedro">San Pedro</option>
+                        <option value="San José">San José</option>
+                        <option value="Villa de las Rosas">Villa de las Rosas</option>
+                        <option value="Quebrada de los Pozos">Quebrada de los Pozos</option>
+                        <option value="Los Hornillos">Los Hornillos</option>
+                        <option value="Las Rabonas">Las Rabonas</option>
+                        <option value="San Humberto">San Humberto</option>
+                        <option value="Nono">Nono</option>
+                        <option value="Arroyo de los Patos">Arroyo de los Patos</option>
+                        <option value="Mina Clavero">Mina Clavero</option>
                         <option value="Merlo, San Luis">Merlo, San Luis</option>
-                                                                        <option value="Otro">Otro (Especificar en dirección)</option>
+                        <option value="Otro">Otro (Especificar en dirección)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -7311,7 +7313,7 @@
             'Quebracho Ladeado': 10000,
             'La Ramada': 10000,
             'Luyaba': 4000,
-            'Travesia': 4000,
+            'Travesía': 4000,
             'La Población': 6000,
             'San Javier y Yacanto': 6000,
             'Las Tapias': 6000,
@@ -7330,9 +7332,16 @@
             'Merlo, San Luis': 10000
         };
 
+        function normalizeCity(value) {
+            return String(value || '')
+                .trim()
+                .normalize('NFC');
+        }
+
         function getShippingFee(city) {
-            return Object.prototype.hasOwnProperty.call(SHIPPING_RATES, city)
-                ? SHIPPING_RATES[city]
+            const normalizedCity = normalizeCity(city);
+            return Object.prototype.hasOwnProperty.call(SHIPPING_RATES, normalizedCity)
+                ? SHIPPING_RATES[normalizedCity]
                 : null;
         }
 
@@ -8492,7 +8501,12 @@ function injectBusinessReviewSchema() {
 // Inicializar
 renderCategories();
 scheduleProductImagePreload();
-document.getElementById('checkout-city')?.addEventListener('change', updateCartUI);
+const checkoutCity = document.getElementById('checkout-city');
+if (checkoutCity) {
+    // change cubre la selección normal; input cubre cambios por teclado/autocompletado.
+    checkoutCity.addEventListener('change', updateCartUI);
+    checkoutCity.addEventListener('input', updateCartUI);
+}
 updateCartUI();
     applyCategoryHash();
 renderReviews();
